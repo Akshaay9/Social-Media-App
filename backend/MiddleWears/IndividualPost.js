@@ -8,7 +8,7 @@ export const getIndividualPost = async (req, res, next, id) => {
       }
       const individualPost = await Post.findById(id);
       if (!individualPost) {
-        res.status(400).json({ error: "note not found" });
+        res.status(400).json({ error: "post not found" });
       }
       req.individualPost = individualPost
       next()

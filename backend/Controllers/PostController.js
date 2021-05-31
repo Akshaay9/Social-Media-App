@@ -4,7 +4,13 @@ const { extend } = pkg;
 
 // allpost
 export const getAllPost = async (req, res) => {
-  const allPosts = await Post.find({});
+  // const allPosts = await Post.find({}).populate(
+  //   "likes.likeID","name profileImage"
+  // );
+  const allPosts = await Post.find({})
+    .populate("likes.likeID", "name profileImage")
+    .populate("comments.commentID")
+    .populate("comments.user", "name profileImage");
   return res.status(200).json(allPosts);
 };
 
@@ -42,6 +48,7 @@ export const getIndividualPosts = async (req, res) => {
   res.status(200).json(individualPost);
 };
 
+// delete post
 export const deletePost = async (req, res) => {
   const { postID } = req.params;
   await Post.findByIdAndDelete(postID);

@@ -16,7 +16,7 @@ export const addOrRemoveLike = async (req, res) => {
   } else {
     individualPost.likes.push({ likeID: req.user.id });
     await individualPost.save();
-    const allPosts = await Post.find({});
+    const allPosts = await Post.find({}).populate("likes.likeID");
     return res.status(200).json(allPosts);
   }
 };

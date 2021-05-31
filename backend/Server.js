@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dbConnection from "./DB.js";
 import dotenv from "dotenv";
-import UserLoginSignup from "./Routes/UserRoute.js"
+import UserLoginSignup from "./Routes/UserRoute.js";
+import Post from "./Routes/PostRoute.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -16,19 +17,18 @@ app.listen(PORT, () =>
 );
 
 // routes
-app.use(`/api/user`,UserLoginSignup)
-
-
+app.use(`/api/user`, UserLoginSignup);
+app.use(`/api/user/post`, Post);
 
 // custome err handeling
 app.use((err, req, res, next) => {
-    console.log(err);
-    res.json({
-      message: err.message,
-      stack: process.env.NODE_ENV === "production" ? null : err.stack,
-    });
+  console.log(err);
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === "production" ? null : err.stack,
   });
-  // 404 handling
-  app.use("*", function (req, res) {
-    return res.status(400).json({ error: "Page Not Found" });
-  });
+});
+// 404 handling
+app.use("*", function (req, res) {
+  return res.status(400).json({ error: "Page Not Found" });
+});

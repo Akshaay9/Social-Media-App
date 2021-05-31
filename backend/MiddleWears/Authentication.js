@@ -12,8 +12,7 @@ export default async function privateRoute(req,res,next) {
         }
     try {
         const decoded = jwt.verify(token, process.env.JWT)
-        console.log(decoded)
-        req.user=decoded
+        req.user = decoded
         next()
     } catch (error) {
         console.log(error);

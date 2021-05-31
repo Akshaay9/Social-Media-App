@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const postSchema = mongoose.Schema(
   {
-    discription: {
+    description: {
       type: String,
     },
     image: {

@@ -8,6 +8,19 @@ const postSchema = mongoose.Schema(
     image: {
       type: String,
     },
+    lng: {
+      type: Number,
+    },
+    lat: {
+      type: Number,
+    },
+    bgColor: {
+      type: String,
+    },
+    PostType: {
+      type: String,
+      required: true,
+    },
     likes: [
       {
         likeID: {

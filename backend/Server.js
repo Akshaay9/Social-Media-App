@@ -4,6 +4,7 @@ import dbConnection from "./DB.js";
 import dotenv from "dotenv";
 import UserLoginSignup from "./Routes/UserRoute.js";
 import Post from "./Routes/PostRoute.js";
+import Like from "./Routes/LikeRoute.js";
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -19,6 +20,7 @@ app.listen(PORT, () =>
 // routes
 app.use(`/api/user`, UserLoginSignup);
 app.use(`/api/user/post`, Post);
+app.use(`/api/user/like`, Like);
 
 // custome err handeling
 app.use((err, req, res, next) => {

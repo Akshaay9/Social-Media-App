@@ -1,3 +1,4 @@
+/* left user */
 .left-bar-user {
   display: flex;
   position: fixed;
@@ -12,4 +13,34 @@
 }
 .left-bar-user .left-bar-user-details p {
   padding-top: 0.2rem;
+  font-size: .8rem;
 }
+
+/* left side bar */
+.left_nav_bar{
+  position: fixed;
+  top: 35%;
+  margin-left: 4rem;
+ 
+}
+.left_nav_bar ul{
+  background-color: #242526;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+.left_nav_bar ul li{
+  padding: 1rem 2.8rem;  
+  border-bottom: 1px solid #18191a;
+  border-left: 2px solid #242526;
+  font-weight: bold;
+  font-size: .988rem;
+}
+.left_nav_bar ul li i{
+ margin-right: 1.5rem;
+ font-size: 1.2rem;
+}
+.left_nav_bar ul li:hover{
+  border-left: 2px solid #2d88ff;
+  color:#2d88ff;
+}
+

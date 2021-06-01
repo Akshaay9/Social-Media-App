@@ -8,6 +8,7 @@
   background-color: #242526;
   border-radius: 0.4rem;
 }
+
 .left-bar-user .left-bar-user-details {
   padding-left: 1rem;
 }
@@ -22,6 +23,12 @@
   top: 35%;
   margin-left: 4rem;
  
+}
+.right{
+  position: fixed;
+  top: 35%;
+  right: 0;
+  margin-right: 4rem;
 }
 .left_nav_bar ul{
   background-color: #242526;

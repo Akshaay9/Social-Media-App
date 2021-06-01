@@ -1,0 +1,15 @@
+.left-bar-user {
+  display: flex;
+  position: fixed;
+  margin-left: 4rem;
+  margin-top: 2rem;
+  padding: 1.3rem 2rem;
+  background-color: #242526;
+  border-radius: 0.4rem;
+}
+.left-bar-user .left-bar-user-details {
+  padding-left: 1rem;
+}
+.left-bar-user .left-bar-user-details p {
+  padding-top: 0.2rem;
+}

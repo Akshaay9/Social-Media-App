@@ -1,10 +1,15 @@
 
 .nav{
     background-color: #242526;
+    position:sticky;
+    width:100%;
+   
+
 }
 .nav_left{
     width: 15%;
     margin-left: 1rem;
+    
 }
 .nav_right{
     width: 50%;

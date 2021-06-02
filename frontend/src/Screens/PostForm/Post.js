@@ -5,7 +5,6 @@ import PostForm from "./PostForm";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
 function Post() {
   const [showPostForm, setShowPostForm] = useState(false);
-
   const [feeling, setFeeling] = useState();
   const [image, setImage] = useState();
   const hiddenFileInput = React.useRef(null);
@@ -39,22 +38,31 @@ function Post() {
           </div>
         </div>
         <div className="post-bar-bottom">
-          <div
-            className="post-bar-bottom-row-one"
-            onClick={() => {
-              handleClick();
-              setShowPostForm(true);
-            }}
-          >
-            <i class="fas fa-images"></i>
-            <p>upload Photo</p>
-            <input
-              type="file"
-              accept="image/png, image/jpeg"
-              ref={hiddenFileInput}
-              onChange={handleChange}
-              style={{ display: "none" }}
-            />
+          <div className="post-bar-bottom-row-one">
+            {image?.image ? (
+              <>
+                <Avatar alt="Remy Sharp" variant="rounded" src={image?.image} />
+                <i class="far fa-times-circle" onClick={() => setImage()} />
+              </>
+            ) : (
+              <div
+                onClick={() => {
+                  handleClick();
+                  setShowPostForm(true);
+                }}
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <i class="fas fa-images" />
+                <p>upload Photo</p>
+                <input
+                  type="file"
+                  accept="image/png, image/jpeg"
+                  ref={hiddenFileInput}
+                  onChange={handleChange}
+                  style={{ display: "none" }}
+                />
+              </div>
+            )}
           </div>
           <div className="post-bar-bottom-row-two">
             <i class="far fa-smile-wink"></i>
@@ -81,6 +89,8 @@ function Post() {
         feelingActiviy={feelingActiviy}
         feeling={feeling}
         setFeeling={setFeeling}
+        image={image}
+        setImage={setImage}
       />
     </>
   );

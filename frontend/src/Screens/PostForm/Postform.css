@@ -49,10 +49,10 @@
   padding-top: 0.3rem;
   cursor: pointer;
 }
-.postform-feeling i{
+.postform-feeling i {
   padding-left: 0.3rem;
-  font-size: .9rem;
-  color:#606367
+  font-size: 0.9rem;
+  color: #606367;
 }
 .postform-top i {
   font-size: 1.3rem;
@@ -99,6 +99,13 @@ textarea::-webkit-input-placeholder {
 .postform-bottom-row-one i,
 .postform-bottom-row-two i {
   padding-right: 1rem;
+}
+.postform-bottom-row-one .fa-times-circle,
+.post-bar-bottom-row-one .fa-times-circle {
+  padding-left: 0.3rem;
+  font-size: 0.9rem;
+  color: #606367;
+  padding-bottom: 1.4rem;
 }
 
 .postform button {

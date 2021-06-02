@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import "./Postform.css";
 import Avatar from "@material-ui/core/Avatar";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
-function PostForm({ showPostForm, setShowPostForm, feeling, setFeeling }) {
+function PostForm({
+  showPostForm,
+  setShowPostForm,
+  feeling,
+  setFeeling,
+  image,
+  setImage,
+}) {
+  // close modal
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
       setShowPostForm(false);
+    }
+  };
+  // useref for image
+  const hiddenFileInput = React.useRef(null);
+  const handleClick = () => {
+    hiddenFileInput.current.click();
+  };
+  // upload image
+  const handleChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage({
+        image: URL.createObjectURL(event.target.files[0]),
+      });
     }
   };
   return (
@@ -44,8 +65,33 @@ function PostForm({ showPostForm, setShowPostForm, feeling, setFeeling }) {
             </div>
             <div className="postform-bottom">
               <div className="postform-bottom-row-one">
-                <i class="fas fa-images"></i>
-                <p>upload Photo</p>
+                {image?.image ? (
+                  <>
+                    <Avatar
+                      alt="Remy Sharp"
+                      variant="rounded"
+                      src={image?.image}
+                    />
+                    <i class="far fa-times-circle" onClick={() => setImage()} />
+                  </>
+                ) : (
+                  <div
+                    onClick={() => {
+                      handleClick();
+                    }}
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <i class="fas fa-images" />
+                    <p>upload Photo</p>
+                    <input
+                      type="file"
+                      accept="image/png, image/jpeg"
+                      ref={hiddenFileInput}
+                      onChange={handleChange}
+                      style={{ display: "none" }}
+                    />
+                  </div>
+                )}
               </div>
               <div className="postform-bottom-row-two">
                 <i class="far fa-smile-wink"></i>

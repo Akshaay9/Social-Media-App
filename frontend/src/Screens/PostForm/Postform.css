@@ -164,3 +164,22 @@ textarea::-webkit-input-placeholder {
 .postform-bottom-row-two ul li span {
   margin-right: 0.7rem;
 }
+
+/* mobile */
+@media screen and (max-width: 970px) {
+  .postform-container {
+    top: 58%;
+    left: 50%;
+    height: 120vh;
+  }
+  .postform {
+    top: 30%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    background-color: #242526;
+    border-radius: 0.4rem;
+    width: 92%;
+    opacity: 2000 !important;
+  
+  }
+}

@@ -24,12 +24,7 @@ top: 15%;
   margin-left: 4rem;
  
 }
-.right{
-  position: fixed;
-  top: 35%;
-  right: 0;
-  margin-right: 4rem;
-}
+
 .left_nav_bar ul{
   background-color: #242526;
   border-radius: 0.4rem;
@@ -49,5 +44,16 @@ top: 15%;
 .left_nav_bar ul li:hover{
   border-left: 2px solid #2d88ff;
   color:#2d88ff;
+}
+
+/* mobile */
+@media screen and (max-width: 970px) 
+{
+  .left-bar-user {
+    display:none;
+  }
+  .left_nav_bar{
+    display:none;
+  }
 }
 

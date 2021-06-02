@@ -85,4 +85,18 @@
 .post-bar-bottom-row-two ul li span {
  margin-right: .7rem;
 }
+@media screen and (max-width: 970px) 
+{
+  .post-bar{
+    width: 90%;
+    margin: 2.5rem auto 0rem auto;
+  }
+  .post-bar-bottom {
+  
+    width: 100%;
+    /* border: 1px solid red; */
+  
+  }
+}
+
 

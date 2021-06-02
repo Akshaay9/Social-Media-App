@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import "./App.css";
+import "./Post.css";
 import Avatar from "@material-ui/core/Avatar";
 import PostForm from "./PostForm";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";

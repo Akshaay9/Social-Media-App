@@ -1,10 +1,9 @@
 import React from 'react'
-import LeftSideBar from "../LeftSideBar/index"
-import Post from '../PostForm/Post'
+import Post from './Post'
+
 function Index() {
     return (
         <div>
-            <LeftSideBar />
             <Post/>
         </div>
     )

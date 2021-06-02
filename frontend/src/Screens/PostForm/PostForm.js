@@ -1,7 +1,8 @@
 import React from "react";
 import "./Postform.css";
 import Avatar from "@material-ui/core/Avatar";
-function PostForm({ showPostForm, setShowPostForm }) {
+import { feelingActiviy } from "../../Data.js/FeelingActivity";
+function PostForm({ showPostForm, setShowPostForm, feeling, setFeeling }) {
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
       setShowPostForm(false);
@@ -13,14 +14,25 @@ function PostForm({ showPostForm, setShowPostForm }) {
         <div className="postform-container" onClick={(e) => closeModal(e)}>
           <div className="postform">
             <div className="postform-top">
-              <h3>Create post</h3>
+              <h2>Create post</h2>
             </div>
             <div className="postform-mid">
               <Avatar
                 alt="Remy Sharp"
                 src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
               />
-              <p>Akshay</p>
+              <h3>Akshay</h3>
+              {feeling && (
+                <div className="postform-feeling">
+                  <span>
+                    is {feeling.emoji} feeling {feeling.text}
+                  </span>
+                  <i
+                    class="far fa-times-circle"
+                    onClick={() => setFeeling()}
+                  ></i>
+                </div>
+              )}
             </div>
             <div className="postform-mid">
               <textarea
@@ -39,22 +51,12 @@ function PostForm({ showPostForm, setShowPostForm }) {
                 <i class="far fa-smile-wink"></i>
                 <p>Feeling/activity</p>
                 <ul>
-                  <li>
-                    {" "}
-                    <span>😁 </span> Happy
-                  </li>
-                  <li>
-                    <span>😔 </span>Sad
-                  </li>
-                  <li>
-                    <span>😱</span>Excited
-                  </li>
-                  <li>
-                    <span>😎</span>Chilling
-                  </li>
-                  <li>
-                    <span>😍</span>Loved
-                  </li>
+                  {feelingActiviy.map((ele) => (
+                    <li onClick={() => setFeeling(ele)}>
+                      <span>{ele.emoji}</span>
+                      {ele.text}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

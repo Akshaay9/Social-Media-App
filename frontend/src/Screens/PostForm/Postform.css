@@ -7,17 +7,16 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  background: rgba(0,0,0,.8);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
   display: -webkit-flex;
   display: flex;
   -webkit-align-items: center;
   align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
-  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
-
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .postform {
   /* border: 1px solid red; */
@@ -28,8 +27,8 @@
   background-color: #242526;
   border-radius: 0.4rem;
   width: 30%;
-padding: 1rem;
-border: 1px solid #18191a;
+  padding: 1rem;
+  border: 1px solid #18191a;
 }
 
 .postform-top {
@@ -41,10 +40,19 @@ border: 1px solid #18191a;
   border-bottom: 1px solid #18191a;
   cursor: pointer;
 }
-.postform-top h3 {
-  /* border: 1px solid red; */
+.postform-top h2 {
   flex: 0.9;
   text-align: center;
+}
+.postform-feeling {
+  padding-left: 0.4rem;
+  padding-top: 0.3rem;
+  cursor: pointer;
+}
+.postform-feeling i{
+  padding-left: 0.3rem;
+  font-size: .9rem;
+  color:#606367
 }
 .postform-top i {
   font-size: 1.3rem;
@@ -54,9 +62,9 @@ border: 1px solid #18191a;
   display: flex;
   padding: 0.7rem;
 }
-.postform-mid p {
+.postform-mid h3 {
   padding-left: 0.4rem;
-  padding-top: 0.1rem;
+  padding-top: 0.3rem;
   font-weight: bold;
 }
 .postform-mid input[type="text"],
@@ -69,20 +77,18 @@ textarea {
   width: 95%;
   margin: auto;
   font-family: sans-serif;
-  border-radius: .4rem;
+  border-radius: 0.4rem;
   border: 1px solid #18191a;
   padding: 1rem;
-  
 }
 .postform-mid input[type="text"],
 textarea::-webkit-input-placeholder {
   font-size: 1rem;
-  
 }
 .postform-bottom {
   display: flex;
   cursor: pointer;
-  padding: .5rem 0.5rem;
+  padding: 0.5rem 0.5rem;
   justify-content: space-evenly;
 }
 .postform-bottom-row-one,
@@ -95,62 +101,59 @@ textarea::-webkit-input-placeholder {
   padding-right: 1rem;
 }
 
-.postform button{
-width: 95%;
-margin: 1rem auto;
-display: block;
-padding: .7rem 0rem;
-background-color: #2988ff;
-border: none;
-outline: none;
-cursor: pointer;
-color: white;
-font-weight: bolder;
+.postform button {
+  width: 95%;
+  margin: 1rem auto;
+  display: block;
+  padding: 0.7rem 0rem;
+  background-color: #2988ff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  font-weight: bolder;
 }
-.postform button:hover{
-background-color: #7fafe9;
+.postform button:hover {
+  background-color: #7fafe9;
 }
-.postform-bottom-row-two{
-    position: relative;
+.postform-bottom-row-two {
+  position: relative;
 }
 
 .postform-bottom-row-one,
 .postform-bottom-row-two {
- padding: .3rem;
- border-radius: .6rem;
+  padding: 0.3rem;
+  border-radius: 0.6rem;
 }
-
 
 .postform-bottom-row-one:hover,
 .postform-bottom-row-two:hover {
   background-color: #3a3b3c;
 }
 .postform-bottom-row-two ul {
-    position: absolute;
-    top: 102%;
-    left: -5%;
-    background-color: #3a3b3c;
-    border-radius: 0.3rem;
-    display: none;
-  }
-  .postform-bottom-row-two ul li {
-    padding: 0.5rem 3rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid #18191a;
-    border-left:1px solid  #3a3b3c;
-  }
-  .postform-bottom-row-two ul li:hover {
-    border-left:1px solid  #2d88ff;
-  
-  }
-  .postform-bottom-row-two ul:hover {
-    display: block !important;
-  }
-  .postform-bottom-row-two:hover ul {
-    display: block !important;
-  }
-  .postform-bottom-row-two ul li span {
-   margin-right: .7rem;
-  }
-
+  position: absolute;
+  top: 102%;
+  left: -5%;
+  background-color: #3a3b3c;
+  border-radius: 0.3rem;
+  display: none;
+}
+.postform-bottom-row-two ul li {
+  padding: 0.5rem 3rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #18191a;
+  border-left: 1px solid #3a3b3c;
+}
+.postform-bottom-row-two ul li:hover {
+  border-left: 1px solid #2d88ff;
+}
+.postform-bottom-row-two ul:hover {
+  display: block !important;
+}
+.postform-bottom-row-two:hover ul {
+  display: block !important;
+}
+.postform-bottom-row-two ul li span {
+  margin-right: 0.7rem;
+}

@@ -1,0 +1,156 @@
+/* post form for adding post */
+/*  */
+.postform-container {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,.8);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  font-family: "Segoe UI",Tahoma,Geneva,Verdana,sans-serif;
+
+}
+.postform {
+  /* border: 1px solid red; */
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #242526;
+  border-radius: 0.4rem;
+  width: 30%;
+padding: 1rem;
+border: 1px solid #18191a;
+}
+
+.postform-top {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 0rem;
+  border-bottom: 1px solid #18191a;
+  cursor: pointer;
+}
+.postform-top h3 {
+  /* border: 1px solid red; */
+  flex: 0.9;
+  text-align: center;
+}
+.postform-top i {
+  font-size: 1.3rem;
+  color: #6c6e6e;
+}
+.postform-mid {
+  display: flex;
+  padding: 0.7rem;
+}
+.postform-mid p {
+  padding-left: 0.4rem;
+  padding-top: 0.1rem;
+  font-weight: bold;
+}
+.postform-mid input[type="text"],
+textarea {
+  background-color: #242526;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1rem;
+  width: 95%;
+  margin: auto;
+  font-family: sans-serif;
+  border-radius: .4rem;
+  border: 1px solid #18191a;
+  padding: 1rem;
+  
+}
+.postform-mid input[type="text"],
+textarea::-webkit-input-placeholder {
+  font-size: 1rem;
+  
+}
+.postform-bottom {
+  display: flex;
+  cursor: pointer;
+  padding: .5rem 0.5rem;
+  justify-content: space-evenly;
+}
+.postform-bottom-row-one,
+.postform-bottom-row-two {
+  display: flex;
+  align-items: center;
+}
+.postform-bottom-row-one i,
+.postform-bottom-row-two i {
+  padding-right: 1rem;
+}
+
+.postform button{
+width: 95%;
+margin: 1rem auto;
+display: block;
+padding: .7rem 0rem;
+background-color: #2988ff;
+border: none;
+outline: none;
+cursor: pointer;
+color: white;
+font-weight: bolder;
+}
+.postform button:hover{
+background-color: #7fafe9;
+}
+.postform-bottom-row-two{
+    position: relative;
+}
+
+.postform-bottom-row-one,
+.postform-bottom-row-two {
+ padding: .3rem;
+ border-radius: .6rem;
+}
+
+
+.postform-bottom-row-one:hover,
+.postform-bottom-row-two:hover {
+  background-color: #3a3b3c;
+}
+.postform-bottom-row-two ul {
+    position: absolute;
+    top: 102%;
+    left: -5%;
+    background-color: #3a3b3c;
+    border-radius: 0.3rem;
+    display: none;
+  }
+  .postform-bottom-row-two ul li {
+    padding: 0.5rem 3rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #18191a;
+    border-left:1px solid  #3a3b3c;
+  }
+  .postform-bottom-row-two ul li:hover {
+    border-left:1px solid  #2d88ff;
+  
+  }
+  .postform-bottom-row-two ul:hover {
+    display: block !important;
+  }
+  .postform-bottom-row-two:hover ul {
+    display: block !important;
+  }
+  .postform-bottom-row-two ul li span {
+   margin-right: .7rem;
+  }
+

@@ -4,7 +4,6 @@ import Avatar from "@material-ui/core/Avatar";
 import TextPostCard from "./TextPostCard";
 import LikeAndComment from "./LikeAndComment";
 import ImagePostCard from "./ImagePostCard";
-import { makeStyles } from "@material-ui/core/styles";
 function Post({ ele }) {
   return (
     <div className="postData">

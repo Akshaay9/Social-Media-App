@@ -19,7 +19,7 @@ function Index() {
       <PostBar />
       <UsersPost />
 
-      {location.pathname.includes("/home/text") ?<IndividualImagePost /> : location.pathname.includes("home/image") ?  <IndividualTextPost /> :"" }
+      {location.pathname.includes("/home/text") ?<IndividualTextPost /> : location.pathname.includes("home/image") ?  <IndividualImagePost /> :"" }
 
      
     </div>

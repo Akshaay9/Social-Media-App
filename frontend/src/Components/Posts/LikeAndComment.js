@@ -1,9 +1,8 @@
 import React from "react";
 import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
-import {Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 function LikeAndComment({ ele }) {
- 
   return (
     <div>
       <div className="postData-likeAndComment-top">
@@ -30,9 +29,17 @@ function LikeAndComment({ ele }) {
             </div>
           </div>
         )}
-        <p style={{ color: "rgb(23 123 255)", cursor: "pointer",marginLeft:"3.5rem" }}>
-          View all comments
-        </p>
+        <Link to={`/home/${ele.PostType}/${ele._id}`}>
+          <p
+            style={{
+              color: "rgb(23 123 255)",
+              cursor: "pointer",
+              marginLeft: "3.5rem",
+            }}
+          >
+            View all comments
+          </p>
+        </Link>
       </div>
       <div className="add-comment">
         <Avatar alt="Remy Sharp" src={ele.comments[0]?.user.profileImage} />

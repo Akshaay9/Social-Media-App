@@ -77,21 +77,31 @@
 
 /* drop down */
 
-.comments-list,
+.comments-list ,
+.individual-post-comment .comments-list,
+.postData-top,
 .individual-post-right i {
   position: relative;
 }
-
 .comments-list ul,
+.individual-post-comment .comments-list ul,
+.postData-top ul,
 .individual-post-right ul {
   position: absolute;
-  right: 1%;
+  right: 0%;
   top: 8%;
   background-color: #3a3b3c;
   border-radius: 0.3rem;
   display: none;
 }
-comments-list ul li,
+.comments-list ul{
+ 
+  right: 33%;
+  top: 8%;
+}
+.comments-list ul li,
+.individual-post-comment .comments-list ul li,
+.postData-top ul li,
 .individual-post-right ul li {
   padding: 0.3rem 2rem;
   border-radius: 0.3rem;
@@ -101,23 +111,39 @@ comments-list ul li,
   cursor: pointer;
 }
 .comments-list ul li:hover,
+.individual-post-comment .comments-list ul li:hover,
+.postData-top ul li:hover,
 .individual-post-right ul li:hover {
   border-left: 1px solid #2d88ff;
   display: block;
 }
-
+/*  */
 .individual-post-right i:hover + ul {
   display: block;
 }
-.comments-list i:hover + ul {
+.individual-post-comment .comments-list i:hover + ul {
   display: block;
 }
+.postData-top i:hover + ul {
+  display: block;
+}
+.comments-list, i:hover + ul {
+  display: block;
+}
+/*  */
 .individual-post-right ul:hover {
   display: block;
 }
-.comments-list ul:hover {
+.individual-post-comment .comments-list ul:hover {
   display: block;
 }
+.postData-top ul:hover {
+  display: block;
+}
+.comments-list  ul:hover {
+  display: block;
+}
+/*  */
 
 .individual-post-right-top {
   /* padding: 0rem 1rem 1rem 1rem; */

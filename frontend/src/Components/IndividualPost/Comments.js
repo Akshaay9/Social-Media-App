@@ -11,7 +11,7 @@ function Comments({ ele }) {
               <h4>{ele?.user.name}</h4>
               <p>{ele.commentID.comment}</p>
             </div>
-            <i class="fas fa-ellipsis-h"> </i>
+            <i class="fas fa-ellipsis-h "> </i>
             <ul>
               <li>Update </li>
               <li>Delete</li>

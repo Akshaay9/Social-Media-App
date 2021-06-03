@@ -16,6 +16,7 @@
 }
 .postData-top-details {
   margin-left: 1rem;
+  flex:1
 }
 .postData-top-details span,
 .postData-top-details i {
@@ -23,6 +24,11 @@
   font-size: 0.8rem;
   color: #a8abaf;
 }
+/* drop down */
+
+
+
+
 @media screen and (max-width: 970px) {
   .postData {
     width: 90%;

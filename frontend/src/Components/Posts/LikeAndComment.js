@@ -27,6 +27,11 @@ function LikeAndComment({ ele }) {
               <h4>{ele.comments[0]?.user.name}</h4>
               <p>{ele.comments[0]?.commentID.comment}</p>
             </div>
+            <i class="fas fa-ellipsis-h comment-i"> </i>
+            <ul>
+              <li>Update </li>
+              <li>Delete</li>
+            </ul>
           </div>
         )}
         <Link to={`/home/${ele.PostType}/${ele._id}`}>

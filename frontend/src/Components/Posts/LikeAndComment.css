@@ -25,7 +25,9 @@
 .comments-list .comments {
   display: flex;
   padding-bottom: 0.6rem;
+;
 }
+
 .comments-list .comment h4 {
   padding-bottom: 0.3rem;
 }
@@ -48,4 +50,7 @@
   border-radius: 0.5rem;
   border: none;
   color: white;
+}
+.comment-i{
+  margin-left: 2rem;
 }

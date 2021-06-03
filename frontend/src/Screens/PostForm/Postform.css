@@ -17,6 +17,7 @@
   -webkit-justify-content: center;
   justify-content: center;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 2 !important;
 }
 .postform {
   /* border: 1px solid red; */
@@ -179,7 +180,7 @@ textarea::-webkit-input-placeholder {
     background-color: #242526;
     border-radius: 0.4rem;
     width: 92%;
-    opacity: 2000 !important;
+    z-index: 122222000 !important;
   
   }
 }

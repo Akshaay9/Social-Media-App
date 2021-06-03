@@ -3,6 +3,8 @@ import "./Post.css";
 import Avatar from "@material-ui/core/Avatar";
 import TextPostCard from "./TextPostCard";
 import LikeAndComment from "./LikeAndComment";
+import ImagePostCard from "./ImagePostCard";
+import { makeStyles } from "@material-ui/core/styles";
 function Post({ ele }) {
   return (
     <div className="postData">
@@ -17,9 +19,16 @@ function Post({ ele }) {
         </div>
       </div>
       {/* mid */}
-      <TextPostCard description={ele.description} />
-      {/* end */}
-      <LikeAndComment likes={ele.likes} comments={ ele.comments}/>
+      {/*  */}
+
+      {ele?.PostType == "text" ? (
+        <TextPostCard description={ele.description} />
+      ) :  ele?.PostType == "image" ?(
+        <ImagePostCard description={ele.description} image={ele.image} />
+      ):""}
+
+   
+      <LikeAndComment ele={ele} />
     </div>
   );
 }

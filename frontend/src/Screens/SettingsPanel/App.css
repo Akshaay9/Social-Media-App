@@ -2,6 +2,7 @@
   position: fixed;
   background-color: #242526;
   cursor: pointer;
+  z-index: 2 !important;
 }
 .top-right {
   right: 4%;

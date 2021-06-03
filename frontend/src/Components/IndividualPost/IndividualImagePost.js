@@ -3,7 +3,7 @@ import "./App.css";
 import { postData } from "../../Data.js/PostData";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useParams,useNavigate } from "react-router";
 
 function IndividualImagePost() {
   const { id } = useParams();
@@ -11,7 +11,7 @@ function IndividualImagePost() {
   return (
     <div className="inidividual-post-container">
       <div className="individual-text-post">
-        <div className="individual-image-post-left">
+        <div className="individual-image-post-left ">
           <img src={postData[0].image} />
         </div>
         <div className="individual-post-right">

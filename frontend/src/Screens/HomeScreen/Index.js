@@ -10,7 +10,6 @@ function Index() {
   const { id } = useParams();
   const location = useLocation();
 
-  // console.log(id)
 
 
   return (

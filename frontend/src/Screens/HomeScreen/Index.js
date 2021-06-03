@@ -11,7 +11,7 @@ function Index() {
   const location = useLocation();
 
   // console.log(id)
-  console.log(location.pathname.includes("home/text"));
+
 
   return (
     <div>

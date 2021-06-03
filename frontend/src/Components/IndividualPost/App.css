@@ -30,8 +30,16 @@
 .individual-image-post-left {
   width: 50%;
   max-width: 50%;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: .3rem;
+  padding-right: .3rem;
+  background-color: #3a3b3c5c;
+  backdrop-filter: blur(25px);
   /* border: 1px solid red; */
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
 }
 .individual-image-post-left img {
   border-top-left-radius: 1rem;
@@ -39,7 +47,6 @@
   padding: 0px;
   display: block;
   margin: auto auto;
-
   overflow: hidden;
   min-width: 100%;
   max-width: 100%;
@@ -50,9 +57,10 @@
 
 /* left commetn bar */
 .individual-post-right {
-  padding: 0rem 1rem 1rem 1rem;
+  padding: 0rem 1rem 1rem 3rem;
   width: 50%;
   position: relative;
+
 }
 .individual-post-right-top {
   /* padding: 0rem 1rem 1rem 1rem; */
@@ -63,7 +71,7 @@
   justify-content: space-between;
   align-items: center;
   /* margin-bottom: 12rem; */
-  border-bottom: 1px solid #2c2d2e;
+  border-bottom: 1px solid ;
 }
 .individual-post-right-top .avatar {
   display: flex;

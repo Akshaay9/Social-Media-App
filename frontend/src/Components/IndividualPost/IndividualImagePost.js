@@ -3,7 +3,11 @@ import "./App.css";
 import { postData } from "../../Data.js/PostData";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
+import { useLocation, useParams } from "react-router";
+
 function IndividualImagePost() {
+  const { id } = useParams();
+  const location = useLocation();
   return (
     <div className="inidividual-post-container">
       <div className="individual-text-post">
@@ -18,14 +22,19 @@ function IndividualImagePost() {
             </div>
             <i class="fas fa-ellipsis-h"></i>
           </div>
-          <div className="individual-post-right-top">
-            <div className="avatar">
-              <Avatar alt="Remy Sharp" src={postData[0].userID?.profileImage} />
-              <h3>
-               <span>{postData[0].description}</span>
-              </h3>
+          {location.pathname.includes("home/image") && (
+            <div className="individual-post-right-top">
+              <div className="avatar">
+                <Avatar
+                  alt="Remy Sharp"
+                  src={postData[0].userID?.profileImage}
+                />
+                <h3>
+                  <span>{postData[0].description}</span>
+                </h3>
+              </div>
             </div>
-          </div>
+          )}
           <div className="individual-comments">
             {postData[0].comments.length > 0 &&
               postData[0].comments.map((ele) => (

@@ -45,7 +45,7 @@ export const postData = [
     _id: "60b4d0d43bc15937f897cd66",
     description: "first-Post, whats up good peopl, how u guys doing",
     image:
-      "https://images.unsplash.com/photo-1553531580-a000ac8df244?ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8Z3ltfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
+      "https://images.unsplash.com/photo-1590507621108-433608c97823?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTE5fHxneW18ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60",
     userID: {
       _id: "60b476056926ec2b00f3abf1",
       name: "kai",

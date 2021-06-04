@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import "./Postform.css";
 import Avatar from "@material-ui/core/Avatar";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
+import { useLocation, useNavigate,useParams } from "react-router-dom";
 function PostForm({
   showPostForm,
   setShowPostForm,
@@ -10,10 +11,19 @@ function PostForm({
   image,
   setImage,
 }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {id} =useParams()
+
+  console.log(location.search.split("=")[1]);
+  console.log(id)
+
+
   // close modal
+
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
-      setShowPostForm(false);
+      navigate("/home");
     }
   };
   // useref for image
@@ -31,7 +41,7 @@ function PostForm({
   };
   return (
     <>
-      {showPostForm && (
+      {location.pathname.includes("modal") && (
         <div className="postform-container" onClick={(e) => closeModal(e)}>
           <div className="postform">
             <div className="postform-top">

@@ -3,7 +3,10 @@ import "./Post.css";
 import Avatar from "@material-ui/core/Avatar";
 import PostForm from "./PostForm";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
-function Post({individualUserStyle}) {
+import { useNavigate } from "react-router-dom";
+function Post({ individualUserStyle }) {
+  const navigate = useNavigate();
+
   const [showPostForm, setShowPostForm] = useState(false);
   const [feeling, setFeeling] = useState();
   const [image, setImage] = useState();
@@ -25,7 +28,10 @@ function Post({individualUserStyle}) {
 
   return (
     <>
-      <div className="post-bar" style={individualUserStyle?{marginTop:"1rem"}:{}}>
+      <div
+        className="post-bar"
+        style={individualUserStyle ? { marginTop: "1rem" } : {}}
+      >
         <div className="post-bar-top">
           <Avatar
             variant="rounded"
@@ -34,7 +40,7 @@ function Post({individualUserStyle}) {
           />
           <div
             className="post-bar-top-round"
-            onClick={() => setShowPostForm(true)}
+            onClick={() => navigate("/home/modal/1?update=true")}
           >
             <p>Whats on your mind Akshay ?</p>
           </div>

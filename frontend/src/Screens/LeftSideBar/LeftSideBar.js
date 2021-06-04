@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SettingPanel from "../SettingsPanel/SettingPanel";
+import { Link } from "react-router-dom";
 function LeftSideBar({ individualUserStyle }) {
   const [panel, setPanel] = useState({
     show: false,
@@ -9,21 +10,33 @@ function LeftSideBar({ individualUserStyle }) {
     <>
       <div
         className="left_nav_bar"
-       style={individualUserStyle?{position:"absolute",top:"100%",left:"5%"}:{}}
+        style={
+          individualUserStyle
+            ? { position: "absolute", top: "100%", left: "5%" }
+            : {}
+        }
       >
         <ul>
-          <li>
-            <i class="fas fa-home"></i>
-            News Feed
-          </li>
-          <li>
-            <i class="fas fa-user-circle"></i>
-            Profile
-          </li>
-          <li>
-            <i class="fas fa-users"></i>
-            People
-          </li>
+          <Link to="/home">
+            {" "}
+            <li>
+              <i class="fas fa-home"></i>
+              News Feed
+            </li>
+          </Link>
+          <Link to="/home/user">
+            <li>
+              <i class="fas fa-user-circle"></i>
+              Profile
+            </li>
+          </Link>
+
+          <Link to="/home/user/all">
+            <li>
+              <i class="fas fa-users"></i>
+              People
+            </li>
+          </Link>
           <li
             style={
               panel.show

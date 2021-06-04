@@ -10,10 +10,8 @@ function Index() {
   const { id } = useParams();
   const location = useLocation();
 
-
-
   return (
-    <div style={{height:"500vh"}}>
+    <div >
       <LeftSideBar />
       <PostBar />
       <UsersPost />

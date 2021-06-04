@@ -4,10 +4,9 @@ import { postData } from "../../Data.js/PostData";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
 import { useLocation, useParams, useNavigate } from "react-router";
-function IndividualTextPost() {
+function IndividualPost({ postType }) {
   const { id } = useParams();
   const location = useLocation();
-
   const navigate = useNavigate();
 
   const closeModal = (e) => {
@@ -18,9 +17,20 @@ function IndividualTextPost() {
   return (
     <div className="inidividual-post-container" onClick={(e) => closeModal(e)}>
       <div className="individual-text-post">
-        <div className="individual-image-post-left text-post-left">
-          <p>{postData[0].description}</p>
-        </div>
+        {postType == "text" ? (
+          <div className="individual-image-post-left text-post-left">
+            <p>{postData[0].description}</p>
+            {console.log("hey")}
+          </div>
+        ) : postType == "image" ? (
+          <div className="individual-image-post-left ">
+            <img src={postData[0].image} />
+            {console.log("hey")}
+          </div>
+        ) : (
+          ""
+        )}
+
         <div className="individual-post-right">
           <div className="individual-post-right-top">
             <div className="avatar">
@@ -62,4 +72,4 @@ function IndividualTextPost() {
   );
 }
 
-export default IndividualTextPost;
+export default IndividualPost;

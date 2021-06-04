@@ -2,24 +2,26 @@ import React from "react";
 import LeftSideBar from "../LeftSideBar/index";
 import PostBar from "../PostForm/Post";
 import UsersPost from "../../Components/Posts/Index";
-import IndividualTextPost from "../../Components/IndividualPost/IndividualTextPost";
-import IndividualImagePost from "../../Components/IndividualPost/IndividualImagePost";
 import { useLocation, useParams } from "react-router";
+import IndividualPost from "../../Components/IndividualPost/IndividualPost";
 
 function Index() {
   const { id } = useParams();
   const location = useLocation();
+  let postType = location.pathname.split("/")[2];
 
   return (
-    <div >
+    <div>
       <LeftSideBar />
       <PostBar />
       <UsersPost />
 
-      {/* modal for individual post */}
-      {location.pathname.includes("/home/text") ?<IndividualTextPost /> : location.pathname.includes("home/image") ?  <IndividualImagePost /> :"" }
-
-     
+      {(location.pathname.includes("image") && (
+        <IndividualPost postType={postType} />
+      )) ||
+        (location.pathname.includes("text") && (
+          <IndividualPost postType={postType} />
+        ))}
     </div>
   );
 }

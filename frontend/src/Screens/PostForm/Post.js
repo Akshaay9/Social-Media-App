@@ -6,8 +6,6 @@ import { feelingActiviy } from "../../Data.js/FeelingActivity";
 import { useNavigate } from "react-router-dom";
 function Post({ individualUserStyle }) {
   const navigate = useNavigate();
-
-  const [showPostForm, setShowPostForm] = useState(false);
   const [feeling, setFeeling] = useState();
   const [image, setImage] = useState();
   const hiddenFileInput = React.useRef(null);
@@ -21,10 +19,9 @@ function Post({ individualUserStyle }) {
       setImage({
         image: URL.createObjectURL(event.target.files[0]),
       });
+      navigate("/home/modal/1?update=false");
     }
   };
-
-  // console.log
 
   return (
     <>
@@ -40,7 +37,7 @@ function Post({ individualUserStyle }) {
           />
           <div
             className="post-bar-top-round"
-            onClick={() => navigate("/home/modal/1?update=true")}
+            onClick={() => navigate("/home/modal/1?update=false")}
           >
             <p>Whats on your mind Akshay ?</p>
           </div>
@@ -56,7 +53,6 @@ function Post({ individualUserStyle }) {
               <div
                 onClick={() => {
                   handleClick();
-                  setShowPostForm(true);
                 }}
                 style={{ display: "flex", alignItems: "center" }}
               >
@@ -80,7 +76,7 @@ function Post({ individualUserStyle }) {
                 <li
                   onClick={() => {
                     setFeeling(ele);
-                    setShowPostForm(true);
+                    navigate("/home/modal/1?update=false");
                   }}
                 >
                   <span>{ele.emoji}</span>
@@ -92,8 +88,6 @@ function Post({ individualUserStyle }) {
         </div>
       </div>
       <PostForm
-        showPostForm={showPostForm}
-        setShowPostForm={setShowPostForm}
         feelingActiviy={feelingActiviy}
         feeling={feeling}
         setFeeling={setFeeling}

@@ -4,7 +4,9 @@ import Avatar from "@material-ui/core/Avatar";
 import TextPostCard from "./TextPostCard";
 import LikeAndComment from "./LikeAndComment";
 import ImagePostCard from "./ImagePostCard";
+import { useNavigate } from "react-router-dom";
 function Post({ ele }) {
+  const navigate = useNavigate();
   return (
     <div className="postData">
       {/*  */}
@@ -17,21 +19,22 @@ function Post({ ele }) {
           <i class="fas fa-globe-asia"></i>
         </div>
         <i class="fas fa-ellipsis-h"> </i>
-            <ul>
-              <li>Update </li>
-              <li>Delete</li>
-            </ul>
+        <ul>
+          <li onClick={() => navigate("/home/modal/1?update=true")}>Update </li>
+          <li>Delete</li>
+        </ul>
       </div>
       {/* mid */}
       {/*  */}
 
       {ele?.PostType == "text" ? (
         <TextPostCard description={ele.description} />
-      ) :  ele?.PostType == "image" ?(
+      ) : ele?.PostType == "image" ? (
         <ImagePostCard description={ele.description} image={ele.image} />
-      ):""}
+      ) : (
+        ""
+      )}
 
-   
       <LikeAndComment ele={ele} />
     </div>
   );

@@ -13,7 +13,7 @@ function Index() {
 
 
   return (
-    <div>
+    <div style={{height:"500vh"}}>
       <LeftSideBar />
       <PostBar />
       <UsersPost />

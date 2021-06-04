@@ -1,12 +1,10 @@
 .background-image-container {
   margin-top: 3.5rem;
-  /* border: 1px solid red; */
   width: 100%;
   height: 83vh;
   background-color: #242526;
   cursor: pointer;
-z-index: 300 !important;
-  
+  z-index: 300 !important;
 }
 .background-image {
   position: relative;
@@ -17,16 +15,16 @@ z-index: 300 !important;
   width: 70%;
   height: 50vh;
   object-fit: cover;
-  opacity: .9;
+  opacity: 0.9;
   filter: brightness(60%) !important;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
-.background-user-info{
+.background-user-info {
   margin-top: 3.8rem;
   text-align: center;
 }
-.background-user-info>button{
-  margin-top: .7rem;
+.background-user-info > button {
+  margin-top: 0.7rem;
   /* text-align: center; */
 }
 .MuiButton-containedPrimary:hover {
@@ -34,28 +32,109 @@ z-index: 300 !important;
 }
 .MuiButton-containedPrimary {
   background-color: #2d88ff !important;
-  padding: .3rem 2rem  !important;
+  padding: 0.3rem 2rem !important;
 }
-.background-user-info .user-meta-data{
+.background-user-info .user-meta-data {
   display: flex;
   justify-content: space-between;
   width: 35%;
   margin: 1.5rem auto;
   /* border: 1px solid red; */
 }
-.background-user-info .user-meta-data *{
+.background-user-info .user-meta-data * {
   background-color: #3a3b3c;
-  padding: .5rem 1.4rem;
+  padding: 0.5rem 1.4rem;
   font-weight: bold;
-
+  border-radius: .2rem;
 }
-.background-user-info .user-meta-data *:hover{
+.background-user-info .user-meta-data *:hover {
   background-color: #3a3b3c80;
+}
+.background-user-info .user-meta-data h4 {
+  flex: 0.45;
+}
+
+/* camera */
+.user-avatar-camera {
+  position: absolute;
+  top: 108%;
+  left: 53.7%;
+  transform: translate(-50%, -50%);
+  height: 3.2rem;
+  width: 3.2rem;
+  /* border:1px solid red; */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  background-color: #3a3b3c;
+  border: 1px solid #3a3b3c;
+}
+.user-avatar-camera:hover {
+  background-color: #242526;
+  border: 1px solid #3a3b3c;
+}
+.update-user-bg-image {
+  position: absolute;
+  top: 50%;
+  left: 70.5%;
+  color: black;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  display: flex;
+  border-radius: 0.3rem;
+}
+.update-user-bg-image * {
+  font-size: 1rem;
+  margin-left: 0.4rem;
+}
+.update-user-bg-image:hover {
+  background-color: rgba(255, 255, 255, 0.712);
+}
+
+.desktop-hide{
+  display: none;
   
-
-}
-.background-user-info .user-meta-data h4{
-  flex: .45;
-
 }
 
+.mobile-hide{
+  display:block
+}
+
+/* mobile */
+@media screen and (max-width: 970px) {
+  .desktop-hide{
+    display: block;
+  }
+  .mobile-hide{
+    display:none !important;
+  }
+  .background-image > img {
+    width: 100%;
+    height: 50vh;
+  }
+  .user-avatar-camera {
+    height: 2rem;
+    width: 2rem;
+    font-size: 1rem;
+  }
+  .update-user-bg-image {
+    top: 15%;
+    left: 50.5%;
+  }
+  .background-user-info .user-meta-data {
+    display: flex;
+    justify-content: space-between;
+    width: 98%;
+    margin: 1rem auto;
+    /* border: 1px solid red; */
+  }
+  .background-user-info .user-meta-data * {
+    background-color: #3a3b3c;
+    padding: 0.3rem 0.4rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: .2rem;
+  }
+}

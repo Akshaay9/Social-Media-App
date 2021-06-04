@@ -1,7 +1,6 @@
 import React from "react";
 import LeftSideBar from "../LeftSideBar/LeftSideBar";
 import PostBar from "../PostForm/Post";
-import "./App.css";
 import Background from "./Background";
 import UsersPost from "../../Components/Posts/Index";
 import { useLocation, useParams } from "react-router";
@@ -18,7 +17,6 @@ function Index() {
       <LeftSideBar individualUserStyle={individualUserStyle} />
       <PostBar individualUserStyle={individualUserStyle} />
       <UsersPost />
-      Individual screen
       {/* modal for individual post */}
       {location.pathname.includes("/home/text") ? (
         <IndividualTextPost />

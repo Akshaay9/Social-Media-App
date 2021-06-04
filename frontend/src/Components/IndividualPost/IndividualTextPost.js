@@ -3,12 +3,20 @@ import "./App.css";
 import { postData } from "../../Data.js/PostData";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
-import { useLocation, useParams } from "react-router";
+import { useLocation, useParams, useNavigate } from "react-router";
 function IndividualTextPost() {
   const { id } = useParams();
   const location = useLocation();
+
+  const navigate = useNavigate();
+
+  const closeModal = (e) => {
+    if (e.target.classList.contains("inidividual-post-container")) {
+      navigate("/home");
+    }
+  };
   return (
-    <div className="inidividual-post-container">
+    <div className="inidividual-post-container" onClick={(e) => closeModal(e)}>
       <div className="individual-text-post">
         <div className="individual-image-post-left text-post-left">
           <p>{postData[0].description}</p>

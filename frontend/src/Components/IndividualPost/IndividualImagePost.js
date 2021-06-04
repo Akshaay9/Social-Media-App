@@ -21,6 +21,10 @@ function IndividualImagePost() {
               <h3>{postData[0].userID.name}</h3>
             </div>
             <i class="fas fa-ellipsis-h"></i>
+            <ul>
+              <li>Update </li>
+              <li>Delete</li>
+            </ul>
           </div>
           {location.pathname.includes("home/image") && (
             <div className="individual-post-right-top">

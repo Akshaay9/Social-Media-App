@@ -20,16 +20,11 @@ function IndividualTextPost() {
               <h3>{postData[0].userID.name}</h3>
             </div>
 
-        
-            <i class="fas fa-ellipsis-h">     </i>
+            <i class="fas fa-ellipsis-h"> </i>
             <ul>
-                <li>Update Post</li>
-                <li>Delete Post</li>
-              </ul>
-       
-            
-             
-           
+              <li>Update Post</li>
+              <li>Delete Post</li>
+            </ul>
           </div>
           {location.pathname.includes("home/image") && (
             <div className="individual-post-right-top">

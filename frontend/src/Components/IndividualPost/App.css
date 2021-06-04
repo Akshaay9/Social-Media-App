@@ -77,7 +77,7 @@
 
 /* drop down */
 
-.comments-list ,
+.comments-list,
 .individual-post-comment .comments-list,
 .postData-top,
 .individual-post-right i {
@@ -94,8 +94,7 @@
   border-radius: 0.3rem;
   display: none;
 }
-.comments-list ul{
- 
+.comments-list ul {
   right: 33%;
   top: 8%;
 }
@@ -127,7 +126,8 @@
 .postData-top i:hover + ul {
   display: block;
 }
-.comments-list, i:hover + ul {
+.comments-list,
+i:hover + ul {
   display: block;
 }
 /*  */
@@ -140,7 +140,7 @@
 .postData-top ul:hover {
   display: block;
 }
-.comments-list  ul:hover {
+.comments-list ul:hover {
   display: block;
 }
 /*  */
@@ -253,4 +253,38 @@
   width: 90%;
   vertical-align: bottom;
   height: inherit;
+}
+
+/* mobile */
+
+@media screen and (max-width: 970px) {
+  .inidividual-post-container {
+    height: 120vh;
+    position: absolute;
+    top: 68%;
+  }
+  .individual-text-post {
+    display: block;
+  }
+  .text-post-left {
+    width: 100%;
+    max-width: 100%;
+    background-color: #3a3b3c5c;
+    text-align: center;
+    padding: 2rem 0rem;
+    /* height: 10rem; */
+  }
+  .individual-image-post-left p {
+    font-size: 1.5rem;
+  }
+  .individual-text-post {
+    width: 90%;
+    display: block;
+
+    background-color: #242526;
+    border-radius: 1rem;
+  }
+  .individual-post-right {
+    width: 90%;
+  }
 }

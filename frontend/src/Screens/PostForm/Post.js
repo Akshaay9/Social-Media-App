@@ -3,7 +3,7 @@ import "./Post.css";
 import Avatar from "@material-ui/core/Avatar";
 import PostForm from "./PostForm";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
-function Post() {
+function Post({individualUserStyle}) {
   const [showPostForm, setShowPostForm] = useState(false);
   const [feeling, setFeeling] = useState();
   const [image, setImage] = useState();
@@ -21,9 +21,11 @@ function Post() {
     }
   };
 
+  // console.log
+
   return (
     <>
-      <div className="post-bar">
+      <div className="post-bar" style={individualUserStyle?{marginTop:"1rem"}:{}}>
         <div className="post-bar-top">
           <Avatar
             variant="rounded"

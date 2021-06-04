@@ -18,6 +18,7 @@ function Index() {
       <PostBar />
       <UsersPost />
 
+      {/* modal for individual post */}
       {location.pathname.includes("/home/text") ?<IndividualTextPost /> : location.pathname.includes("home/image") ?  <IndividualImagePost /> :"" }
 
      

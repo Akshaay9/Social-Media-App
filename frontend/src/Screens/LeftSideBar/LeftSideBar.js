@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import SettingPanel from "../SettingsPanel/SettingPanel";
-function LeftSideBar() {
+function LeftSideBar({ individualUserStyle }) {
   const [panel, setPanel] = useState({
     show: false,
     style: "bottom-left",
   });
   return (
     <>
-      <div className="left_nav_bar">
+      <div
+        className="left_nav_bar"
+       style={individualUserStyle?{position:"absolute",top:"100%",left:"5%"}:{}}
+      >
         <ul>
           <li>
             <i class="fas fa-home"></i>

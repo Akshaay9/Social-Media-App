@@ -37,7 +37,7 @@ function LikeAndComment({ ele }) {
             </ul>
           </div>
         )}
-        <Link to={`/${ele.PostType}/${ele._id}`}>
+  {      <Link to={`/${ele.PostType}/${ele._id}`}>
           <p
             style={{
               color: "rgb(23 123 255)",
@@ -47,7 +47,7 @@ function LikeAndComment({ ele }) {
           >
             View all comments
           </p>
-        </Link>
+        </Link>}
       </div>
       <div className="add-comment">
         <Avatar alt="Remy Sharp" src={currentUser.profileImage} />

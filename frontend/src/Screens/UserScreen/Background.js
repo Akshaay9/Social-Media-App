@@ -4,6 +4,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { postData } from "../../Data.js/PostData";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -43,11 +44,12 @@ const useStyles2 = makeStyles((theme) => ({
 function Background() {
   const classes = useStyles();
   const classes2 = useStyles2();
+  const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <div>
       <div className="background-image-container">
         <div className="background-image">
-          <img src="https://images.unsplash.com/reserve/HgZuGu3gSD6db21T3lxm_San%20Zenone.jpg?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fG5hdHVyZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+          <img src="https://images.unsplash.com/photo-1618654661521-b9b59166b17f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJ0cyUyMHZ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
 
           <div className="mobile-hide">
             <Avatar
@@ -55,16 +57,16 @@ function Background() {
               src={postData[0].userID?.profileImage}
               className={classes.large}
             />
-             <i class="fas fa-camera user-avatar-camera"></i>
+            <i class="fas fa-camera user-avatar-camera"></i>
           </div>
           <div className="desktop-hide">
-          <Avatar
-            alt="Remy Sharp"
-            src={postData[0].userID?.profileImage}
-            className={classes2.large}
+            <Avatar
+              alt="Remy Sharp"
+              src={postData[0].userID?.profileImage}
+              className={classes2.large}
             />
-             <i class="fas fa-camera user-avatar-camera"></i>
-        </div>
+            <i class="fas fa-camera user-avatar-camera"></i>
+          </div>
         </div>
         <div className="background-user-info">
           <h1>Kai</h1>
@@ -77,7 +79,7 @@ function Background() {
             <p>1 Followers</p>
           </div>
         </div>
-       
+
         <div className="update-user-bg-image">
           <i class="fas fa-camera user-bg-camera"></i>
           <p>Edit cover photo</p>

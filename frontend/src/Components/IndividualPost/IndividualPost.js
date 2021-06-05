@@ -12,15 +12,15 @@ function IndividualPost() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const { posts, individualPost } = useSelector((state) => state.Posts);
+  const { posts, status, individualPost } = useSelector((state) => state.Posts);
   const currentUser = useSelector((state) => state.currentUser.User);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (posts.length > 0) {
-      dispatch(getIndividualPost(id));
-    }
-  }, [dispatch]);
+    dispatch(getIndividualPost(id));
+  }, [status]);
+
+  console.log(posts.length);
 
   const closeModal = (e) => {
     if (e.target.classList.contains("inidividual-post-container")) {
@@ -57,6 +57,12 @@ function IndividualPost() {
                     src={individualPost[0].user.profileImage}
                   />
                   <h3>{individualPost[0].user.name}</h3>
+                  {individualPost[0].feeling && (
+                    <p style={{ marginLeft: ".5rem" }}>
+                      is {individualPost[0].feeling.split(" ")[1]} feeling{" "}
+                      {individualPost[0].feeling.split(" ")[0]}{" "}
+                    </p>
+                  )}
                 </div>
 
                 <i class="fas fa-ellipsis-h"> </i>

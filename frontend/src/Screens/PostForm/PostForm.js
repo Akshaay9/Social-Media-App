@@ -19,7 +19,7 @@ function PostForm({
 
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
-      navigate("/home");
+      navigate("/");
     }
   };
   // useref for image

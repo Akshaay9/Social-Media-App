@@ -17,7 +17,7 @@ export const postSlice = createSlice({
   reducers: {
     getIndividualPost: (state, { payload }) => {
       const indiviualPost = state.posts.filter((ele) => ele._id == payload);
-
+      console.log(indiviualPost);
       state.individualPost = indiviualPost;
     },
     clearIndividualPost: (state, { payload }) => {

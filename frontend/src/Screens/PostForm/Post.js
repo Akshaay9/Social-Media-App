@@ -19,7 +19,7 @@ function Post({ individualUserStyle }) {
       setImage({
         image: URL.createObjectURL(event.target.files[0]),
       });
-      navigate("/home/modal/1?update=false");
+      navigate("/modal/1?update=false");
     }
   };
 
@@ -76,7 +76,7 @@ function Post({ individualUserStyle }) {
                 <li
                   onClick={() => {
                     setFeeling(ele);
-                    navigate("/home/modal/1?update=false");
+                    navigate("/modal/1?update=false");
                   }}
                 >
                   <span>{ele.emoji}</span>

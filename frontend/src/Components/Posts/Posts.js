@@ -1,11 +1,11 @@
 import React from "react";
-import { postData } from "../../Data.js/PostData";
 import Post from "./Post";
-
+import {  useSelector } from "react-redux";
 function Posts() {
+  const Posts = useSelector((state) => state.Posts.posts);
   return (
     <div>
-      {postData.map((ele) => (
+      {Posts.map((ele) => (
         <Post ele={ele} />
       ))}
     </div>

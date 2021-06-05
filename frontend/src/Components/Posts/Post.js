@@ -11,9 +11,9 @@ function Post({ ele }) {
     <div className="postData">
       {/*  */}
       <div className="postData-top">
-        <Avatar alt="Remy Sharp" src={ele?.userID?.profileImage} />
+        <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />
         <div className="postData-top-details">
-          <h3>{ele.userID.name}</h3>
+          <h3>{ele.user.name}</h3>
           <span>24 m</span>
           <span>.</span>
           <i class="fas fa-globe-asia"></i>

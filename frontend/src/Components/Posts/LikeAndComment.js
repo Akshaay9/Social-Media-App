@@ -2,7 +2,10 @@ import React from "react";
 import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 function LikeAndComment({ ele }) {
+  const currentUser = useSelector((state) => state.currentUser.User);
+
   return (
     <div>
       <div className="postData-likeAndComment-top">
@@ -34,7 +37,7 @@ function LikeAndComment({ ele }) {
             </ul>
           </div>
         )}
-        <Link to={`/home/${ele.PostType}/${ele._id}`}>
+        <Link to={`/${ele.PostType}/${ele._id}`}>
           <p
             style={{
               color: "rgb(23 123 255)",
@@ -47,7 +50,7 @@ function LikeAndComment({ ele }) {
         </Link>
       </div>
       <div className="add-comment">
-        <Avatar alt="Remy Sharp" src={ele.comments[0]?.user.profileImage} />
+        <Avatar alt="Remy Sharp" src={currentUser.profileImage} />
         <input type="text" placeholder="Write a comment.." />
       </div>
     </div>

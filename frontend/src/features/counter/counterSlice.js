@@ -19,6 +19,14 @@ export const incrementAsync = createAsyncThunk(
     return response.data;
   }
 );
+export const incrementAsync2 = createAsyncThunk(
+  'counter/fetchCount',
+  async (amount) => {
+    const response = await fetchCount(amount);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
 
 export const counterSlice = createSlice({
   name: 'counter',
@@ -48,6 +56,24 @@ export const counterSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(incrementAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.value += action.payload;
+      })
+     .addCase(incrementAsync2.pending, (state) => {
+        state.status = 'loading'
+      })
+      .addCase(incrementAsync2.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.value += action.payload;
+      });
+  },
+
+  extraReducers: (builder) => {
+    builder
+      .addCase(incrementAsync2.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(incrementAsync2.fulfilled, (state, action) => {
         state.status = 'idle';
         state.value += action.payload;
       });

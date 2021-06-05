@@ -4,10 +4,8 @@ const { extend } = pkg;
 
 // allpost
 export const getAllPost = async (req, res) => {
-  // const allPosts = await Post.find({}).populate(
-  //   "likes.likeID","name profileImage"
-  // );
   const allPosts = await Post.find({})
+    .populate("user","_id name profileImage")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
     .populate("comments.user", "name profileImage");
@@ -16,19 +14,21 @@ export const getAllPost = async (req, res) => {
 
 // newpost
 export const addNewPost = async (req, res) => {
-  const { description, image, lng, lat, bgColor, PostType } = req.body;
+  const { description, image, PostType, feeling } = req.body;
   const newPost = {
     user: req.user.id,
     description,
     image,
-    lng,
-    lat,
-    bgColor,
     PostType,
+    feeling,
   };
   const savePost = new Post(newPost);
   await savePost.save();
-  const allPosts = await Post.find({});
+  const allPosts = await Post.find({})
+    .populate("user")
+    .populate("likes.likeID", "name profileImage")
+    .populate("comments.commentID")
+    .populate("comments.user", "name profileImage");
   return res.status(200).json(allPosts);
 };
 

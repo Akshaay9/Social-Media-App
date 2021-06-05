@@ -40,7 +40,9 @@ function IndividualPost({ postType }) {
 
             <i class="fas fa-ellipsis-h"> </i>
             <ul>
-              <li>Update Post</li>
+              <li onClick={() => navigate("/home/modal/1?update=true")}>
+                Update Post
+              </li>
               <li>Delete Post</li>
             </ul>
           </div>

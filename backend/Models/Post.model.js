@@ -8,14 +8,12 @@ const postSchema = mongoose.Schema(
     image: {
       type: String,
     },
-    lng: {
-      type: Number,
+    feeling:{
+      type:String
     },
-    lat: {
-      type: Number,
-    },
-    bgColor: {
-      type: String,
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
     PostType: {
       type: String,

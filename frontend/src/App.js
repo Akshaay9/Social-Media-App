@@ -5,6 +5,7 @@ import HomeScreen from "./Screens/HomeScreen/Index";
 import IndividualUser from "./Screens/UserScreen/Index";
 import AllUsers from "./Screens/AllUsers/Index";
 import "./App.css";
+import {Counter} from "./features/counter/Counter"
 function App() {
   return (
     <BrowserRouter>

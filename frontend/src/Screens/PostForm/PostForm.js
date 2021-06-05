@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import "./Postform.css";
 import Avatar from "@material-ui/core/Avatar";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
-import { useLocation, useNavigate,useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 function PostForm({
   showPostForm,
   setShowPostForm,
@@ -13,11 +13,7 @@ function PostForm({
 }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const {id} =useParams()
-
-  console.log(location.search.split("=")[1]);
-  console.log(id)
-
+  const { id } = useParams();
 
   // close modal
 

@@ -1,40 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
-import { postData } from "../../Data.js/PostData";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
 import { useLocation, useParams, useNavigate } from "react-router";
-import { useSelector } from "react-redux";
-function IndividualPost({ postType }) {
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getIndividualPost,
+  clearIndividualPost,
+} from "../../features/Posts/PostSlice";
+function IndividualPost() {
   const { id } = useParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const individualPosts = useSelector((state) => state.Posts.individualPost);
+  const { posts, individualPost } = useSelector((state) => state.Posts);
+  const currentUser = useSelector((state) => state.currentUser.User);
+  const dispatch = useDispatch();
 
-  console.log(id)
+  useEffect(() => {
+    if (posts.length > 0) {
+      dispatch(getIndividualPost(id));
+    }
+  }, [dispatch]);
 
   const closeModal = (e) => {
     if (e.target.classList.contains("inidividual-post-container")) {
       navigate("/");
+      dispatch(clearIndividualPost());
     }
   };
+
   return (
     <>
-      {individualPosts.length > 0 && (
+      {individualPost.length > 0 && (
         <div
           className="inidividual-post-container"
           onClick={(e) => closeModal(e)}
         >
           <div className="individual-text-post">
-            {postType == "text" ? (
+            {individualPost[0].PostType == "text" ? (
               <div className="individual-image-post-left text-post-left">
-                <p>{individualPosts[0].description}</p>
-                {console.log("hey")}
+                <p>{individualPost[0].description}</p>
               </div>
-            ) : postType == "image" ? (
+            ) : individualPost[0].PostType == "image" ? (
               <div className="individual-image-post-left ">
-                <img src={individualPosts[0].image} />
-                {console.log("hey")}
+                <img src={individualPost[0].image} />
               </div>
             ) : (
               ""
@@ -45,9 +54,9 @@ function IndividualPost({ postType }) {
                 <div className="avatar">
                   <Avatar
                     alt="Remy Sharp"
-                    src={individualPosts[0].user?.profileImage}
+                    src={individualPost[0].user.profileImage}
                   />
-                  <h3>{individualPosts[0].user.name}</h3>
+                  <h3>{individualPost[0].user.name}</h3>
                 </div>
 
                 <i class="fas fa-ellipsis-h"> </i>
@@ -63,22 +72,38 @@ function IndividualPost({ postType }) {
                   <div className="avatar">
                     <Avatar
                       alt="Remy Sharp"
-                      src={individualPosts[0].user?.profileImage}
+                      src={individualPost[0].user?.profileImage}
                     />
                     <h3>
-                      <span>{individualPosts[0].description}</span>
+                      <span>{individualPost[0].description}</span>
                     </h3>
                   </div>
                 </div>
               )}
               <div className="individual-comments">
-                {individualPosts[0].comments.length > 0 &&
-                  individualPosts[0].comments.map((ele) => (
-                    <>
-                      <h4>Comments</h4>
-                      <Comments ele={ele} />
-                    </>
-                  ))}
+                <h4>Comments</h4>
+                {individualPost[0].comments.map((ele) => (
+                  <>
+                    <Comments ele={ele} />
+                  </>
+                ))}
+              </div>
+              <div className="individual-post-like">
+                <div className="indilikeComment-like">
+                  <i class="far fa-thumbs-up"></i>
+                  <span>{3}</span>
+                </div>
+                <div className="indilikeComment-comment">
+                  <i class="fas fa-comments"></i>
+                  <span>{3}</span>
+                </div>
+                <div className="indilikeComment-share">
+                  <i class="fas fa-share-square"></i>
+                </div>
+              </div>
+              <div className="add-comment individual-add-comment">
+                <Avatar alt="Remy Sharp" src={currentUser.profileImage} />
+                <input type="text" placeholder="Write a comment.." />
               </div>
             </div>
           </div>

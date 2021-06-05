@@ -17,8 +17,11 @@ export const postSlice = createSlice({
   reducers: {
     getIndividualPost: (state, { payload }) => {
       const indiviualPost = state.posts.filter((ele) => ele._id == payload);
-      console.log(indiviualPost);
+
       state.individualPost = indiviualPost;
+    },
+    clearIndividualPost: (state, { payload }) => {
+      state.individualPost = [];
     },
   },
   extraReducers: {
@@ -32,6 +35,6 @@ export const postSlice = createSlice({
   },
 });
 
-export const { getIndividualPost } = postSlice.actions;
+export const { getIndividualPost, clearIndividualPost } = postSlice.actions;
 
 export default postSlice.reducer;

@@ -2,7 +2,6 @@ import { Avatar } from "@material-ui/core";
 import React from "react";
 import "./App.css";
 function SettingPanel({ panel }) {
-  console.log(panel.style);
   return (
     <>
       {panel.show && (

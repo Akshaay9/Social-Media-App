@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
 function App() {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getAllPosts());
   }, []);

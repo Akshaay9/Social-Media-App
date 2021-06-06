@@ -5,7 +5,7 @@ const { extend } = pkg;
 // allpost
 export const getAllPost = async (req, res) => {
   const allPosts = await Post.find({})
-    .populate("user","_id name profileImage")
+    .populate("user", "_id name profileImage")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
     .populate("comments.user", "name profileImage");
@@ -24,7 +24,7 @@ export const addNewPost = async (req, res) => {
   };
   const savePost = new Post(newPost);
   await savePost.save();
-  const allPosts = await Post.find({})
+  const allPosts = await Post.findById(savePost._id)
     .populate("user")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
@@ -38,14 +38,12 @@ export const updatePost = async (req, res) => {
   let updatedPost = req.body;
   individualPost = extend(individualPost, updatedPost);
   await individualPost.save();
-  const allPosts = await Post.find({});
+  const allPosts = await Post.findById(individualPost._id)
+    .populate("user")
+    .populate("likes.likeID", "name profileImage")
+    .populate("comments.commentID")
+    .populate("comments.user", "name profileImage");
   return res.status(200).json(allPosts);
-};
-
-// individual post
-export const getIndividualPosts = async (req, res) => {
-  const { individualPost } = req;
-  res.status(200).json(individualPost);
 };
 
 // delete post

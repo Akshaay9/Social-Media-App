@@ -3,20 +3,19 @@ import "./Postform.css";
 import Avatar from "@material-ui/core/Avatar";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-function PostForm({
-  showPostForm,
-  setShowPostForm,
-  feeling,
-  setFeeling,
-  image,
-  setImage,
-}) {
+import { uploadImage } from "../../Utils/UploadImage";
+import { uploadPoast } from "../../features/Posts/PostSlice";
+import { useDispatch, useSelector } from "react-redux";
+function PostForm({ feeling, setFeeling, image, setImage }) {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const [postDescription, setPostDescription] = useState("");
+  const currentUser = useSelector((state) => state.currentUser.User);
 
   // close modal
-
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
       navigate("/");
@@ -31,10 +30,41 @@ function PostForm({
   const handleChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImage({
-        image: URL.createObjectURL(event.target.files[0]),
+        image: event.target.files[0],
       });
     }
   };
+
+  // submit the post
+  const submiHandler = async () => {
+    let imageURL = undefined;
+    let dataToBeUploaded = {};
+    if (feeling) {
+      dataToBeUploaded.feeling = `${feeling?.emoji} ${feeling?.text}`;
+    }
+    if (postDescription) {
+      dataToBeUploaded.description = postDescription;
+    }
+    if (image?.image) {
+      imageURL = await uploadImage(image.image);
+      dataToBeUploaded = {
+        ...dataToBeUploaded,
+        image: imageURL,
+        PostType: "image",
+      };
+    } else {
+      dataToBeUploaded = {
+        ...dataToBeUploaded,
+        PostType: "text",
+      };
+    }
+    const dataPayload = {
+      data: dataToBeUploaded,
+      token: "currentUser.token",
+    };
+    dispatch(uploadPoast(dataPayload));
+  };
+
   return (
     <>
       {location.pathname.includes("modal") && (
@@ -67,6 +97,8 @@ function PostForm({
                 name="w3review"
                 rows="4"
                 placeholder="Whats on your mind,  Akshay ? "
+                value={postDescription}
+                onChange={(e) => setPostDescription(e.target.value)}
               />
             </div>
             <div className="postform-bottom">
@@ -76,7 +108,7 @@ function PostForm({
                     <Avatar
                       alt="Remy Sharp"
                       variant="rounded"
-                      src={image?.image}
+                      src={URL.createObjectURL(image?.image)}
                     />
                     <i class="far fa-times-circle" onClick={() => setImage()} />
                   </>
@@ -112,7 +144,7 @@ function PostForm({
                 </ul>
               </div>
             </div>
-            <button>Post</button>
+            <button onClick={() => submiHandler()}>Post</button>
           </div>
         </div>
       )}

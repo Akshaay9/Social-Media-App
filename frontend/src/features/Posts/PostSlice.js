@@ -3,13 +3,39 @@ import axios from "axios";
 
 const initialState = {
   posts: [],
-  status: "idle",
+  status: "pending",
   individualPost: [],
 };
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
   const data = await axios.get(`http://localhost:5000/api/user/post`);
   return data.data;
 });
+
+export const uploadPoast = createAsyncThunk(
+  "posts/upload",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      }
+    };
+
+    try {
+      const data = await axios.post(
+        `http://localhost:5000/api/user/post`,
+        dataToBeSent.data,
+        config
+      );
+      console.log(data.data);
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const postSlice = createSlice({
   name: "posts",
@@ -31,6 +57,17 @@ export const postSlice = createSlice({
     [getAllPosts.fulfilled]: (state, { payload }) => {
       state.status = "success";
       state.posts = payload;
+    },
+    [uploadPoast.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [uploadPoast.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.posts.unshift(payload);
+    },
+    [uploadPoast.rejected]: (state, { payload }) => {
+      state.status = "success";
+      console.log(payload);
     },
   },
 });

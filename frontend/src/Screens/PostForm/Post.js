@@ -17,7 +17,7 @@ function Post({ individualUserStyle }) {
   const handleChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       setImage({
-        image: URL.createObjectURL(event.target.files[0]),
+        image: event.target.files[0],
       });
       navigate("/modal/1?update=false");
     }
@@ -37,7 +37,7 @@ function Post({ individualUserStyle }) {
           />
           <div
             className="post-bar-top-round"
-            onClick={() => navigate("/home/modal/1?update=false")}
+            onClick={() => navigate("/modal/1?update=false")}
           >
             <p>Whats on your mind Akshay ?</p>
           </div>
@@ -46,7 +46,11 @@ function Post({ individualUserStyle }) {
           <div className="post-bar-bottom-row-one">
             {image?.image ? (
               <>
-                <Avatar alt="Remy Sharp" variant="rounded" src={image?.image} />
+                <Avatar
+                  alt="Remy Sharp"
+                  variant="rounded"
+                  src={URL.createObjectURL(image?.image)}
+                />
                 <i class="far fa-times-circle" onClick={() => setImage()} />
               </>
             ) : (

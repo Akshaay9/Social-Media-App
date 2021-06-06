@@ -3,7 +3,6 @@ import {
   addNewPost,
   getAllPost,
   updatePost,
-  getIndividualPosts,
   deletePost,
 } from "../Controllers/PostController.js";
 import privateRoute from "../MiddleWears/Authentication.js";
@@ -29,10 +28,6 @@ router.get("/", getAllPost);
 // get individual post
 router.post("/:postID", updatePost);
 
-// get
-// pubic
-// get individual post
-router.get("/:postID", getIndividualPosts);
 
 // delete
 // private

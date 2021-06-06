@@ -20,7 +20,6 @@ function IndividualPost() {
     dispatch(getIndividualPost(id));
   }, [status]);
 
-
   const closeModal = (e) => {
     if (e.target.classList.contains("inidividual-post-container")) {
       navigate("/");
@@ -66,7 +65,11 @@ function IndividualPost() {
 
                 <i class="fas fa-ellipsis-h"> </i>
                 <ul>
-                  <li onClick={() => navigate("/home/modal/1?update=true")}>
+                  <li
+                    onClick={() =>
+                      navigate(`/modal/${individualPost[0]._id}?update=true`)
+                    }
+                  >
                     Update Post
                   </li>
                   <li>Delete Post</li>

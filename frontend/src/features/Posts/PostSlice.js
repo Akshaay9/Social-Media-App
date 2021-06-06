@@ -6,11 +6,14 @@ const initialState = {
   status: "pending",
   individualPost: [],
 };
+
+// get all posts
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
   const data = await axios.get(`http://localhost:5000/api/user/post`);
   return data.data;
 });
 
+// upload new post
 export const uploadPoast = createAsyncThunk(
   "posts/upload",
   async (dataToBeSent, { rejectWithValue }) => {
@@ -32,6 +35,8 @@ export const uploadPoast = createAsyncThunk(
     }
   }
 );
+
+// update existing post
 export const upDatePoast = createAsyncThunk(
   "posts/update",
   async (dataToBeSent, { rejectWithValue }) => {
@@ -45,6 +50,32 @@ export const upDatePoast = createAsyncThunk(
       const data = await axios.post(
         `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
         dataToBeSent.data,
+        config
+      );
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// like/unlike a post
+export const likeUnlike = createAsyncThunk(
+  "posts/likeUnlike",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
+
+    try {
+      const data = await axios.post(
+        `http://localhost:5000/api/user/like/${dataToBeSent.id}`,
+        null,
         config
       );
       console.log(data.data);
@@ -90,10 +121,19 @@ export const postSlice = createSlice({
     [upDatePoast.fulfilled]: (state, { payload }) => {
       state.status = "success";
       state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ?  payload  : ele
+        ele._id === payload._id ? payload : ele
       );
     },
     [upDatePoast.rejected]: (state, { payload }) => {
+      state.status = "success";
+    },
+    [likeUnlike.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.posts = state.posts.map((ele) =>
+        ele._id === payload._id ? payload : ele
+      );
+    },
+    [likeUnlike.rejected]: (state, { payload }) => {
       state.status = "success";
     },
   },

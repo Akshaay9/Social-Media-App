@@ -44,6 +44,7 @@ export const deleteComment = async (req, res) => {
 // update commen
 export const updateComment = async (req, res) => {
   let { individualComment } = req;
+  let { individualPost } = req;
   let updatedComment = req.body;
   individualComment = extend(individualComment, updatedComment);
   await individualComment.save();

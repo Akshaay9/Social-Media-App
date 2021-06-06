@@ -9,6 +9,8 @@ function LikeAndComment({ ele }) {
   const currentUser = useSelector((state) => state.currentUser.User);
   const [comment, setComment] = useState("");
 
+  const [updateComment, setUpdateComment] = useState(false);
+
   const isPostAlredyLiked = () => {
     const isLike = ele.likes.some((ele) => ele.likeID._id === currentUser._id);
     if (isLike) {
@@ -16,15 +18,22 @@ function LikeAndComment({ ele }) {
     }
     return {};
   };
-
   const commentHandler = (e) => {
     e.preventDefault();
     const dataToBeSent = {
       token: currentUser.token,
-      URL:`http://localhost:5000/api/user/comment/${ele._id}`,
-      comment:comment
+      URL: updateComment
+        ? `http://localhost:5000/api/user/comment/update/${ele._id}/${ele.comments[0]?.commentID._id}`
+        : `http://localhost:5000/api/user/comment/${ele._id}`,
+      comment: comment,
     };
-    dispatch(addUpdateComment(dataToBeSent))
+    dispatch(addUpdateComment(dataToBeSent));
+    setUpdateComment(false);
+  };
+
+  const updateCommentHandler = () => {
+    setUpdateComment(true);
+    setComment(ele.comments[0]?.commentID.comment);
   };
 
   return (
@@ -63,7 +72,7 @@ function LikeAndComment({ ele }) {
             </div>
             <i class="fas fa-ellipsis-h comment-i"> </i>
             <ul className="post-comment-ul">
-              <li>Update </li>
+              <li onClick={() => updateCommentHandler()}>Update </li>
               <li>Delete</li>
             </ul>
           </div>

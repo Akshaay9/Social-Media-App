@@ -160,15 +160,15 @@ export const postSlice = createSlice({
     [likeUnlike.rejected]: (state, { payload }) => {
       state.status = "success";
     },
-    [addUpdateComment.fulfilled]: (state, { payload }) => {
-      state.status = "success";
-      state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
-      );
-    },
-    [addUpdateComment.rejected]: (state, { payload }) => {
-      state.status = "success";
-    },
+    // [addUpdateComment.fulfilled]: (state, { payload }) => {
+    //   state.status = "success";
+    //   state.posts = state.posts.map((ele) =>
+    //     ele._id === payload._id ? payload : ele
+    //   );
+    // },
+    // [addUpdateComment.rejected]: (state, { payload }) => {
+    //   state.status = "success";
+    // },
   },
 });
 

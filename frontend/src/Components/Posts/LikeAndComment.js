@@ -2,14 +2,33 @@ import React from "react";
 import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { likeUnlike } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
+  const isPostAlredyLiked = () => {
+    const isLike = ele.likes.some((ele) => ele.likeID._id === currentUser._id);
+    if (isLike) {
+      return { color: "#2d88ff" };
+    }
+    return {};
+  };
 
   return (
     <div>
       <div className="postData-likeAndComment-top">
-        <div className="likeAndComment-like" style={{ color: "#2d88ff" }}>
+        <div
+          className="likeAndComment-like"
+          style={isPostAlredyLiked()}
+          onClick={() => {
+            const dataToBeSent = {
+              id: ele._id,
+              token: currentUser.token,
+            };
+            dispatch(likeUnlike(dataToBeSent));
+          }}
+        >
           <i class="far fa-thumbs-up"></i>
           <span>{ele.likes?.length}</span>
         </div>
@@ -37,17 +56,19 @@ function LikeAndComment({ ele }) {
             </ul>
           </div>
         )}
-  {      <Link to={`/${ele.PostType}/${ele._id}`}>
-          <p
-            style={{
-              color: "rgb(23 123 255)",
-              cursor: "pointer",
-              marginLeft: "3.5rem",
-            }}
-          >
-            View all comments
-          </p>
-        </Link>}
+        {
+          <Link to={`/${ele.PostType}/${ele._id}`}>
+            <p
+              style={{
+                color: "rgb(23 123 255)",
+                cursor: "pointer",
+                marginLeft: "3.5rem",
+              }}
+            >
+              View all comments
+            </p>
+          </Link>
+        }
       </div>
       <div className="add-comment">
         <Avatar alt="Remy Sharp" src={currentUser.profileImage} />

@@ -1,10 +1,10 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Postform.css";
 import Avatar from "@material-ui/core/Avatar";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { uploadImage } from "../../Utils/UploadImage";
-import { uploadPoast } from "../../features/Posts/PostSlice";
+import { uploadPoast, upDatePoast } from "../../features/Posts/PostSlice";
 import { useDispatch, useSelector } from "react-redux";
 function PostForm({ feeling, setFeeling, image, setImage }) {
   const location = useLocation();
@@ -14,11 +14,19 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
 
   const [postDescription, setPostDescription] = useState("");
   const currentUser = useSelector((state) => state.currentUser.User);
+  const { posts, status } = useSelector((state) => state.Posts);
+
+  const cleanUp = () => {
+    setFeeling();
+    setPostDescription("");
+    setImage();
+    navigate("/");
+  };
 
   // close modal
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
-      navigate("/");
+      cleanUp();
     }
   };
   // useref for image
@@ -45,11 +53,17 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     if (postDescription) {
       dataToBeUploaded.description = postDescription;
     }
-    if (image?.image) {
+    if (image?.image?.name) {
       imageURL = await uploadImage(image.image);
       dataToBeUploaded = {
         ...dataToBeUploaded,
         image: imageURL,
+        PostType: "image",
+      };
+    } else if (image?.image) {
+      dataToBeUploaded = {
+        ...dataToBeUploaded,
+        image: image.image,
         PostType: "image",
       };
     } else {
@@ -61,13 +75,37 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     const dataPayload = {
       data: dataToBeUploaded,
       token: currentUser.token,
+      id,
     };
-    dispatch(uploadPoast(dataPayload));
-    setFeeling();
-    setPostDescription("");
-    setImage();
-    navigate("/");
+
+    if (location?.search?.split("=")[1] == "true") {
+      dispatch(upDatePoast(dataPayload));
+    } else {
+      dispatch(uploadPoast(dataPayload));
+    }
+    console.log(dataToBeUploaded);
+    cleanUp();
   };
+
+  useEffect(() => {
+    if (location?.search?.split("=")[1] == "true") {
+      let updatablePost = posts.filter((ele) => ele._id == id);
+      if (updatablePost[0]?.image) {
+        setImage({
+          image: updatablePost[0]?.image,
+        });
+      }
+      if (updatablePost[0]?.description) {
+        setPostDescription(updatablePost[0]?.description);
+      }
+      if (updatablePost[0]?.feeling) {
+        setFeeling({
+          text: updatablePost[0]?.feeling?.split(" ")[0],
+          emoji: updatablePost[0]?.feeling?.split(" ")[1],
+        });
+      }
+    }
+  }, [location, status]);
 
   return (
     <>
@@ -112,7 +150,11 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
                     <Avatar
                       alt="Remy Sharp"
                       variant="rounded"
-                      src={URL.createObjectURL(image?.image)}
+                      src={
+                        image?.image?.name
+                          ? URL.createObjectURL(image?.image)
+                          : image.image
+                      }
                     />
                     <i class="far fa-times-circle" onClick={() => setImage()} />
                   </>

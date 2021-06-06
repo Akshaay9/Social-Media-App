@@ -7,7 +7,6 @@ import ImagePostCard from "./ImagePostCard";
 import { useNavigate } from "react-router-dom";
 function Post({ ele }) {
   const navigate = useNavigate();
-  console.log(ele.feeling);
   return (
     <div className="postData">
       {/*  */}
@@ -30,7 +29,7 @@ function Post({ ele }) {
         </div>
         <i class="fas fa-ellipsis-h"> </i>
         <ul>
-          <li onClick={() => navigate("/modal/1?update=true")}>Update </li>
+          <li onClick={() => navigate(`/modal/${ele._id}?update=true`)}>Update </li>
           <li>Delete</li>
         </ul>
       </div>

@@ -49,7 +49,11 @@ function Post({ individualUserStyle }) {
                 <Avatar
                   alt="Remy Sharp"
                   variant="rounded"
-                  src={URL.createObjectURL(image?.image)}
+                  src={
+                        image?.image?.name
+                          ? URL.createObjectURL(image?.image)
+                          : image.image
+                      }
                 />
                 <i class="far fa-times-circle" onClick={() => setImage()} />
               </>

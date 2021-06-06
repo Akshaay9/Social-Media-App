@@ -11,7 +11,6 @@ export const addComment = async (req, res) => {
     comment,
   });
   const savedNewComment = await newComment.save();
-  console.log(savedNewComment._id);
   individualPost.comments.push({
     user: req.user.id,
     commentID: savedNewComment._id,

@@ -20,7 +20,6 @@ function IndividualPost() {
     dispatch(getIndividualPost(id));
   }, [status]);
 
-  console.log(posts.length);
 
   const closeModal = (e) => {
     if (e.target.classList.contains("inidividual-post-container")) {

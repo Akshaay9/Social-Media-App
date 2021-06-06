@@ -25,7 +25,7 @@ router.get("/", getAllPost);
 
 // get
 // pubic
-// get individual post
+// update post
 router.post("/:postID", updatePost);
 
 

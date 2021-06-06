@@ -13,17 +13,37 @@ export const getAllPosts = createAsyncThunk("posts/all", async () => {
 
 export const uploadPoast = createAsyncThunk(
   "posts/upload",
-  async (dataToBeSent, { rejectWithValue }) => {    
+  async (dataToBeSent, { rejectWithValue }) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
         "auth-token": dataToBeSent.token,
-      }
+      },
     };
-
     try {
       const data = await axios.post(
         `http://localhost:5000/api/user/post`,
+        dataToBeSent.data,
+        config
+      );
+      return data.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+export const upDatePoast = createAsyncThunk(
+  "posts/update",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
+    try {
+      const data = await axios.post(
+        `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
         dataToBeSent.data,
         config
       );
@@ -43,7 +63,6 @@ export const postSlice = createSlice({
   reducers: {
     getIndividualPost: (state, { payload }) => {
       const indiviualPost = state.posts.filter((ele) => ele._id == payload);
-      console.log(indiviualPost);
       state.individualPost = indiviualPost;
     },
     clearIndividualPost: (state, { payload }) => {
@@ -67,7 +86,15 @@ export const postSlice = createSlice({
     },
     [uploadPoast.rejected]: (state, { payload }) => {
       state.status = "success";
-      console.log(payload);
+    },
+    [upDatePoast.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.posts = state.posts.map((ele) =>
+        ele._id === payload._id ?  payload  : ele
+      );
+    },
+    [upDatePoast.rejected]: (state, { payload }) => {
+      state.status = "success";
     },
   },
 });

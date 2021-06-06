@@ -13,7 +13,7 @@ export const getAllPosts = createAsyncThunk("posts/all", async () => {
 
 export const uploadPoast = createAsyncThunk(
   "posts/upload",
-  async (dataToBeSent, { rejectWithValue }) => {
+  async (dataToBeSent, { rejectWithValue }) => {    
     const config = {
       headers: {
         "Content-Type": "application/json",

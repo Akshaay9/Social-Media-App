@@ -60,9 +60,13 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     }
     const dataPayload = {
       data: dataToBeUploaded,
-      token: "currentUser.token",
+      token: currentUser.token,
     };
     dispatch(uploadPoast(dataPayload));
+    setFeeling();
+    setPostDescription("");
+    setImage();
+    navigate("/");
   };
 
   return (

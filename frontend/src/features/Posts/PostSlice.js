@@ -86,6 +86,31 @@ export const likeUnlike = createAsyncThunk(
     }
   }
 );
+//add/update a post
+export const addUpdateComment = createAsyncThunk(
+  "posts/likeUnlike",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
+    try {
+      const data = await axios.post(
+        dataToBeSent.URL,
+        {comment:dataToBeSent.comment},
+        config
+      );
+      console.log(data.data);
+      return data.data;
+    } catch (error) {
+      console.log(error.response);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const postSlice = createSlice({
   name: "posts",
@@ -133,6 +158,15 @@ export const postSlice = createSlice({
       );
     },
     [likeUnlike.rejected]: (state, { payload }) => {
+      state.status = "success";
+    },
+    [addUpdateComment.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.posts = state.posts.map((ele) =>
+        ele._id === payload._id ? payload : ele
+      );
+    },
+    [addUpdateComment.rejected]: (state, { payload }) => {
       state.status = "success";
     },
   },

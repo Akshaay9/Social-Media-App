@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { likeUnlike } from "../../features/Posts/PostSlice";
+import { addUpdateComment, likeUnlike } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
+  const [comment, setComment] = useState("");
+
   const isPostAlredyLiked = () => {
     const isLike = ele.likes.some((ele) => ele.likeID._id === currentUser._id);
     if (isLike) {
       return { color: "#2d88ff" };
     }
     return {};
+  };
+
+  const commentHandler = (e) => {
+    e.preventDefault();
+    const dataToBeSent = {
+      token: currentUser.token,
+      URL:`http://localhost:5000/api/user/comment/${ele._id}`,
+      comment:comment
+    };
+    dispatch(addUpdateComment(dataToBeSent))
   };
 
   return (
@@ -50,7 +62,7 @@ function LikeAndComment({ ele }) {
               <p>{ele.comments[0]?.commentID.comment}</p>
             </div>
             <i class="fas fa-ellipsis-h comment-i"> </i>
-            <ul>
+            <ul className="post-comment-ul">
               <li>Update </li>
               <li>Delete</li>
             </ul>
@@ -72,7 +84,15 @@ function LikeAndComment({ ele }) {
       </div>
       <div className="add-comment">
         <Avatar alt="Remy Sharp" src={currentUser.profileImage} />
-        <input type="text" placeholder="Write a comment.." />
+        <form onSubmit={(e) => commentHandler(e)}>
+          <input
+            type="text"
+            required
+            placeholder="Write a comment.."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+        </form>
       </div>
     </div>
   );

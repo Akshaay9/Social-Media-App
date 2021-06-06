@@ -25,7 +25,7 @@ router.delete("/:postID/:commentID", privateRoute, deleteComment);
 
 // post
 // private
-// delete comment
+// update comment
 router.post("/update/:commentID", privateRoute, updateComment);
 
 export default router;

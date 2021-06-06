@@ -25,17 +25,21 @@
 .comments-list .comments {
   display: flex;
   padding-bottom: 0.6rem;
-;
 }
 
 .comments-list .comment h4 {
   padding-bottom: 0.3rem;
 }
 .comments-list .comment {
+  /* border: 1px solid red; */
   margin-left: 0.5rem;
+  width: 10rem;
   padding: 0.5rem 0.5rem 0.5rem 0.5rem;
   background-color: #3a3b3c;
   border-radius: 0.5rem;
+}
+.comments-list .comment p {
+  word-wrap: break-word;
 }
 
 .add-comment {
@@ -51,9 +55,15 @@
   border: none;
   color: white;
 }
-.comment-i{
-  margin-left: 2rem;
+.comment-i {
+  margin-left: 5.5rem;
 }
+.post-comment-ul{
+left:52%;
+width: 7rem;
+}
+
+
 @media screen and (max-width: 43.25rem) {
   .postData-likeAndComment-top div:nth-child(1) {
     flex: 0.2;

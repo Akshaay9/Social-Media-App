@@ -88,8 +88,9 @@ function IndividualPost() {
                   </div>
                 </div>
               )}
+              <h4>Comments</h4>
               <div className="individual-comments">
-                <h4>Comments</h4>
+              
                 {individualPost[0].comments.map((ele) => (
                   <>
                     <Comments ele={ele} />

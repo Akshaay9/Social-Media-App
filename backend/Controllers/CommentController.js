@@ -16,7 +16,8 @@ export const addComment = async (req, res) => {
     commentID: savedNewComment._id,
   });
   await individualPost.save();
-  const allPosts = await Post.find({})
+  const allPosts = await Post.findById(individualPost._id)
+    .populate("user")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
     .populate("comments.user", "name profileImage");
@@ -40,14 +41,14 @@ export const deleteComment = async (req, res) => {
   return res.status(200).json(allPosts);
 };
 
-
-// update comment
+// update commen
 export const updateComment = async (req, res) => {
   let { individualComment } = req;
   let updatedComment = req.body;
   individualComment = extend(individualComment, updatedComment);
   await individualComment.save();
-  const allPosts = await Post.find({})
+  const allPosts = await Post.findById(individualPost._id)
+    .populate("user")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
     .populate("comments.user", "name profileImage");

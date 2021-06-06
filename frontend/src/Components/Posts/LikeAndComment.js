@@ -2,37 +2,14 @@ import React from "react";
 import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { likeUnlike } from "../../features/Posts/PostSlice";
+import { useSelector } from "react-redux";
 function LikeAndComment({ ele }) {
-  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
-
-  const isPostAlredyLiked = () => {
-   
-const isLike=ele.likes.some((ele)=>ele.likeID._id===currentUser._id)
-    if (isLike){
-      return {
-        color: "#2d88ff",
-      };
-    }
-    return {};
-  };
 
   return (
     <div>
       <div className="postData-likeAndComment-top">
-        <div
-          className="likeAndComment-like"
-          style={isPostAlredyLiked()}
-          onClick={() => {
-            const dataToBeSent = {
-              id: ele._id,
-              token: currentUser.token,
-            };
-            dispatch(likeUnlike(dataToBeSent));
-          }}
-        >
+        <div className="likeAndComment-like" style={{ color: "#2d88ff" }}>
           <i class="far fa-thumbs-up"></i>
           <span>{ele.likes?.length}</span>
         </div>
@@ -60,19 +37,17 @@ const isLike=ele.likes.some((ele)=>ele.likeID._id===currentUser._id)
             </ul>
           </div>
         )}
-        {
-          <Link to={`/${ele.PostType}/${ele._id}`}>
-            <p
-              style={{
-                color: "rgb(23 123 255)",
-                cursor: "pointer",
-                marginLeft: "3.5rem",
-              }}
-            >
-              View all comments
-            </p>
-          </Link>
-        }
+  {      <Link to={`/${ele.PostType}/${ele._id}`}>
+          <p
+            style={{
+              color: "rgb(23 123 255)",
+              cursor: "pointer",
+              marginLeft: "3.5rem",
+            }}
+          >
+            View all comments
+          </p>
+        </Link>}
       </div>
       <div className="add-comment">
         <Avatar alt="Remy Sharp" src={currentUser.profileImage} />

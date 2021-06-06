@@ -52,32 +52,6 @@ export const upDatePoast = createAsyncThunk(
         dataToBeSent.data,
         config
       );
-      return data.data;
-    } catch (error) {
-      console.log(error);
-      console.log(error?.response);
-      return rejectWithValue(error.response.data);
-    }
-  }
-);
-
-// like/unlike a post
-export const likeUnlike = createAsyncThunk(
-  "posts/likeUnlike",
-  async (dataToBeSent, { rejectWithValue }) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": dataToBeSent.token,
-      },
-    };
-
-    try {
-      const data = await axios.post(
-        `http://localhost:5000/api/user/like/${dataToBeSent.id}`,
-        null,
-        config
-      );
       console.log(data.data);
       return data.data;
     } catch (error) {
@@ -121,19 +95,10 @@ export const postSlice = createSlice({
     [upDatePoast.fulfilled]: (state, { payload }) => {
       state.status = "success";
       state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
+        ele._id === payload._id ?  payload  : ele
       );
     },
     [upDatePoast.rejected]: (state, { payload }) => {
-      state.status = "success";
-    },
-    [likeUnlike.fulfilled]: (state, { payload }) => {
-      state.status = "success";
-      state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
-      );
-    },
-    [likeUnlike.rejected]: (state, { payload }) => {
       state.status = "success";
     },
   },

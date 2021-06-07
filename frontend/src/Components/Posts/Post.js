@@ -7,25 +7,30 @@ import ImagePostCard from "./ImagePostCard";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../features/Posts/PostSlice";
+import { Link } from "react-router-dom";
 function Post({ ele }) {
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <div className="postData">
       <div className="postData-top">
-        <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />
+        <Link to={`/user/${ele.user._id}`}>
+          {" "}
+          <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />{" "}
+        </Link>
         <div className="postData-top-details">
-          <div className="postData-top-metData" style={{ display: "flex" }}>
-            <h3>{ele.user?.name}</h3>
-            {ele?.feeling && (
-              <p style={{ marginLeft: ".5rem" }}>
-                is {ele.feeling.split(" ")[1]} feeling{" "}
-                {ele.feeling.split(" ")[0]}{" "}
-              </p>
-            )}
-          </div>
+          <Link to={`/user/${ele.user._id}`}>
+            <div className="postData-top-metData" style={{ display: "flex" }}>
+              <h3>{ele.user?.name}</h3>
+              {ele?.feeling && (
+                <p style={{ marginLeft: ".5rem" }}>
+                  is {ele.feeling.split(" ")[1]} feeling{" "}
+                  {ele.feeling.split(" ")[0]}{" "}
+                </p>
+              )}
+            </div>
+          </Link>
           <span>24 m</span>
           <span>.</span>
           <i class="fas fa-globe-asia"></i>

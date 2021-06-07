@@ -52,3 +52,15 @@ export const deletePost = async (req, res) => {
   await Post.findByIdAndDelete(postID);
   return res.status(200).json(postID);
 };
+
+// individual users post
+
+export const individualUsersPost = async (req, res) => {
+  const { userID } = req.params;
+  const allPosts = await Post.find({ user: userID })
+    .populate("user")
+    .populate("likes.likeID", "name profileImage")
+    .populate("comments.commentID")
+    .populate("comments.user", "name profileImage");
+  return res.status(200).json(allPosts);
+};

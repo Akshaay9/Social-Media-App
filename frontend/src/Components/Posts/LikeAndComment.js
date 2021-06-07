@@ -67,12 +67,12 @@ function LikeAndComment({ ele }) {
       </div>
 
       <div className="comments-list">
-        {ele.comments?.length > 0 && (
+        {ele?.comments?.length > 0 && (
           <div className="comments">
             <Avatar alt="Remy Sharp" src={ele.comments[0]?.user.profileImage} />
             <div className="comment">
               <h4>{ele.comments[0]?.user.name}</h4>
-              <p>{ele.comments[0]?.commentID.comment}</p>
+              <p>{ele.comments[0]?.commentID?.comment}</p>
             </div>
             <i class="fas fa-ellipsis-h comment-i"> </i>
             <ul className="post-comment-ul">

@@ -4,6 +4,7 @@ import {
   getAllPost,
   updatePost,
   deletePost,
+  individualUsersPost,
 } from "../Controllers/PostController.js";
 import privateRoute from "../MiddleWears/Authentication.js";
 import { getIndividualPost } from "../MiddleWears/IndividualPost.js";
@@ -21,6 +22,11 @@ router.post("/", privateRoute, addNewPost);
 // pubic
 // get all post
 router.get("/", getAllPost);
+
+// get
+// pubic
+// get all post
+router.get("/:userID", privateRoute, individualUsersPost);
 
 // get
 // pubic

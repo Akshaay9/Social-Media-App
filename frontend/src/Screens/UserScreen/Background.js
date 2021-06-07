@@ -4,7 +4,8 @@ import Avatar from "@material-ui/core/Avatar";
 import { postData } from "../../Data.js/PostData";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { followUnfollowUser } from "../../features/Users/UserSlice";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -41,10 +42,24 @@ const useStyles2 = makeStyles((theme) => ({
     border: "4px solid #3a3b3c",
   },
 }));
-function Background({ individualUser }) {
+function Background({ individualUser, individualUserPost }) {
   const classes = useStyles();
   const classes2 = useStyles2();
   const currentUser = useSelector((state) => state.currentUser.User);
+  const dispatch = useDispatch();
+
+  const isFollowingTheUSer = (user) => {
+    const isFollowing = individualUser?.followers?.some(
+      (ele) => ele?.user == currentUser._id
+    );
+    console.log(isFollowing);
+
+    if (isFollowing == true) {
+      return "unfollow";
+    } else if (isFollowing == false) {
+      return "follow";
+    }
+  };
 
   return (
     <div>
@@ -72,12 +87,22 @@ function Background({ individualUser }) {
         <div className="background-user-info">
           <h1>{individualUser?.name}</h1>
           {currentUser?._id != individualUser?._id && (
-            <Button variant="contained" color="primary">
-              Follow
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                const dataToBeSent = {
+                  id: individualUser?._id,
+                  token: currentUser?.token,
+                };
+                dispatch(followUnfollowUser(dataToBeSent));
+              }}
+            >
+              {isFollowingTheUSer(individualUser)}
             </Button>
           )}
           <div className="user-meta-data">
-            <h4>4 Post</h4>
+            <h4>{individualUserPost?.length} Post</h4>
             <p>{individualUser?.following?.length} following</p>
             <p>{individualUser?.followers?.length} followers</p>
           </div>

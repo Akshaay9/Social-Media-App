@@ -9,6 +9,7 @@ import {
   clearIndividualPost,
   addUpdateComment,
   deletePost,
+  likeUnlike,
 } from "../../features/Posts/PostSlice";
 function IndividualPost() {
   const { id } = useParams();
@@ -58,6 +59,16 @@ function IndividualPost() {
       (ele) => ele.commentID._id == id
     );
     setComment(updateCommentText.commentID.comment);
+  };
+
+  const isPostAlredyLiked = () => {
+    const isLike = individualPost[0]?.likes?.some(
+      (ele) => ele.likeID._id === currentUser._id
+    );
+    if (isLike) {
+      return { color: "#2d88ff" };
+    }
+    return {};
   };
 
   return (
@@ -145,13 +156,25 @@ function IndividualPost() {
                 ))}
               </div>
               <div className="individual-post-like">
-                <div className="indilikeComment-like">
-                  <i class="far fa-thumbs-up"></i>
-                  <span>{3}</span>
+                <div
+                  className="indilikeComment-like"
+                  style={isPostAlredyLiked()}
+                >
+                  <i
+                    class="far fa-thumbs-up"
+                    onClick={() => {
+                      const dataToBeSent = {
+                        id: individualPost[0]._id,
+                        token: currentUser.token,
+                      };
+                      dispatch(likeUnlike(dataToBeSent));
+                    }}
+                  ></i>
+                  <span>{individualPost[0].likes?.length}</span>
                 </div>
                 <div className="indilikeComment-comment">
                   <i class="fas fa-comments"></i>
-                  <span>{3}</span>
+                  <span>{individualPost[0].comments?.length}</span>
                 </div>
                 <div className="indilikeComment-share">
                   <i class="fas fa-share-square"></i>

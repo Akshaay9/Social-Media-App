@@ -50,6 +50,5 @@ export const updatePost = async (req, res) => {
 export const deletePost = async (req, res) => {
   const { postID } = req.params;
   await Post.findByIdAndDelete(postID);
-  const allPosts = await Post.find({});
-  return res.status(200).json(allPosts);
+  return res.status(200).json(postID);
 };

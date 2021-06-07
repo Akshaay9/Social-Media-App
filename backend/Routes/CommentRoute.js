@@ -23,6 +23,7 @@ router.post("/:postID", privateRoute, addComment);
 // delete comment
 router.delete("/:postID/:commentID", privateRoute, deleteComment);
 
+
 // post
 // private
 // update comment

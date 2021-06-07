@@ -61,6 +61,33 @@ export const upDatePoast = createAsyncThunk(
     }
   }
 );
+
+// delete a post
+export const deletePost = createAsyncThunk(
+  "posts/delete",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
+
+    try {
+      const data = await axios.delete(
+        `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
+        config
+      );
+      console.log(data.data);
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // like/unlike a post
 export const likeUnlike = createAsyncThunk(
   "posts/likeUnlike",
@@ -86,9 +113,10 @@ export const likeUnlike = createAsyncThunk(
     }
   }
 );
-//add/update a post
+
+//add/update a comment
 export const addUpdateComment = createAsyncThunk(
-  "posts/likeUnlike",
+  "posts/comment",
   async (dataToBeSent, { rejectWithValue }) => {
     const config = {
       headers: {
@@ -111,6 +139,8 @@ export const addUpdateComment = createAsyncThunk(
     }
   }
 );
+
+// post slice
 
 export const postSlice = createSlice({
   name: "posts",
@@ -149,6 +179,13 @@ export const postSlice = createSlice({
       );
     },
     [upDatePoast.rejected]: (state, { payload }) => {
+      state.status = "success";
+    },
+    [deletePost.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.posts = state.posts.filter((ele) => ele._id !== payload);
+    },
+    [deletePost.rejected]: (state, { payload }) => {
       state.status = "success";
     },
     [likeUnlike.fulfilled]: (state, { payload }) => {

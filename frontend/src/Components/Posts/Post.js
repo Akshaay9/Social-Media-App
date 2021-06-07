@@ -5,8 +5,12 @@ import TextPostCard from "./TextPostCard";
 import LikeAndComment from "./LikeAndComment";
 import ImagePostCard from "./ImagePostCard";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost } from "../../features/Posts/PostSlice";
 function Post({ ele }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <div className="postData">
       {/*  */}
@@ -16,7 +20,7 @@ function Post({ ele }) {
           <div className="postData-top-metData" style={{ display: "flex" }}>
             <h3>{ele.user.name}</h3>
             {ele.feeling && (
-              <p style={{marginLeft:".5rem"}}>
+              <p style={{ marginLeft: ".5rem" }}>
                 is {ele.feeling.split(" ")[1]} feeling{" "}
                 {ele.feeling.split(" ")[0]}{" "}
               </p>
@@ -29,8 +33,20 @@ function Post({ ele }) {
         </div>
         <i class="fas fa-ellipsis-h"> </i>
         <ul>
-          <li onClick={() => navigate(`/modal/${ele._id}?update=true`)}>Update </li>
-          <li>Delete</li>
+          <li onClick={() => navigate(`/modal/${ele._id}?update=true`)}>
+            Update{" "}
+          </li>
+          <li
+            onClick={() => {
+              const dataToBeSent = {
+                id: ele._id,
+                token: currentUser.token,
+              };
+              dispatch(deletePost(dataToBeSent));
+            }}
+          >
+            Delete
+          </li>
         </ul>
       </div>
       {/* mid */}

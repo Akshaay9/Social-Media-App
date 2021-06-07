@@ -8,6 +8,7 @@ import {
   getIndividualPost,
   clearIndividualPost,
   addUpdateComment,
+  deletePost,
 } from "../../features/Posts/PostSlice";
 function IndividualPost() {
   const { id } = useParams();
@@ -104,7 +105,18 @@ function IndividualPost() {
                   >
                     Update Post
                   </li>
-                  <li>Delete Post</li>
+                  <li
+                    onClick={() => {
+                      const dataToBeSent = {
+                        id: id,
+                        token: currentUser.token,
+                      };
+                      dispatch(deletePost(dataToBeSent));
+                      navigate("/");
+                    }}
+                  >
+                    Delete Post
+                  </li>
                 </ul>
               </div>
               {location.pathname.includes("image") && (

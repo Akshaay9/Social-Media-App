@@ -1,7 +1,10 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
-import { useSelector } from "react-redux";
-function Comments({ ele, comment, setComment, updateCommentHandler }) {
+import { useSelector, useDispatch } from "react-redux";
+import { deleteComment, deletePost } from "../../features/Posts/PostSlice";
+function Comments({ ele, updateCommentHandler, id }) {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <>
       <div className="individual-post-comment" id="style-7">
@@ -17,7 +20,18 @@ function Comments({ ele, comment, setComment, updateCommentHandler }) {
               <li onClick={() => updateCommentHandler(ele?.commentID._id)}>
                 Update{" "}
               </li>
-              <li>Delete</li>
+              <li
+                onClick={() => {
+                  const dataToBeSent = {
+                    PostID: id,
+                    commentID: ele.commentID._id,
+                    token: currentUser.token,
+                  };
+                  dispatch(deleteComment(dataToBeSent));
+                }}
+              >
+                Delete
+              </li>
             </ul>
           </div>
         </div>

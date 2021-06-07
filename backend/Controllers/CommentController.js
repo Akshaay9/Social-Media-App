@@ -34,7 +34,8 @@ export const deleteComment = async (req, res) => {
       JSON.stringify(ele.commentID) !== JSON.stringify(individualComment._id)
   );
   await individualPost.save();
-  const allPosts = await Post.find({})
+  const allPosts = await Post.findById(individualPost._id)
+    .populate("user")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
     .populate("comments.user", "name profileImage");

@@ -46,7 +46,7 @@ function IndividualPost() {
     dispatch(addUpdateComment(dataToBeSent));
     setUpdateComment(false);
     setCommentID();
-    setComment("")
+    setComment("");
   };
 
   // update comment
@@ -126,9 +126,8 @@ function IndividualPost() {
                   <>
                     <Comments
                       ele={ele}
-                      comment={comment}
-                      setComment={setComment}
                       updateCommentHandler={updateCommentHandler}
+                      id={id}
                     />
                   </>
                 ))}

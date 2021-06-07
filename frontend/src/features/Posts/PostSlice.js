@@ -140,8 +140,33 @@ export const addUpdateComment = createAsyncThunk(
   }
 );
 
-// post slice
+// delete a comment
+export const deleteComment = createAsyncThunk(
+  "comment/delete",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
 
+    try {
+      const data = await axios.delete(
+        `http://localhost:5000/api/user/comment/${dataToBeSent.PostID}/${dataToBeSent.commentID}`,
+        config
+      );
+      console.log(data.data);
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// post slice
 export const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -204,6 +229,15 @@ export const postSlice = createSlice({
       );
     },
     [addUpdateComment.rejected]: (state, { payload }) => {
+      state.status = "success";
+    },
+    [deleteComment.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.posts = state.posts.map((ele) =>
+        ele._id === payload._id ? payload : ele
+      );
+    },
+    [deleteComment.rejected]: (state, { payload }) => {
       state.status = "success";
     },
   },

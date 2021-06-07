@@ -3,7 +3,7 @@ import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addUpdateComment, likeUnlike } from "../../features/Posts/PostSlice";
+import { addUpdateComment, deleteComment, likeUnlike } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
@@ -29,7 +29,7 @@ function LikeAndComment({ ele }) {
     };
     dispatch(addUpdateComment(dataToBeSent));
     setUpdateComment(false);
-    setComment("")
+    setComment("");
   };
 
   const updateCommentHandler = () => {
@@ -74,7 +74,18 @@ function LikeAndComment({ ele }) {
             <i class="fas fa-ellipsis-h comment-i"> </i>
             <ul className="post-comment-ul">
               <li onClick={() => updateCommentHandler()}>Update </li>
-              <li>Delete</li>
+              <li
+                onClick={() => {
+                  const dataToBeSent = {
+                    PostID: ele._id,
+                    commentID: ele.comments[0]?.commentID._id,
+                    token: currentUser.token,
+                  };
+                  dispatch(deleteComment(dataToBeSent));
+                }}
+              >
+                Delete
+              </li>
             </ul>
           </div>
         )}

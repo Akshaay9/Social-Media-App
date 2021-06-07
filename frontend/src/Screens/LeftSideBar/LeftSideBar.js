@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import SettingPanel from "../SettingsPanel/SettingPanel";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 function LeftSideBar({ individualUserStyle }) {
   const [panel, setPanel] = useState({
     show: false,
     style: "bottom-left",
   });
+
+  const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <>
       <div
@@ -17,14 +20,14 @@ function LeftSideBar({ individualUserStyle }) {
         }
       >
         <ul>
-          <Link to="/home">
+          <Link to="/">
             {" "}
             <li>
               <i class="fas fa-home"></i>
               News Feed
             </li>
           </Link>
-          <Link to="/home/user">
+          <Link to={`/user/${currentUser._id}`}>
             <li>
               <i class="fas fa-user-circle"></i>
               Profile

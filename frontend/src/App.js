@@ -32,8 +32,7 @@ function App() {
         <Route path="/modal/:id" element={<HomeScreen />} />
         <Route path="/text/:id" element={<HomeScreen />} />
         <Route path="/image/:id" element={<HomeScreen />} />
-        <Route path="/user" element={<IndividualUser />} />
-        <Route path="/user/all" element={<AllUsers />} />
+        <Route path="/user/:id" element={<IndividualUser />} />
         <Route path="/user/all" element={<AllUsers />} />
       </Routes>
     </BrowserRouter>

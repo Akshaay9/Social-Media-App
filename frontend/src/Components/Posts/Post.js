@@ -9,8 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../features/Posts/PostSlice";
 function Post({ ele }) {
 
-
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);

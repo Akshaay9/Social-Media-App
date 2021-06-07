@@ -41,10 +41,11 @@ const useStyles2 = makeStyles((theme) => ({
     border: "4px solid #3a3b3c",
   },
 }));
-function Background() {
+function Background({ individualUser }) {
   const classes = useStyles();
   const classes2 = useStyles2();
   const currentUser = useSelector((state) => state.currentUser.User);
+
   return (
     <div>
       <div className="background-image-container">
@@ -54,7 +55,7 @@ function Background() {
           <div className="mobile-hide">
             <Avatar
               alt="Remy Sharp"
-              src={postData[0].userID?.profileImage}
+              src={individualUser?.profileImage}
               className={classes.large}
             />
             <i class="fas fa-camera user-avatar-camera"></i>
@@ -62,21 +63,23 @@ function Background() {
           <div className="desktop-hide">
             <Avatar
               alt="Remy Sharp"
-              src={postData[0].userID?.profileImage}
+              src={individualUser?.profileImage}
               className={classes2.large}
             />
             <i class="fas fa-camera user-avatar-camera"></i>
           </div>
         </div>
         <div className="background-user-info">
-          <h1>Kai</h1>
-          <Button variant="contained" color="primary">
-            Follow
-          </Button>
+          <h1>{individualUser?.name}</h1>
+          {currentUser?._id != individualUser?._id && (
+            <Button variant="contained" color="primary">
+              Follow
+            </Button>
+          )}
           <div className="user-meta-data">
             <h4>4 Post</h4>
-            <p>12 Following</p>
-            <p>1 Followers</p>
+            <p>{individualUser?.following?.length} following</p>
+            <p>{individualUser?.followers?.length} followers</p>
           </div>
         </div>
 

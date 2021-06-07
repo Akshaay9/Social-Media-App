@@ -10,6 +10,7 @@ const initialState = {
 // get all posts
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
   const data = await axios.get(`http://localhost:5000/api/user/post`);
+  // console.log(data);
   return data.data;
 });
 
@@ -52,7 +53,7 @@ export const upDatePoast = createAsyncThunk(
         dataToBeSent.data,
         config
       );
-      console.log(data.data);
+
       return data.data;
     } catch (error) {
       console.log(error);

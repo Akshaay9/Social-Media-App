@@ -1,14 +1,10 @@
 import React from "react";
 import Post from "./Post";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 function Posts() {
   const Posts = useSelector((state) => state.Posts.posts);
   return (
-    <div>
-      {Posts.map((ele) => (
-        <Post ele={ele} />
-      ))}
-    </div>
+    <div>{Posts.length > 0 && Posts.map((ele) => <Post ele={ele} />)}</div>
   );
 }
 

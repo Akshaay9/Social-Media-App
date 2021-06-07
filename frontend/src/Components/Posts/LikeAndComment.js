@@ -3,16 +3,19 @@ import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addUpdateComment, deleteComment, likeUnlike } from "../../features/Posts/PostSlice";
+import {
+  addUpdateComment,
+  deleteComment,
+  likeUnlike,
+} from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
   const [comment, setComment] = useState("");
-
   const [updateComment, setUpdateComment] = useState(false);
 
   const isPostAlredyLiked = () => {
-    const isLike = ele.likes.some((ele) => ele.likeID._id === currentUser._id);
+    const isLike = ele.likes?.some((ele) => ele.likeID._id === currentUser._id);
     if (isLike) {
       return { color: "#2d88ff" };
     }
@@ -64,7 +67,7 @@ function LikeAndComment({ ele }) {
       </div>
 
       <div className="comments-list">
-        {ele.comments.length > 0 && (
+        {ele.comments?.length > 0 && (
           <div className="comments">
             <Avatar alt="Remy Sharp" src={ele.comments[0]?.user.profileImage} />
             <div className="comment">

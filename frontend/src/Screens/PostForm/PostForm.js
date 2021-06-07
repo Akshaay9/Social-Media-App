@@ -83,7 +83,7 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     } else {
       dispatch(uploadPoast(dataPayload));
     }
-    console.log(dataToBeUploaded);
+    
     cleanUp();
   };
 

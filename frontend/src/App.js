@@ -8,13 +8,23 @@ import "./App.css";
 import { Counter } from "./features/counter/Counter";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
+import { getAllUsers } from "./features/Users/UserSlice";
 function App() {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
+  const Users = useSelector((state) => state.Users);
 
   useEffect(() => {
-    dispatch(getAllPosts());
+    if (Posts.status == "pending") {
+      dispatch(getAllPosts());
+    }
+    if (Users.status == "pending") {
+      dispatch(getAllUsers());
+    }
   }, []);
+
+  console.log(Posts);
+  console.log(Users);
 
   return (
     <BrowserRouter>

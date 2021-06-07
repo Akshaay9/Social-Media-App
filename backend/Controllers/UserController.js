@@ -44,3 +44,9 @@ export const userLogin = async (req, res) => {
     token: assignJWT(user._id),
   });
 };
+
+// get all users
+export const getAllUser =async (req,res) => {
+  const allUsers = await Users.find({}).select("-password")
+  res.status(200).json(allUsers)
+}

@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../features/Posts/PostSlice";
 function Post({ ele }) {
+
+
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
@@ -18,8 +21,8 @@ function Post({ ele }) {
         <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />
         <div className="postData-top-details">
           <div className="postData-top-metData" style={{ display: "flex" }}>
-            <h3>{ele.user.name}</h3>
-            {ele.feeling && (
+            <h3>{ele.user?.name}</h3>
+            {ele?.feeling && (
               <p style={{ marginLeft: ".5rem" }}>
                 is {ele.feeling.split(" ")[1]} feeling{" "}
                 {ele.feeling.split(" ")[0]}{" "}

@@ -29,6 +29,7 @@ function LikeAndComment({ ele }) {
     };
     dispatch(addUpdateComment(dataToBeSent));
     setUpdateComment(false);
+    setComment("")
   };
 
   const updateCommentHandler = () => {

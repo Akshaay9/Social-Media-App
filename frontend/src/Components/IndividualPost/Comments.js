@@ -1,8 +1,7 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import { useSelector } from "react-redux";
-function Comments({ ele }) {
-  
+function Comments({ ele, comment, setComment, updateCommentHandler }) {
   return (
     <>
       <div className="individual-post-comment" id="style-7">
@@ -15,13 +14,14 @@ function Comments({ ele }) {
             </div>
             <i class="fas fa-ellipsis-h "> </i>
             <ul>
-              <li>Update </li>
+              <li onClick={() => updateCommentHandler(ele?.commentID._id)}>
+                Update{" "}
+              </li>
               <li>Delete</li>
             </ul>
           </div>
         </div>
       </div>
-
     </>
   );
 }

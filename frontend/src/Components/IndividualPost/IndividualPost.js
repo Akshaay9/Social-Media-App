@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   getIndividualPost,
   clearIndividualPost,
+  addUpdateComment,
 } from "../../features/Posts/PostSlice";
 function IndividualPost() {
   const { id } = useParams();
@@ -16,15 +17,46 @@ function IndividualPost() {
   const currentUser = useSelector((state) => state.currentUser.User);
   const dispatch = useDispatch();
 
+  const [comment, setComment] = useState("");
+  const [updateComment, setUpdateComment] = useState(false);
+  const [commentID, setCommentID] = useState();
+
   useEffect(() => {
     dispatch(getIndividualPost(id));
-  }, [status]);
+  }, [status, posts]);
 
+  // modal close
   const closeModal = (e) => {
     if (e.target.classList.contains("inidividual-post-container")) {
       navigate("/");
       dispatch(clearIndividualPost());
     }
+  };
+
+  // comment handler
+  const commentHandler = (e) => {
+    e.preventDefault();
+    const dataToBeSent = {
+      token: currentUser.token,
+      URL: updateComment
+        ? `http://localhost:5000/api/user/comment/update/${id}/${commentID}`
+        : `http://localhost:5000/api/user/comment/${id}`,
+      comment: comment,
+    };
+    dispatch(addUpdateComment(dataToBeSent));
+    setUpdateComment(false);
+    setCommentID();
+    setComment("")
+  };
+
+  // update comment
+  const updateCommentHandler = (id) => {
+    setCommentID(id);
+    setUpdateComment(true);
+    const updateCommentText = individualPost[0].comments.find(
+      (ele) => ele.commentID._id == id
+    );
+    setComment(updateCommentText.commentID.comment);
   };
 
   return (
@@ -90,10 +122,14 @@ function IndividualPost() {
               )}
               <h4>Comments</h4>
               <div className="individual-comments">
-              
                 {individualPost[0].comments.map((ele) => (
                   <>
-                    <Comments ele={ele} />
+                    <Comments
+                      ele={ele}
+                      comment={comment}
+                      setComment={setComment}
+                      updateCommentHandler={updateCommentHandler}
+                    />
                   </>
                 ))}
               </div>
@@ -112,7 +148,15 @@ function IndividualPost() {
               </div>
               <div className="add-comment individual-add-comment">
                 <Avatar alt="Remy Sharp" src={currentUser.profileImage} />
-                <input type="text" placeholder="Write a comment.." />
+                <form onSubmit={(e) => commentHandler(e)}>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Write a comment.."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                </form>
               </div>
             </div>
           </div>

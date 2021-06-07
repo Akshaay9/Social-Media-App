@@ -16,7 +16,6 @@ function Post({ ele }) {
   const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <div className="postData">
-      {/*  */}
       <div className="postData-top">
         <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />
         <div className="postData-top-details">
@@ -29,7 +28,6 @@ function Post({ ele }) {
               </p>
             )}
           </div>
-
           <span>24 m</span>
           <span>.</span>
           <i class="fas fa-globe-asia"></i>

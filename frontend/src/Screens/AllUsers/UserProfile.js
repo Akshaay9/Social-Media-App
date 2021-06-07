@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar } from "@material-ui/core";
-
+import { followUnfollowUser } from "../../features/Users/UserSlice";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -18,41 +18,50 @@ const useStyles = makeStyles((theme) => ({
 }));
 function UserProfile({ ele, presentUser }) {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser.User);
   const isFollowingTheUSer = (user) => {
-    const isFollowing = user?.followers?.find(
+    const isFollowing = user?.followers?.some(
       (ele) => ele?.user == presentUser._id
     );
-    console.log(isFollowing);
+
     if (isFollowing == true) {
-      return (
-        <Button variant="contained" color="primary">
-          unfollow
-        </Button>
-      );
-    } else if (isFollowing == false || isFollowing == undefined) {
-      return (
-        <Button variant="contained" color="primary">
-          Follow
-        </Button>
-      );
+      return "unfollow";
+    } else if (isFollowing == false) {
+      return "follow";
     }
   };
 
   return (
     <div>
-      <div className="user-lists">
-        <div className="left">
-          <Avatar
-            alt="Remy Sharp"
-            src={ele?.profileImage}
-            className={classes.large}
-          />
-          <h2>{ele?.name}</h2>
-        </div>
+      {ele._id != presentUser._id && (
+        <div className="user-lists">
+          <div className="left">
+            <Avatar
+              alt="Remy Sharp"
+              src={ele?.profileImage}
+              className={classes.large}
+            />
+            <h2>{ele?.name}</h2>
+          </div>
 
-        <div className="right">{isFollowingTheUSer(ele)}</div>
-      </div>
+          <div className="right">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                const dataToBeSent = {
+                  id: ele._id,
+                  token: currentUser.token,
+                };
+                dispatch(followUnfollowUser(dataToBeSent));
+              }}
+            >
+              {isFollowingTheUSer(ele)}
+            </Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -1,23 +1,13 @@
 import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import { postData } from "../../Data.js/PostData";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-  large: {
-    width: theme.spacing(10),
-    height: theme.spacing(10),
-  },
-}));
-
+import { useSelector } from "react-redux";
+import UserProfile from "./UserProfile";
 function AllUsers() {
-  const classes = useStyles();
+  const Users = useSelector((state) => state.Users.Allusers);
+  const currentUser = useSelector((state) => state.currentUser.User);
+
+  const presentUser = Users?.find((ele) => ele._id == currentUser._id);
+
+
   return (
     <div>
       <div className="all-users">
@@ -25,39 +15,10 @@ function AllUsers() {
           <div className="heading">
             <h2>People</h2>
           </div>
-          <div className="user-lists">
-            <div className="left">
-              <Avatar
-                alt="Remy Sharp"
-                src={postData[0].userID?.profileImage}
-                className={classes.large}
-              />
-                          <h2>Kai</h2>
-                          
-            </div>
-
-            <div className="right">
-              <Button variant="contained" color="primary">
-                Follow
-              </Button>
-            </div>
-          </div>
-          <div className="user-lists">
-            <div className="left">
-              <Avatar
-                alt="Remy Sharp"
-                src={postData[0].userID?.profileImage}
-                className={classes.large}
-              />
-              <h2>Kai</h2>
-            </div>
-
-            <div className="right">
-              <Button variant="contained" color="primary">
-                Follow
-              </Button>
-            </div>
-          </div>
+          {Users?.length > 0 &&
+            Users.map((ele) => (
+              <UserProfile ele={ele} presentUser={presentUser} />
+            ))}
         </div>
       </div>
     </div>

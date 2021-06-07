@@ -23,9 +23,6 @@ function App() {
     }
   }, []);
 
-  console.log(Posts);
-  console.log(Users);
-
   return (
     <BrowserRouter>
       <NavBar />

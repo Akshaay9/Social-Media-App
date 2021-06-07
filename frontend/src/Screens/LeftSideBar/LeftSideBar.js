@@ -31,7 +31,7 @@ function LeftSideBar({ individualUserStyle }) {
             </li>
           </Link>
 
-          <Link to="/home/user/all">
+          <Link to="/user/all">
             <li>
               <i class="fas fa-users"></i>
               People

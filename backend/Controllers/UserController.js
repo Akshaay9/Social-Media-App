@@ -1,6 +1,7 @@
 import assignJWT from "../MiddleWears/AssignJWT.js";
 import Users from "../Models/User.model.js";
 import bcrypt from "bcryptjs";
+import { json } from "express";
 
 // user registration
 export const userRegistraion = async (req, res) => {
@@ -46,7 +47,41 @@ export const userLogin = async (req, res) => {
 };
 
 // get all users
-export const getAllUser =async (req,res) => {
-  const allUsers = await Users.find({}).select("-password")
-  res.status(200).json(allUsers)
-}
+export const getAllUser = async (req, res) => {
+  const allUsers = await Users.find({}).select("-password");
+  res.status(200).json(allUsers);
+};
+
+// followUnfollowpeople
+
+export const followUnfollow = async (req, res) => {
+  let { user, individualUser } = req;
+  let currUser = await Users.findById(user.id);
+
+  let isUserAlredyFollowing = individualUser.followers.filter(
+    (ele) => JSON.stringify(ele.user) == JSON.stringify(currUser._id)
+  );
+  let isUserAlredyFollowed = currUser.following.filter(
+    (ele) => JSON.stringify(ele.user) == JSON.stringify(individualUser._id)
+  );
+
+  if (isUserAlredyFollowing.length > 0 && isUserAlredyFollowed.length > 0) {
+    individualUser.followers = individualUser.followers.filter(
+      (ele) => JSON.stringify(ele.user) !== JSON.stringify(currUser._id)
+    );
+    currUser.following = currUser.following.filter(
+      (ele) => JSON.stringify(ele.user) !== JSON.stringify(individualUser._id)
+    );
+    await currUser.save();
+    await individualUser.save();
+    const allUsers = await Users.find({});
+    res.status(200).json(allUsers);
+  } else {
+    currUser.following.push({ user: individualUser._id });
+    individualUser.followers.push({ user: currUser._id });
+    await currUser.save();
+    await individualUser.save();
+    const allUsers = await Users.find({});
+    res.status(200).json(allUsers);
+  }
+};

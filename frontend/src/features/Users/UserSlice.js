@@ -52,7 +52,33 @@ export const individualUsersPosts = createAsyncThunk(
         `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
         config
       );
-  
+
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
+// Mark all notifications as read
+export const markNotificationRead = createAsyncThunk(
+  "users/clearNotification",
+  async (dataToBeSent, { rejectWithValue }) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
+    try {
+      const data = await axios.post(
+        `http://localhost:5000/api/user/clearnotification`,
+        null,
+        config
+      );
+
       return data.data;
     } catch (error) {
       console.log(error);
@@ -80,6 +106,13 @@ export const userSlice = createSlice({
       state.status = "pending";
     },
     [followUnfollowUser.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.Allusers = payload;
+    },
+    [markNotificationRead.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [markNotificationRead.fulfilled]: (state, { payload }) => {
       state.status = "success";
       state.Allusers = payload;
     },

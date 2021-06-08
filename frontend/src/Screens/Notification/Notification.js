@@ -13,8 +13,8 @@ const useStyles = makeStyles((theme) => ({
   large: {
     width: theme.spacing(6),
     height: theme.spacing(6),
-  },
-}));
+  },    
+}));  
 function Notification({ ele }) {
   const classes = useStyles();
   const currentUser = useSelector((state) => state.currentUser.User);

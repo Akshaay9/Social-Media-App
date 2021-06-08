@@ -5,6 +5,7 @@ import UsersPost from "../../Components/Posts/Index";
 import { useLocation, useParams } from "react-router";
 import IndividualPost from "../../Components/IndividualPost/IndividualPost";
 
+
 function Index() {
   const { id } = useParams();
   const location = useLocation();
@@ -15,6 +16,7 @@ function Index() {
       <LeftSideBar />
       <PostBar />
       <UsersPost />
+   
 
       {(location.pathname.includes("image") && (
         <IndividualPost postType={postType} />

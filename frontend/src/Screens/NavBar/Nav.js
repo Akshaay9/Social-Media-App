@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Avatar from "@material-ui/core/Avatar";
 import SearchIcon from "@material-ui/icons/Search";
 import { SocialIcon } from "react-social-icons";
 import SettingPanel from "../SettingsPanel/SettingPanel";
+import SearchItem from "../SearchItems/Index";
+import { useSelector, useDispatch } from "react-redux";
 function Nav() {
   const [panel, setPanel] = useState({
     show: false,
     style: "top-right",
   });
+
+  const [searchInput, setSearchInput] = useState("");
+  const [searchedUsers, setSearchedUsers] = useState([]);
+  const AllUsers = useSelector((state) => state.Users.Allusers);
+
+  useEffect(() => {
+    if (searchInput != "") {
+      const searchUsers = AllUsers.filter((ele) =>
+        ele.name
+          .toString()
+          .toLowerCase()
+          .includes(searchInput.toString().toLowerCase())
+      );
+      setSearchedUsers(searchUsers);
+    }
+  }, [searchInput, AllUsers]);
+
   return (
     <>
       <div class="nav">
@@ -31,7 +50,12 @@ function Nav() {
         <div class="nav_right">
           <div className="nav_right_search">
             <SearchIcon />
-            <input type="text" placeholder="search people" />
+            <input
+              type="text"
+              placeholder="search people"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
           </div>
           <div className="nav_right_avatar">
             <Avatar
@@ -41,7 +65,9 @@ function Nav() {
             <p>Akshay</p>
             <div
               style={
-                panel.show ? { backgroundColor: "#263951", color: "#2d86ff" } : {}
+                panel.show
+                  ? { backgroundColor: "#263951", color: "#2d86ff" }
+                  : {}
               }
               className="down"
               onClick={() =>
@@ -58,6 +84,8 @@ function Nav() {
       </div>
 
       <SettingPanel panel={panel} />
+
+      {searchInput != "" && <SearchItem searchedUsers={searchedUsers} />}
     </>
   );
 }

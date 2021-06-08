@@ -1,0 +1,24 @@
+.search-container{
+    position: absolute;
+    width:30% !important;
+    top: 8%;
+    right:17%;
+    border: 1px solid #18191a;
+    z-index: 3 !important;
+    
+}
+.search-userlist-container,.search-userlist{
+    width:100% !important;
+    margin:auto !important;
+    background-color: #3a3b3c !important;
+    border-radius: .5rem !important;
+    
+}
+.search-userlist{
+    width:100% !important;
+    margin:auto !important;
+}
+
+.search-container h4{
+    padding-left: 1rem;
+}

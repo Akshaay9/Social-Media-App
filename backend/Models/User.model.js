@@ -39,6 +39,26 @@ const userSchema = mongoose.Schema(
         },
       },
     ],
+    notification: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+        text: {
+          type: String,
+          required: true,
+        },
+        viewed: {
+          type: Boolean,
+          default: false,
+        },
+        postID: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Post",
+        },
+      },
+    ],
   },
   {
     timestamps: true,

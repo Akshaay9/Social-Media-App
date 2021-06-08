@@ -1,7 +1,7 @@
 import assignJWT from "../MiddleWears/AssignJWT.js";
 import Users from "../Models/User.model.js";
 import bcrypt from "bcryptjs";
-import { json } from "express";
+
 
 // user registration
 export const userRegistraion = async (req, res) => {
@@ -79,6 +79,12 @@ export const followUnfollow = async (req, res) => {
   } else {
     currUser.following.push({ user: individualUser._id });
     individualUser.followers.push({ user: currUser._id });
+    const newNotification = {
+      user: req.user.id,
+      text: "started following you",
+    };
+
+    individualUser.notification.push(newNotification);
     await currUser.save();
     await individualUser.save();
     const allUsers = await Users.find({});

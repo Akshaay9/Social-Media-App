@@ -1,5 +1,5 @@
 import Post from "../Models/Post.model.js";
-
+import Users from "../Models/User.model.js";
 export const addOrRemoveLike = async (req, res) => {
   let { individualPost } = req;
 
@@ -25,6 +25,19 @@ export const addOrRemoveLike = async (req, res) => {
       .populate("likes.likeID", "name profileImage")
       .populate("comments.commentID")
       .populate("comments.user", "name profileImage");
+
+    const individualUser = await Users.findById(individualPost.user);
+
+    if (individualUser._id != req.user.id) {
+      const newNotification = {
+        user: req.user.id,
+        text: "liked your  post",
+        postID: individualPost._id,
+      };
+      individualUser.notification.push(newNotification);
+      await individualUser.save(individualUser);
+    }
+
     return res.status(200).json(allPosts);
   }
 };

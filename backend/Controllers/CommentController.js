@@ -1,5 +1,6 @@
 import Comment from "../Models/Comment.model.js";
 import Post from "../Models/Post.model.js";
+import Users from "../Models/User.model.js";
 import pkg from "lodash";
 const { extend } = pkg;
 
@@ -16,6 +17,18 @@ export const addComment = async (req, res) => {
     commentID: savedNewComment._id,
   });
   await individualPost.save();
+
+  const individualUser = await Users.findById(individualPost.user);
+  if (individualUser._id != req.user.id) {
+    const newNotification = {
+      user: req.user.id,
+      postID: individualPost._id,
+      text: "comemnted on your post",
+    };
+    individualUser.notification.push(newNotification);
+    await individualUser.save(individualUser);
+  }
+
   const allPosts = await Post.findById(individualPost._id)
     .populate("user")
     .populate("likes.likeID", "name profileImage")

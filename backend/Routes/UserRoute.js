@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  clearAllNotification,
   followUnfollow,
   getAllUser,
   userLogin,
@@ -28,7 +29,12 @@ router.get("/", getAllUser);
 
 // get
 // pubic
-// get all user
+// follow unfollow
 router.post("/followUnfollow/:userID", privateRoute, followUnfollow);
+
+// get
+// pubic
+// clear all notifi
+router.post("/clearnotification", privateRoute, clearAllNotification);
 
 export default router;

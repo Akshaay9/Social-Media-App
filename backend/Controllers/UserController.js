@@ -1,6 +1,8 @@
 import assignJWT from "../MiddleWears/AssignJWT.js";
 import Users from "../Models/User.model.js";
 import bcrypt from "bcryptjs";
+import pkg from "lodash";
+const { extend } = pkg;
 
 // user registration
 export const userRegistraion = async (req, res) => {
@@ -49,12 +51,11 @@ export const userLogin = async (req, res) => {
 export const getAllUser = async (req, res) => {
   const allUsers = await Users.find({})
     .select("-password")
-    .populate("notification.user","_id name profileImage");
+    .populate("notification.user", "_id name profileImage");
   res.status(200).json(allUsers);
 };
 
 // followUnfollowpeople
-
 export const followUnfollow = async (req, res) => {
   let { user, individualUser } = req;
   let currUser = await Users.findById(user.id);
@@ -88,7 +89,31 @@ export const followUnfollow = async (req, res) => {
     individualUser.notification.push(newNotification);
     await currUser.save();
     await individualUser.save();
-    const allUsers = await Users.find({});
+    const allUsers = await Users.find({})
+      .select("-password")
+      .populate("notification.user", "_id name profileImage");
     res.status(200).json(allUsers);
   }
+};
+
+// clear all notification
+export const clearAllNotification = async (req, res) => {
+  let { user } = req;
+  let presentUser = await Users.findById(user.id);
+  let update = { viewed: true };
+
+  let test = presentUser.notification.map((ele) => {
+    return {
+      user: ele.user,
+      text: ele.text,
+      postID: ele?.postID,
+      viewed: true,
+    };
+  });
+  presentUser.notification = test;
+  await presentUser.save();
+  const allUsers = await Users.find({})
+    .select("-password")
+    .populate("notification.user", "_id name profileImage");
+  res.status(200).json(allUsers);
 };

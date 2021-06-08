@@ -2,7 +2,6 @@ import assignJWT from "../MiddleWears/AssignJWT.js";
 import Users from "../Models/User.model.js";
 import bcrypt from "bcryptjs";
 
-
 // user registration
 export const userRegistraion = async (req, res) => {
   const { name, email, password } = req.body;
@@ -48,7 +47,9 @@ export const userLogin = async (req, res) => {
 
 // get all users
 export const getAllUser = async (req, res) => {
-  const allUsers = await Users.find({}).select("-password");
+  const allUsers = await Users.find({})
+    .select("-password")
+    .populate("notification.user","_id name profileImage");
   res.status(200).json(allUsers);
 };
 

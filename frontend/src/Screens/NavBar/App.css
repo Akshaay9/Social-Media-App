@@ -4,7 +4,6 @@
   width: 100%;
   z-index: 13 !important;
   top: 0%;
- 
 }
 .nav_left {
   width: 15%;
@@ -44,6 +43,7 @@
   font-weight: bold;
   padding-left: 0.5rem;
 }
+.nav_right_notification,
 .nav_right_avatar .down {
   border-radius: 50%;
   height: 2rem;
@@ -52,12 +52,38 @@
   margin-left: 0.8rem;
   background-color: #3a3b3c;
 }
+.nav_right_notification {
+  height: 2.5rem;
+  width: 2.5rem;
+}
 .nav_right_avatar .down:hover {
   background-color: #6a6b6da4;
 }
+.nav_right_notification i,
 .nav_right_avatar .down i {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.nav_right_notification i {
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.nav_right_notification i{
+  top: 50%;
+}
+.badge span {
+  position: absolute;
+  left: 1.6rem;
+  top: -1.1em;
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  text-align: center;
+  border-radius: 50%;
+  margin-left: -0.125rem;
+  color: white;
+  font-weight: bolder;
 }

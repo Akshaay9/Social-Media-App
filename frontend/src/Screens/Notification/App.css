@@ -1,0 +1,38 @@
+.notification-container {
+  position: absolute;
+  width: 25% !important;
+  top: 8.5%;
+  right: 13%;
+  border: 1px solid #242526;
+  z-index: 3 !important;
+  background-color: #3a3b3c !important;
+  border-radius: 0.5rem !important;
+  padding: 0.5rem 0.5rem;
+  cursor: pointer;
+}
+.notification-container > h4 {
+  display: inline-block;
+  background-color: #242526;
+  padding: 0.3rem 1rem;
+  border-radius: 0.2rem;
+  margin-left: auto;
+  margin-bottom: 0.3rem;
+}
+.notification-container > h4:hover {
+  background-color: #2425266c;
+}
+.individual-notification {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.3rem;
+  border-bottom: 1px solid #242526;
+  background-color: #24252638;
+  border-radius: 0.5rem !important;
+  margin-bottom: .3rem;
+}
+.individual-notification h3 {
+  padding-left: 0.7rem;
+}
+.individual-notification p {
+  padding-left: 0.7rem;
+}

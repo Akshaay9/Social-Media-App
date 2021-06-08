@@ -5,16 +5,25 @@ import SearchIcon from "@material-ui/icons/Search";
 import { SocialIcon } from "react-social-icons";
 import SettingPanel from "../SettingsPanel/SettingPanel";
 import SearchItem from "../SearchItems/Index";
+import Notification from "../Notification/Index";
 import { useSelector, useDispatch } from "react-redux";
+
 function Nav() {
   const [panel, setPanel] = useState({
+    show: false,
+    style: "top-right",
+  });
+  const [showNotification, setShowNotification] = useState({
     show: false,
     style: "top-right",
   });
 
   const [searchInput, setSearchInput] = useState("");
   const [searchedUsers, setSearchedUsers] = useState([]);
+  const [notifcationLength, setNotificationLength] = useState(0);
   const AllUsers = useSelector((state) => state.Users.Allusers);
+  const currentUser = useSelector((state) => state.currentUser.User);
+  const presentUser = AllUsers?.find((ele) => ele._id == currentUser._id);
 
   useEffect(() => {
     if (searchInput != "") {
@@ -27,6 +36,13 @@ function Nav() {
       setSearchedUsers(searchUsers);
     }
   }, [searchInput, AllUsers]);
+
+  useEffect(() => {
+    let notificationLength = presentUser?.notification?.filter(
+      (ele) => ele.viewed == false
+    );
+    setNotificationLength(notificationLength?.length);
+  }, [AllUsers]);
 
   return (
     <>
@@ -47,7 +63,7 @@ function Nav() {
           </div>
         </div>
 
-        <div class="nav_right">
+        <div class="nav_right ">
           <div className="nav_right_search">
             <SearchIcon />
             <input
@@ -57,7 +73,30 @@ function Nav() {
               onChange={(e) => setSearchInput(e.target.value)}
             />
           </div>
-          <div className="nav_right_avatar">
+          {/* .viewed */}
+          <div
+            className="nav_right_notification"
+            style={
+              showNotification.show
+                ? { backgroundColor: "#263951", color: "#2d86ff" }
+                : {}
+            }
+            onClick={() =>
+              setShowNotification((ele) => ({
+                ...ele,
+                show: !ele.show,
+              }))
+            }
+          >
+            <i class="fas fa-bell"></i>
+            {notifcationLength !== 0 && (
+              <div className="badge badge-blue">
+                <span>{notifcationLength}</span>
+              </div>
+            )}
+          </div>
+
+          <div className="nav_right_avatar ">
             <Avatar
               alt="Remy Sharp"
               src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
@@ -83,9 +122,20 @@ function Nav() {
         </div>
       </div>
 
+      {/* setting panel */}
       <SettingPanel panel={panel} />
 
+      {/* search input */}
       {searchInput != "" && <SearchItem searchedUsers={searchedUsers} />}
+
+      {/* motificationBAr */}
+
+      {showNotification.show && (
+        <Notification
+          presentUser={presentUser}
+          notifcationLength={notifcationLength}
+        />
+      )}
     </>
   );
 }

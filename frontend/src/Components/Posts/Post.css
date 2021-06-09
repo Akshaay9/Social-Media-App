@@ -32,9 +32,9 @@
 
 @media screen and (max-width: 970px) {
   .postData {
-    width: 90%;
+    width: 95%;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     background-color: #242526;
     border-radius: 0.4rem;
   }

@@ -56,7 +56,7 @@ function Nav() {
               style={{ height: "2.3rem", width: "2.3rem" }}
             />
           </div>
-          <div class="nav_name">
+          <div class="nav_name mobile-hide">
             <h2>
               Gym. <span>Sharkk</span>{" "}
             </h2>
@@ -64,7 +64,7 @@ function Nav() {
         </div>
 
         <div class="nav_right ">
-          <div className="nav_right_search">
+          <div className="nav_right_search ">
             <SearchIcon />
             <input
               type="text"
@@ -101,7 +101,7 @@ function Nav() {
               alt="Remy Sharp"
               src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
             />
-            <p>Akshay</p>
+            <p className="mobile-hide">Akshay</p>
             <div
               style={
                 panel.show

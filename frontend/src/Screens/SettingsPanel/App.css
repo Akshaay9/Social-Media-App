@@ -5,7 +5,7 @@
   z-index: 2 !important;
 }
 .top-right {
-  right: 4%;
+  right: 2%;
   top: 9.2%;
 }
 .bottom-left {
@@ -39,4 +39,10 @@
 }
 .setting-panel ul li i {
   margin-right: 1rem;
+}
+
+@media screen and (max-width: 43.25rem) {
+  .top-right {
+  border:1px solid #3a3b3c
+  }
 }

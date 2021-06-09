@@ -87,3 +87,24 @@
   color: white;
   font-weight: bolder;
 }
+
+@media screen and (max-width: 43.25rem) {
+  * {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  }
+ .nav_right{
+   width:90%
+ }
+ .nav_right_avatar .down {
+  margin-left: 0.3rem;
+}
+.nav_right_notification {
+  height: 2.5rem;
+  width: 2.5rem;
+  margin-right: .5rem;
+}
+.nav_left {
+  width: 15%;
+  margin-left: 0rem !important;
+}
+}

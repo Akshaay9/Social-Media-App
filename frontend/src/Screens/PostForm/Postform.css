@@ -174,8 +174,8 @@ textarea::-webkit-input-placeholder {
     height: 120vh;
   }
   .postform {
-    top: 30%;
-    left: 48%;
+    top: 39%;
+    left: 50%;
     transform: translate(-50%, -50%);
     background-color: #242526;
     border-radius: 0.4rem;

@@ -23,7 +23,7 @@ export const addComment = async (req, res) => {
     const newNotification = {
       user: req.user.id,
       postID: individualPost._id,
-      text: "comemnted on your post",
+      text: "commented on your post",
     };
     individualUser.notification.push(newNotification);
     await individualUser.save(individualUser);

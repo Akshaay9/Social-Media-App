@@ -5,6 +5,7 @@ import {
   updatePost,
   deletePost,
   individualUsersPost,
+  postsFromFOllowing,
 } from "../Controllers/PostController.js";
 import privateRoute from "../MiddleWears/Authentication.js";
 import { getIndividualPost } from "../MiddleWears/IndividualPost.js";
@@ -22,6 +23,11 @@ router.post("/", privateRoute, addNewPost);
 // pubic
 // get all post
 router.get("/", getAllPost);
+
+// get
+// pubic
+// clear all notifi
+router.post("/followingposts", privateRoute, postsFromFOllowing);
 
 // get
 // pubic

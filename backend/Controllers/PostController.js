@@ -1,15 +1,33 @@
 import Post from "../Models/Post.model.js";
+import Users from "../Models/User.model.js";
 import pkg from "lodash";
 const { extend } = pkg;
 
 // allpost
 export const getAllPost = async (req, res) => {
   const allPosts = await Post.find({})
+    .sort({ createdAt: -1 })
     .populate("user", "_id name profileImage")
     .populate("likes.likeID", "name profileImage")
     .populate("comments.commentID")
     .populate("comments.user", "name profileImage");
   return res.status(200).json(allPosts);
+};
+
+// get all posts from Following
+export const postsFromFOllowing = async (req, res) => {
+  const { user } = req;
+  const presentUser = await Users.findById(req.user.id);
+  const presentUserFollowing = presentUser.following.map((ele) => ele.user);
+
+  console.log(presentUserFollowing);
+
+  const allPosts = await Post.find({});
+
+  const allPostsFromFOllowing = allPosts.filter((ele) =>
+    presentUserFollowing.includes(ele.user._id)
+  );
+  res.status(200).json(allPostsFromFOllowing);
 };
 
 // newpost

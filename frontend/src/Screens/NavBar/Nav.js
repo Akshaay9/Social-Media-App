@@ -21,28 +21,27 @@ function Nav() {
   const [searchInput, setSearchInput] = useState("");
   const [searchedUsers, setSearchedUsers] = useState([]);
   const [notifcationLength, setNotificationLength] = useState(0);
-  const AllUsers = useSelector((state) => state.Users.Allusers);
-  const currentUser = useSelector((state) => state.currentUser.User);
-  const presentUser = AllUsers?.find((ele) => ele._id == currentUser._id);
+  const {Allusers, presentUser } = useSelector((state) => state.Users);
+
 
   useEffect(() => {
     if (searchInput != "") {
-      const searchUsers = AllUsers.filter((ele) =>
+      const searchUsers = Allusers.filter((ele) =>
         ele.name
           .toString()
           .toLowerCase()
-          .includes(searchInput.toString().toLowerCase())
+          .includes(searchInput.toString().toLowerCasex())
       );
       setSearchedUsers(searchUsers);
     }
-  }, [searchInput, AllUsers]);
+  }, [searchInput, Allusers]);
 
   useEffect(() => {
     let notificationLength = presentUser?.notification?.filter(
       (ele) => ele.viewed == false
     );
     setNotificationLength(notificationLength?.length);
-  }, [AllUsers]);
+  }, [Allusers,presentUser]);
 
   return (
     <>

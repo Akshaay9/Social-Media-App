@@ -22,7 +22,7 @@ function UserProfile({ ele, presentUser }) {
   const currentUser = useSelector((state) => state.currentUser.User);
   const isFollowingTheUSer = (user) => {
     const isFollowing = user?.followers?.some(
-      (ele) => ele?.user == presentUser._id
+      (ele) => ele?.user == presentUser?._id
     );
 
     if (isFollowing == true) {
@@ -34,7 +34,7 @@ function UserProfile({ ele, presentUser }) {
 
   return (
     <div>
-      {ele._id != presentUser._id && (
+      {ele._id != presentUser?._id && (
         <div className="user-lists">
           <div className="left">
             <Avatar

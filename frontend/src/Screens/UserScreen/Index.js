@@ -33,7 +33,7 @@ function Index() {
       token: currentUser?.token,
     };
     dispatch(individualUsersPosts(dataToBeSent));
-    console.log("hey");
+
   }, []);
 
   console.log(individualUserPost);

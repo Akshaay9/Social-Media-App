@@ -5,14 +5,18 @@ import HomeScreen from "./Screens/HomeScreen/Index";
 import IndividualUser from "./Screens/UserScreen/Index";
 import AllUsers from "./Screens/AllUsers/Index";
 import "./App.css";
-import { Counter } from "./features/counter/Counter";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
-import { getAllUsers } from "./features/Users/UserSlice";
+import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
+
+
 function App() {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
   const Users = useSelector((state) => state.Users);
+  const {
+    User: { _id },
+  } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
     if (Posts.status == "pending") {
@@ -22,6 +26,13 @@ function App() {
       dispatch(getAllUsers());
     }
   }, []);
+
+  useEffect(() => {
+    if(_id!=undefined){
+      dispatch(addPresentUser(_id));
+      console.log("damn")
+    }
+  }, [Users.Allusers]);
 
   return (
     <BrowserRouter>
@@ -38,5 +49,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;

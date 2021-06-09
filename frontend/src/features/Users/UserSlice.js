@@ -5,6 +5,7 @@ const initialState = {
   Allusers: [],
   status: "pending",
   individualUserPost: [],
+  presentUser: {},
 };
 
 export const getAllUsers = createAsyncThunk("users/all", async () => {
@@ -93,7 +94,11 @@ export const markNotificationRead = createAsyncThunk(
 export const userSlice = createSlice({
   name: "allusers",
   initialState,
-  reducers: {},
+  reducers: {
+    addPresentUser: (state, { payload }) => {
+      state.presentUser = state.Allusers?.find((ele) => ele._id == payload);
+    },
+  },
   extraReducers: {
     [getAllUsers.pending]: (state, action) => {
       state.status = "pending";
@@ -126,4 +131,7 @@ export const userSlice = createSlice({
   },
 });
 
+export const {addPresentUser}=userSlice.actions
+
 export default userSlice.reducer;
+

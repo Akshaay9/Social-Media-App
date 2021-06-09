@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function SearchItem({ searchedUsers }) {
-  const Users = useSelector((state) => state.Users.Allusers);
+  const { presentUser } = useSelector((state) => state.Users);
   const currentUser = useSelector((state) => state.currentUser.User);
-  const presentUser = Users?.find((ele) => ele._id == currentUser._id);
+  
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ function SearchItem({ searchedUsers }) {
       {searchedUsers?.length > 0 &&
         searchedUsers.map((ele) => (
           <div className="search-userlist-container">
-            {ele._id != currentUser._id && (
+            {ele._id != currentUser?._id && (
               <div className="user-lists  search-userlist">
                 <div className="left">
                   <Avatar

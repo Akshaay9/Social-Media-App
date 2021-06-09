@@ -17,15 +17,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function RecommendedUsers() {
-  const Users = useSelector((state) => state.Users.Allusers);
   const currentUser = useSelector((state) => state.currentUser.User);
-  const presentUser = Users?.find((ele) => ele._id == currentUser._id);
+  const {Allusers, presentUser } = useSelector((state) => state.Users);
 
   const classes = useStyles();
   const dispatch = useDispatch();
   const isFollowingTheUSer = (user) => {
     const isFollowing = user?.followers?.some(
-      (ele) => ele?.user == presentUser._id
+      (ele) => ele?.user == presentUser?._id
     );
 
     if (isFollowing == true) {
@@ -37,11 +36,11 @@ function RecommendedUsers() {
 
   return (
     <div className="recommended-users">
-      {Users?.length > 0 &&
-        Users.map((ele) => (
+      {Allusers?.length > 0 &&
+        Allusers.map((ele) => (
           <div className="">
             {console.log(
-              presentUser?.following?.some((user) => user.user == ele._id)
+              presentUser?.following?.some((user) => user.user == ele?._id)
             )}
             {ele._id != currentUser._id &&
                 !presentUser?.following?.some((user) => user.user == ele._id) ? (

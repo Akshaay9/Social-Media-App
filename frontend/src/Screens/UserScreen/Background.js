@@ -65,7 +65,8 @@ function Background({ individualUser, individualUserPost }) {
     <div>
       <div className="background-image-container">
         <div className="background-image">
-          <img src="https://images.unsplash.com/photo-1618654661521-b9b59166b17f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTZ8fGJ0cyUyMHZ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" />
+          <img className="bg-img-1" src={individualUser?.backgroundImage} />
+          <img className="bg-img-2" src={individualUser?.backgroundImage} />
 
           <div className="mobile-hide">
             <Avatar

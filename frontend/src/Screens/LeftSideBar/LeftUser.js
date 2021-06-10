@@ -1,17 +1,19 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
+import { useSelector } from "react-redux";
 function LeftUser() {
+  const { presentUser } = useSelector((state) => state.Users);
   return (
     <div>
       <div className="left-bar-user">
         <Avatar
           variant="rounded"
           alt="Remy Sharp"
-          src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
+          src={presentUser?.profileImage}
         />
         <div className="left-bar-user-details">
-          <h4>Akshay Nair</h4>
-          <p>@akshay</p>
+          <h4>{presentUser?.name}</h4>
+          <p>@{presentUser?.name}</p>
         </div>
       </div>
     </div>

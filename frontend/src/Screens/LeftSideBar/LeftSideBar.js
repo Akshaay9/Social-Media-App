@@ -8,7 +8,7 @@ function LeftSideBar({ individualUserStyle }) {
     style: "bottom-left",
   });
 
-  const currentUser = useSelector((state) => state.currentUser.User);
+  const { presentUser } = useSelector((state) => state.Users);
   return (
     <>
       <div
@@ -27,7 +27,7 @@ function LeftSideBar({ individualUserStyle }) {
               News Feed
             </li>
           </Link>
-          <Link to={`/user/${currentUser._id}`}>
+          <Link to={`/user/${presentUser?._id}`}>
             <li>
               <i class="fas fa-user-circle"></i>
               Profile

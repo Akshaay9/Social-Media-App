@@ -4,11 +4,13 @@ import Avatar from "@material-ui/core/Avatar";
 import PostForm from "./PostForm";
 import { feelingActiviy } from "../../Data.js/FeelingActivity";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 function Post({ individualUserStyle }) {
   const navigate = useNavigate();
   const [feeling, setFeeling] = useState();
   const [image, setImage] = useState();
   const hiddenFileInput = React.useRef(null);
+  const { presentUser } = useSelector((state) => state.Users);
 
   const handleClick = () => {
     hiddenFileInput.current.click();
@@ -33,7 +35,7 @@ function Post({ individualUserStyle }) {
           <Avatar
             variant="rounded"
             alt="Remy Sharp"
-            src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
+            src={presentUser?.profileImage}
           />
           <div
             className="post-bar-top-round"
@@ -50,10 +52,10 @@ function Post({ individualUserStyle }) {
                   alt="Remy Sharp"
                   variant="rounded"
                   src={
-                        image?.image?.name
-                          ? URL.createObjectURL(image?.image)
-                          : image.image
-                      }
+                    image?.image?.name
+                      ? URL.createObjectURL(image?.image)
+                      : image.image
+                  }
                 />
                 <i class="far fa-times-circle" onClick={() => setImage()} />
               </>

@@ -99,9 +99,9 @@ function Nav() {
           <div className="nav_right_avatar ">
             <Avatar
               alt="Remy Sharp"
-              src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
+              src={presentUser?.profileImage}
             />
-            <p className="mobile-hide">Akshay</p>
+            <p className="mobile-hide">{presentUser?.name}</p>
             <div
               style={
                 panel.show

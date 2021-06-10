@@ -8,6 +8,8 @@ import {
   followUnfollowUser,
   updateUserImage,
 } from "../../features/Users/UserSlice";
+import { getAllPosts } from "../../features/Posts/PostSlice";
+
 import { uploadImage } from "../../Utils/UploadImage";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +64,6 @@ function Background({ individualUser, individualUserPost }) {
     }
   };
   const handleChange = (event) => {
-    console.log(event.target.name);
     if (event.target.files && event.target.files[0]) {
       setImage(() => ({
         image: event.target.files[0],
@@ -93,8 +94,10 @@ function Background({ individualUser, individualUserPost }) {
             },
           };
         }
-        console.log(dataToBeSent);
+
         dispatch(updateUserImage(dataToBeSent));
+       
+        setImage();
       })();
     }
   }, [image]);
@@ -142,6 +145,9 @@ function Background({ individualUser, individualUserPost }) {
             {currentUser?._id == individualUser?._id && (
               <i
                 class="fas fa-camera user-avatar-camera"
+                style={
+                  image ? { cursor: "not-allowed", pointerEvents: "none" } : {}
+                }
                 onClick={() => {
                   handleClick("profile");
                 }}
@@ -159,6 +165,9 @@ function Background({ individualUser, individualUserPost }) {
             />
             {currentUser?._id == individualUser?._id && (
               <i
+                style={
+                  image ? { cursor: "not-allowed", pointerEvents: "none" } : {}
+                }
                 class="fas fa-camera user-avatar-camera"
                 onClick={() => {
                   handleClick("profile");
@@ -193,6 +202,9 @@ function Background({ individualUser, individualUserPost }) {
 
         {currentUser?._id == individualUser?._id && (
           <div
+            style={
+              image ? { cursor: "not-allowed", pointerEvents: "none" } : {}
+            }
             className="update-user-bg-image"
             onClick={() => {
               handleClick();

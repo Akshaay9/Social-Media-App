@@ -7,6 +7,7 @@ import SettingPanel from "../SettingsPanel/SettingPanel";
 import SearchItem from "../SearchItems/Index";
 import Notification from "../Notification/Index";
 import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Nav() {
   const [panel, setPanel] = useState({
@@ -22,8 +23,6 @@ function Nav() {
   const [searchedUsers, setSearchedUsers] = useState([]);
   const [notifcationLength, setNotificationLength] = useState(0);
   const { Allusers, presentUser } = useSelector((state) => state.Users);
-
- 
 
   useEffect(() => {
     if (searchInput != "") {
@@ -97,11 +96,12 @@ function Nav() {
           </div>
 
           <div className="nav_right_avatar ">
-            <Avatar
-              alt="Remy Sharp"
-              src={presentUser?.profileImage}
-            />
-            <p className="mobile-hide">{presentUser?.name}</p>
+            <Link to={`/user/${presentUser?._id}`}>
+              <Avatar alt="Remy Sharp" src={presentUser?.profileImage} />
+            </Link>
+            <Link to={`/user/${presentUser?._id}`}>
+              <p className="mobile-hide">{presentUser?.name}</p>
+            </Link>
             <div
               style={
                 panel.show

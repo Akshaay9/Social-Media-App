@@ -5,11 +5,10 @@ import HomeScreen from "./Screens/HomeScreen/Index";
 import IndividualUser from "./Screens/UserScreen/Index";
 import AllUsers from "./Screens/AllUsers/Index";
 import "./App.css";
-import BottomNav from "./Screens/BottomNav/BottomNav"
+import BottomNav from "./Screens/BottomNav/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
 import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -20,16 +19,12 @@ function App() {
   } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-    if (Posts.status == "pending") {
-      dispatch(getAllPosts());
-    }
-    if (Users.status == "pending") {
-      dispatch(getAllUsers());
-    }
+    dispatch(getAllPosts());
+    dispatch(getAllUsers());
   }, []);
 
   useEffect(() => {
-    if(_id!=undefined){
+    if (_id != undefined) {
       dispatch(addPresentUser(_id));
     }
   }, [Users.Allusers]);

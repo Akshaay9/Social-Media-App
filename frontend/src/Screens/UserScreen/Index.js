@@ -8,6 +8,7 @@ import IndividualPost from "../../Components/IndividualPost/IndividualPost";
 import { useSelector, useDispatch } from "react-redux";
 import { individualUsersPosts } from "../../features/Users/UserSlice";
 import Post from "../../Components/Posts/Post";
+import { getAllPosts } from "../../features/Posts/PostSlice";
 
 function Index() {
   const { id } = useParams();
@@ -25,6 +26,7 @@ function Index() {
   useEffect(() => {
     const indiUSer = allUsers?.find((ele) => ele._id == id);
     setIndividualUser(indiUSer);
+    dispatch(getAllPosts());
   }, [allUsers, id]);
 
   useEffect(() => {
@@ -33,7 +35,7 @@ function Index() {
       token: currentUser?.token,
     };
     dispatch(individualUsersPosts(dataToBeSent));
-  }, [id]);
+  }, [id, allUsers]);
 
   return (
     <div>

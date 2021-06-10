@@ -1,22 +1,27 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
+import { useSelector } from "react-redux";
 import "./App.css";
+import { Link } from "react-router-dom";
 function SettingPanel({ panel }) {
+  const { presentUser } = useSelector((state) => state.Users);
   return (
     <>
       {panel.show && (
         <div className={`setting-panel ${panel.style}`}>
-          <div className="seeting-panel-top">
-            <Avatar
-              variant="rounded"
-              alt="Remy Sharp"
-              src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
-            />
-            <div className="seeting-panel-top-user-details">
-              <h4>Akshay Nair</h4>
-              <p>See your profile</p>
+          <Link to={`/user/${presentUser?._id}`}>
+            <div className="seeting-panel-top">
+              <Avatar
+                variant="rounded"
+                alt="Remy Sharp"
+                src={presentUser?.profileImage}
+              />
+              <div className="seeting-panel-top-user-details">
+                <h4>{presentUser?.name}</h4>
+                <p>See your profile</p>
+              </div>
             </div>
-          </div>
+          </Link>
           <ul>
             <li>
               <i class="fas fa-sign-out-alt"></i>

@@ -25,6 +25,8 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     navigate(location?.state?.from ? location?.state?.from : "/");
   };
 
+  console.log(image, postDescription);
+
   // close modal
   const closeModal = (e) => {
     if (e.target.classList.contains("postform-container")) {
@@ -192,7 +194,12 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
                 </ul>
               </div>
             </div>
-            <button onClick={() => submiHandler()}>Post</button>
+            <button
+              disabled={image == undefined && postDescription== ""}  
+              onClick={() => submiHandler()}
+            >
+              Post
+            </button>
           </div>
         </div>
       )}

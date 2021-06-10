@@ -25,8 +25,8 @@ function Post({ ele }) {
               <h3>{ele.user?.name}</h3>
               {ele?.feeling && (
                 <p style={{ marginLeft: ".5rem" }}>
-                  is {ele.feeling.split(" ")[1]} feeling{" "}
-                  {ele.feeling.split(" ")[0]}{" "}
+                  is {ele.feeling.split(" ")[0]} <span>feeling</span>
+                  {ele.feeling.split(" ")[1]}{" "}
                 </p>
               )}
             </div>
@@ -35,23 +35,28 @@ function Post({ ele }) {
           <span>.</span>
           <i class="fas fa-globe-asia"></i>
         </div>
-        <i class="fas fa-ellipsis-h"> </i>
-        <ul>
-          <li onClick={() => navigate(`/modal/${ele._id}?update=true`)}>
-            Update{" "}
-          </li>
-          <li
-            onClick={() => {
-              const dataToBeSent = {
-                id: ele._id,
-                token: currentUser.token,
-              };
-              dispatch(deletePost(dataToBeSent));
-            }}
-          >
-            Delete
-          </li>
-        </ul>
+        {currentUser._id == ele.user._id && (
+          <>
+            {" "}
+            <i class="fas fa-ellipsis-h"> </i>
+            <ul>
+              <li onClick={() => navigate(`/modal/${ele._id}?update=true`)}>
+                Update{" "}
+              </li>
+              <li
+                onClick={() => {
+                  const dataToBeSent = {
+                    id: ele._id,
+                    token: currentUser.token,
+                  };
+                  dispatch(deletePost(dataToBeSent));
+                }}
+              >
+                Delete
+              </li>
+            </ul>{" "}
+          </>
+        )}
       </div>
       {/* mid */}
       {/*  */}

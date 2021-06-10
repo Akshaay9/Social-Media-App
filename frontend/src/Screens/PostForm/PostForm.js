@@ -102,8 +102,8 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
       }
       if (updatablePost[0]?.feeling) {
         setFeeling({
-          text: updatablePost[0]?.feeling?.split(" ")[0],
-          emoji: updatablePost[0]?.feeling?.split(" ")[1],
+          text: updatablePost[0]?.feeling?.split(" ")[1],
+          emoji: updatablePost[0]?.feeling?.split(" ")[0],
         });
       }
     }

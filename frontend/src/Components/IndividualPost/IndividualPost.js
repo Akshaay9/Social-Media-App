@@ -107,37 +107,42 @@ function IndividualPost() {
 
                   {individualPost[0].feeling && (
                     <p style={{ marginLeft: ".5rem" }}>
-                      is {individualPost[0].feeling.split(" ")[1]} feeling{" "}
-                      {individualPost[0].feeling.split(" ")[0]}{" "}
+                      is {individualPost[0].feeling.split(" ")[0]} feeling
+                      &nbsp;{individualPost[0].feeling.split(" ")[1]}{" "}
                     </p>
                   )}
                 </div>
 
-                <i class="fas fa-ellipsis-h"> </i>
-                <ul>
-                  <NavLink
-                    to={{
-                      pathname: `/modal/${individualPost[0]._id}?update=true`,
-                    }}
-                    state={{ from: location.pathname }}
-                  >
+                {individualPost[0]?.user._id === currentUser._id && (
+                  <>
                     {" "}
-                    <li> Update Post </li>
-                  </NavLink>
+                    <i class="fas fa-ellipsis-h"> </i>
+                    <ul>
+                      <NavLink
+                        to={{
+                          pathname: `/modal/${individualPost[0]._id}?update=true`,
+                        }}
+                        state={{ from: location.pathname }}
+                      >
+                        {" "}
+                        <li> Update Post </li>
+                      </NavLink>
 
-                  <li
-                    onClick={() => {
-                      const dataToBeSent = {
-                        id: id,
-                        token: currentUser.token,
-                      };
-                      dispatch(deletePost(dataToBeSent));
-                      navigate("/");
-                    }}
-                  >
-                    Delete Post
-                  </li>
-                </ul>
+                      <li
+                        onClick={() => {
+                          const dataToBeSent = {
+                            id: id,
+                            token: currentUser.token,
+                          };
+                          dispatch(deletePost(dataToBeSent));
+                          navigate("/");
+                        }}
+                      >
+                        Delete Post
+                      </li>
+                    </ul>{" "}
+                  </>
+                )}
               </div>
               {location.pathname.includes("image") && (
                 <div className="individual-post-right-top">

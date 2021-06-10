@@ -25,7 +25,7 @@ function Index() {
   useEffect(() => {
     const indiUSer = allUsers?.find((ele) => ele._id == id);
     setIndividualUser(indiUSer);
-  }, [allUsers]);
+  }, [allUsers, id]);
 
   useEffect(() => {
     const dataToBeSent = {
@@ -33,10 +33,7 @@ function Index() {
       token: currentUser?.token,
     };
     dispatch(individualUsersPosts(dataToBeSent));
-
-  }, []);
-
-  console.log(individualUserPost);
+  }, [id]);
 
   return (
     <div>
@@ -48,7 +45,7 @@ function Index() {
       {currentUser?._id === individualUser?._id && (
         <PostBar individualUserStyle={individualUserStyle} />
       )}
-      <div style={{marginBottom:"8rem"}}>
+      <div style={{ marginBottom: "8rem" }}>
         {individualUserPost.length > 0 &&
           individualUserPost.map((ele) => <Post ele={ele} />)}
       </div>

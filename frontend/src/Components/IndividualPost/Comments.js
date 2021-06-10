@@ -21,24 +21,29 @@ function Comments({ ele, updateCommentHandler, id }) {
               </Link>
               <p>{ele?.commentID.comment}</p>
             </div>
-            <i class="fas fa-ellipsis-h "> </i>
-            <ul>
-              <li onClick={() => updateCommentHandler(ele?.commentID._id)}>
-                Update{" "}
-              </li>
-              <li
-                onClick={() => {
-                  const dataToBeSent = {
-                    PostID: id,
-                    commentID: ele.commentID._id,
-                    token: currentUser.token,
-                  };
-                  dispatch(deleteComment(dataToBeSent));
-                }}
-              >
-                Delete
-              </li>
-            </ul>
+            {ele?.user._id === currentUser._id && (
+              <>
+                {" "}
+                <i class="fas fa-ellipsis-h "> </i>
+                <ul>
+                  <li onClick={() => updateCommentHandler(ele?.commentID._id)}>
+                    Update{" "}
+                  </li>
+                  <li
+                    onClick={() => {
+                      const dataToBeSent = {
+                        PostID: id,
+                        commentID: ele.commentID._id,
+                        token: currentUser.token,
+                      };
+                      dispatch(deleteComment(dataToBeSent));
+                    }}
+                  >
+                    Delete
+                  </li>
+                </ul>{" "}
+              </>
+            )}
           </div>
         </div>
       </div>

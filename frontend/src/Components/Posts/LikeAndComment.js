@@ -78,29 +78,36 @@ function LikeAndComment({ ele }) {
               />
             </Link>
             <div className="comment">
-            <Link to={`/user/${ele.comments[0]?.user._id}`}>  <h4>{ele.comments[0]?.user.name}</h4>
-            </Link>
+              <Link to={`/user/${ele.comments[0]?.user._id}`}>
+                {" "}
+                <h4>{ele.comments[0]?.user.name}</h4>
+              </Link>
               <p>{ele.comments[0]?.commentID?.comment}</p>
             </div>
-            <i class="fas fa-ellipsis-h comment-i"> </i>
-            <ul className="post-comment-ul">
-              <li onClick={() => updateCommentHandler()}>Update </li>
-              <li
-                onClick={() => {
-                  const dataToBeSent = {
-                    PostID: ele._id,
-                    commentID: ele.comments[0]?.commentID._id,
-                    token: currentUser.token,
-                  };
-                  dispatch(deleteComment(dataToBeSent));
-                }}
-              >
-                Delete
-              </li>
-            </ul>
+            {ele.comments[0].user._id === currentUser._id && (
+              <>
+                {" "}
+                <i class="fas fa-ellipsis-h comment-i"> </i>
+                <ul className="post-comment-ul">
+                  <li onClick={() => updateCommentHandler()}>Update </li>
+                  <li
+                    onClick={() => {
+                      const dataToBeSent = {
+                        PostID: ele._id,
+                        commentID: ele.comments[0]?.commentID._id,
+                        token: currentUser.token,
+                      };
+                      dispatch(deleteComment(dataToBeSent));
+                    }}
+                  >
+                    Delete
+                  </li>
+                </ul>{" "}
+              </>
+            )}
           </div>
         )}
-        {
+        {ele?.comments?.length > 0 ? (
           <NavLink
             to={{
               pathname: `/${ele.PostType}/${ele._id}`,
@@ -117,7 +124,24 @@ function LikeAndComment({ ele }) {
               View all comments
             </p>
           </NavLink>
-        }
+        ) : (
+          <NavLink
+            to={{
+              pathname: `/${ele.PostType}/${ele._id}`,
+            }}
+            state={{ from: location.pathname }}
+          >
+            <p
+              style={{
+                color: "rgb(23 123 255)",
+                cursor: "pointer",
+                marginLeft: "1.5rem",
+              }}
+            >
+              View Post
+            </p>
+          </NavLink>
+        )}
       </div>
       <div className="add-comment">
         <Avatar alt="Remy Sharp" src={currentUser.profileImage} />

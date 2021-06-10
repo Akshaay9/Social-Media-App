@@ -3,7 +3,7 @@ import "./App.css";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
 import { useParams, useNavigate } from "react-router";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getIndividualPost,
@@ -95,11 +95,16 @@ function IndividualPost() {
             <div className="individual-post-right">
               <div className="individual-post-right-top">
                 <div className="avatar">
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={individualPost[0].user.profileImage}
-                  />
-                  <h3>{individualPost[0].user.name}</h3>
+                  <Link to={`/user/${individualPost[0]?.user._id}`}>
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={individualPost[0].user.profileImage}
+                    />
+                  </Link>
+                  <Link to={`/user/${individualPost[0]?.user._id}`}>
+                    <h3>{individualPost[0].user.name}</h3>
+                  </Link>
+
                   {individualPost[0].feeling && (
                     <p style={{ marginLeft: ".5rem" }}>
                       is {individualPost[0].feeling.split(" ")[1]} feeling{" "}
@@ -107,7 +112,6 @@ function IndividualPost() {
                     </p>
                   )}
                 </div>
-                {/* `/${ele.PostType}/${ele._id}` */}
 
                 <i class="fas fa-ellipsis-h"> </i>
                 <ul>
@@ -138,10 +142,12 @@ function IndividualPost() {
               {location.pathname.includes("image") && (
                 <div className="individual-post-right-top">
                   <div className="avatar">
-                    <Avatar
-                      alt="Remy Sharp"
-                      src={individualPost[0].user?.profileImage}
-                    />
+                    <Link to={`/user/${individualPost[0]?.user._id}`}>
+                      <Avatar
+                        alt="Remy Sharp"
+                        src={individualPost[0].user?.profileImage}
+                      />
+                    </Link>
                     <h3>
                       <span>{individualPost[0].description}</span>
                     </h3>

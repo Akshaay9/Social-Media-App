@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { followUnfollowUser } from "../../features/Users/UserSlice";
 import { Avatar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -42,7 +43,8 @@ function RecommendedUsers() {
     
             {ele._id != currentUser._id &&
                 !presentUser?.following?.some((user) => user.user == ele._id) ? (
-              <div className="recommended-users-list">
+                <div className="recommended-users-list">
+                <Link to={`/user/${ele._id}`}>
                 <div
                   className=""
                   style={{ display: "flex", alignItems: "center" }}
@@ -54,6 +56,7 @@ function RecommendedUsers() {
                   />
                   <h4 style={{ paddingLeft: ".8rem" }}>{ele?.name}</h4>
                 </div>
+                </Link>
 
                 <div className="right">
                   <Button

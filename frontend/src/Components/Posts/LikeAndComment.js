@@ -71,9 +71,15 @@ function LikeAndComment({ ele }) {
       <div className="comments-list">
         {ele?.comments?.length > 0 && (
           <div className="comments">
-            <Avatar alt="Remy Sharp" src={ele.comments[0]?.user.profileImage} />
+            <Link to={`/user/${ele.comments[0]?.user._id}`}>
+              <Avatar
+                alt="Remy Sharp"
+                src={ele.comments[0]?.user.profileImage}
+              />
+            </Link>
             <div className="comment">
-              <h4>{ele.comments[0]?.user.name}</h4>
+            <Link to={`/user/${ele.comments[0]?.user._id}`}>  <h4>{ele.comments[0]?.user.name}</h4>
+            </Link>
               <p>{ele.comments[0]?.commentID?.comment}</p>
             </div>
             <i class="fas fa-ellipsis-h comment-i"> </i>

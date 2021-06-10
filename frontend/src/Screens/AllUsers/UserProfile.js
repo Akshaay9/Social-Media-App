@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { Avatar } from "@material-ui/core";
 import { followUnfollowUser } from "../../features/Users/UserSlice";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -36,14 +37,16 @@ function UserProfile({ ele, presentUser }) {
     <div>
       {ele._id != presentUser?._id && (
         <div className="user-lists">
-          <div className="left">
-            <Avatar
-              alt="Remy Sharp"
-              src={ele?.profileImage}
-              className={classes.large}
-            />
-            <h2>{ele?.name}</h2>
-          </div>
+          <Link to={`/user/${ele._id}`}>
+            <div className="left">
+              <Avatar
+                alt="Remy Sharp"
+                src={ele?.profileImage}
+                className={classes.large}
+              />
+              <h2>{ele?.name}</h2>
+            </div>
+          </Link>
 
           <div className="right">
             <Button

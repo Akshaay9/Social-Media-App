@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import Avatar from "@material-ui/core/Avatar";
 import Comments from "./Comments";
-import { useLocation, useParams, useNavigate } from "react-router";
+import { useParams, useNavigate } from "react-router";
+import { NavLink, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getIndividualPost,
@@ -13,7 +14,7 @@ import {
 } from "../../features/Posts/PostSlice";
 function IndividualPost() {
   const { id } = useParams();
-  const location = useLocation();
+  let location = useLocation();
   const navigate = useNavigate();
   const { posts, status, individualPost } = useSelector((state) => state.Posts);
   const currentUser = useSelector((state) => state.currentUser.User);
@@ -30,7 +31,7 @@ function IndividualPost() {
   // modal close
   const closeModal = (e) => {
     if (e.target.classList.contains("inidividual-post-container")) {
-      navigate("/");
+      navigate(location?.state?.from ? location?.state?.from : "/");
       dispatch(clearIndividualPost());
     }
   };
@@ -106,16 +107,20 @@ function IndividualPost() {
                     </p>
                   )}
                 </div>
+                {/* `/${ele.PostType}/${ele._id}` */}
 
                 <i class="fas fa-ellipsis-h"> </i>
                 <ul>
-                  <li
-                    onClick={() =>
-                      navigate(`/modal/${individualPost[0]._id}?update=true`)
-                    }
+                  <NavLink
+                    to={{
+                      pathname: `/modal/${individualPost[0]._id}?update=true`,
+                    }}
+                    state={{ from: location.pathname }}
                   >
-                    Update Post
-                  </li>
+                    {" "}
+                    <li> Update Post </li>
+                  </NavLink>
+
                   <li
                     onClick={() => {
                       const dataToBeSent = {

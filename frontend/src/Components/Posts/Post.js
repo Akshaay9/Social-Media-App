@@ -63,7 +63,6 @@ function Post({ ele }) {
       ) : (
         ""
       )}
-
       <LikeAndComment ele={ele} />
     </div>
   );

@@ -21,8 +21,9 @@ function Nav() {
   const [searchInput, setSearchInput] = useState("");
   const [searchedUsers, setSearchedUsers] = useState([]);
   const [notifcationLength, setNotificationLength] = useState(0);
-  const {Allusers, presentUser } = useSelector((state) => state.Users);
+  const { Allusers, presentUser } = useSelector((state) => state.Users);
 
+ 
 
   useEffect(() => {
     if (searchInput != "") {
@@ -30,7 +31,7 @@ function Nav() {
         ele.name
           .toString()
           .toLowerCase()
-          .includes(searchInput.toString().toLowerCasex())
+          .includes(searchInput.toString().toLowerCase())
       );
       setSearchedUsers(searchUsers);
     }
@@ -41,7 +42,7 @@ function Nav() {
       (ele) => ele.viewed == false
     );
     setNotificationLength(notificationLength?.length);
-  }, [Allusers,presentUser]);
+  }, [Allusers, presentUser]);
 
   return (
     <>

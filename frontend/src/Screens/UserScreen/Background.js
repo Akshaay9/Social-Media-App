@@ -52,7 +52,7 @@ function Background({ individualUser, individualUserPost }) {
     const isFollowing = individualUser?.followers?.some(
       (ele) => ele?.user == currentUser._id
     );
-    console.log(isFollowing);
+
 
     if (isFollowing == true) {
       return "unfollow";

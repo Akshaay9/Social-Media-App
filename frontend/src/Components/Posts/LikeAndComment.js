@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./LikeAndComment.css";
 import Avatar from "@material-ui/core/Avatar";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   addUpdateComment,
   deleteComment,
@@ -10,6 +11,7 @@ import {
 } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
+  let location = useLocation();
   const currentUser = useSelector((state) => state.currentUser.User);
   const [comment, setComment] = useState("");
   const [updateComment, setUpdateComment] = useState(false);
@@ -93,7 +95,12 @@ function LikeAndComment({ ele }) {
           </div>
         )}
         {
-          <Link to={`/${ele.PostType}/${ele._id}`}>
+          <NavLink
+            to={{
+              pathname: `/${ele.PostType}/${ele._id}`,
+            }}
+            state={{ from: location.pathname }}
+          >
             <p
               style={{
                 color: "rgb(23 123 255)",
@@ -103,7 +110,7 @@ function LikeAndComment({ ele }) {
             >
               View all comments
             </p>
-          </Link>
+          </NavLink>
         }
       </div>
       <div className="add-comment">

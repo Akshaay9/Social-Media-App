@@ -4,7 +4,7 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { markNotificationRead } from "../../features/Users/UserSlice";
 function Index({ presentUser, notifcationLength }) {
-  console.log(presentUser?.notification);
+
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
 

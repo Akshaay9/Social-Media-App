@@ -39,9 +39,7 @@ function RecommendedUsers() {
       {Allusers?.length > 0 &&
         Allusers.map((ele) => (
           <div className="">
-            {console.log(
-              presentUser?.following?.some((user) => user.user == ele?._id)
-            )}
+    
             {ele._id != currentUser._id &&
                 !presentUser?.following?.some((user) => user.user == ele._id) ? (
               <div className="recommended-users-list">

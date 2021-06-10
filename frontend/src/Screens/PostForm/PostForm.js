@@ -16,11 +16,13 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
   const currentUser = useSelector((state) => state.currentUser.User);
   const { posts, status } = useSelector((state) => state.Posts);
 
+  console.log(location?.state?.from);
+
   const cleanUp = () => {
     setFeeling();
     setPostDescription("");
     setImage();
-    navigate("/");
+    navigate(location?.state?.from ? location?.state?.from : "/");
   };
 
   // close modal
@@ -83,7 +85,7 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     } else {
       dispatch(uploadPoast(dataPayload));
     }
-    
+
     cleanUp();
   };
 

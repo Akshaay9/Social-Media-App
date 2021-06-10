@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost } from "../../features/Posts/PostSlice";
 import { Link } from "react-router-dom";
+import moment from "moment";
 function Post({ ele }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -31,8 +32,12 @@ function Post({ ele }) {
               )}
             </div>
           </Link>
-          <span>24 m</span>
-          <span>.</span>
+
+          <span>
+            {moment(ele?.updatedAt)?.format("DD")} /&nbsp;
+            {moment(ele?.updatedAt)?.format("M")}
+          </span>
+          <span >.</span>
           <i class="fas fa-globe-asia"></i>
         </div>
         {currentUser._id == ele.user._id && (

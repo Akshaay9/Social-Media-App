@@ -51,7 +51,7 @@ export const userLogin = async (req, res) => {
 // get all users
 export const getAllUser = async (req, res) => {
   const allUsers = await Users.find({})
-    .sort({"created_at":-1})
+    .sort({ created_at: -1 })
     .select("-password")
     .populate("notification.user", "_id name profileImage");
   res.status(200).json(allUsers);
@@ -120,4 +120,13 @@ export const clearAllNotification = async (req, res) => {
   res.status(200).json(allUsers);
 };
 
-
+export const updateUserImage = async (req, res) => {
+  let { user } = req;
+  let presentUser = await Users.findById(user.id);
+  presentUser = extend(presentUser, req.body);
+  await presentUser.save();
+  const allUsers = await Users.find({})
+    .select("-password")
+    .populate("notification.user", "_id name profileImage");
+  res.status(200).json(allUsers);
+};

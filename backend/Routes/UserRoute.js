@@ -3,9 +3,9 @@ import {
   clearAllNotification,
   followUnfollow,
   getAllUser,
+  updateUserImage,
   userLogin,
   userRegistraion,
- 
 } from "../Controllers/UserController.js";
 import privateRoute from "../MiddleWears/Authentication.js";
 import { getIndividualUser } from "../MiddleWears/IndividualUser.js";
@@ -30,6 +30,11 @@ router.get("/", getAllUser);
 
 // get
 // pubic
+// get all user
+router.post("/update", privateRoute, updateUserImage);
+
+// get
+// pubic
 // follow unfollow
 router.post("/followUnfollow/:userID", privateRoute, followUnfollow);
 
@@ -37,8 +42,5 @@ router.post("/followUnfollow/:userID", privateRoute, followUnfollow);
 // pubic
 // clear all notifi
 router.post("/clearnotification", privateRoute, clearAllNotification);
-
-
-
 
 export default router;

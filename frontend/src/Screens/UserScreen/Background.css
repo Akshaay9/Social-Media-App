@@ -67,7 +67,7 @@ opacity: .37;
 /* camera */
 .user-avatar-camera {
   position: absolute;
-  top: 108%;
+  top: 115%;
   left: 53.7%;
   transform: translate(-50%, -50%);
   height: 3.2rem;

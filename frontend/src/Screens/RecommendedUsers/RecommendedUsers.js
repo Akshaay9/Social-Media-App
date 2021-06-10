@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RecommendedUsers() {
   const currentUser = useSelector((state) => state.currentUser.User);
-  const {Allusers, presentUser } = useSelector((state) => state.Users);
+  const { Allusers, presentUser } = useSelector((state) => state.Users);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -40,22 +40,24 @@ function RecommendedUsers() {
       {Allusers?.length > 0 &&
         Allusers.map((ele) => (
           <div className="">
-    
             {ele._id != currentUser._id &&
-                !presentUser?.following?.some((user) => user.user == ele._id) ? (
-                <div className="recommended-users-list">
+            !presentUser?.following?.some((user) => user.user == ele._id) ? (
+              <div className="recommended-users-list">
                 <Link to={`/user/${ele._id}`}>
-                <div
-                  className=""
-                  style={{ display: "flex", alignItems: "center" }}
-                >
-                  <Avatar
-                    alt="Remy Sharp"
-                    src={ele?.profileImage}
-                    className={classes.large}
-                  />
-                  <h4 style={{ paddingLeft: ".8rem" }}>{ele?.name}</h4>
-                </div>
+                  <div
+                    className=""
+                    style={{ display: "flex", alignItems: "center" }}
+                  >
+                    <Avatar
+                      alt="Remy Sharp"
+                      src={
+                        ele?.profileImage ||
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM8-ixw2ZnQsPJj5GUxaRhyam0tbduUsbWJw&usqp=CAU"
+                      }
+                      className={classes.large}
+                    />
+                    <h4 style={{ paddingLeft: ".8rem" }}>{ele?.name}</h4>
+                  </div>
                 </Link>
 
                 <div className="right">

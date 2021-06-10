@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
 function SearchItem({ searchedUsers }) {
   const { presentUser } = useSelector((state) => state.Users);
   const currentUser = useSelector((state) => state.currentUser.User);
-  
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -44,7 +43,10 @@ function SearchItem({ searchedUsers }) {
                 <div className="left">
                   <Avatar
                     alt="Remy Sharp"
-                    src={ele?.profileImage}
+                    src={
+                      ele?.profileImage ||
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM8-ixw2ZnQsPJj5GUxaRhyam0tbduUsbWJw&usqp=CAU"
+                    }
                     className={classes.large}
                   />
                   <h4>{ele?.name}</h4>

@@ -53,7 +53,6 @@ function Background({ individualUser, individualUserPost }) {
       (ele) => ele?.user == currentUser._id
     );
 
-
     if (isFollowing == true) {
       return "unfollow";
     } else if (isFollowing == false) {
@@ -65,24 +64,46 @@ function Background({ individualUser, individualUserPost }) {
     <div>
       <div className="background-image-container">
         <div className="background-image">
-          <img className="bg-img-1" src={individualUser?.backgroundImage} />
-          <img className="bg-img-2" src={individualUser?.backgroundImage} />
+          <img
+            className="bg-img-1"
+            src={
+              individualUser?.backgroundImage ||
+              "https://images.unsplash.com/photo-1553531384-397c80973a0b?ixid=MnwxMjA3fDF8MHxzZWFyY2h8NDd8fG5hdHVyZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            }
+          />
+          <img
+            className="bg-img-2"
+            src={
+              individualUser?.backgroundImage ||
+              "https://images.unsplash.com/photo-1553531384-397c80973a0b?ixid=MnwxMjA3fDF8MHxzZWFyY2h8NDd8fG5hdHVyZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+            }
+          />
 
           <div className="mobile-hide">
             <Avatar
               alt="Remy Sharp"
-              src={individualUser?.profileImage}
+              src={
+                individualUser?.profileImage ||
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM8-ixw2ZnQsPJj5GUxaRhyam0tbduUsbWJw&usqp=CAU"
+              }
               className={classes.large}
             />
-            <i class="fas fa-camera user-avatar-camera"></i>
+            {currentUser?._id == individualUser?._id && (
+              <i class="fas fa-camera user-avatar-camera"></i>
+            )}
           </div>
           <div className="desktop-hide">
             <Avatar
               alt="Remy Sharp"
-              src={individualUser?.profileImage}
+              src={
+                individualUser?.profileImage ||
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM8-ixw2ZnQsPJj5GUxaRhyam0tbduUsbWJw&usqp=CAU"
+              }
               className={classes2.large}
             />
-            <i class="fas fa-camera user-avatar-camera"></i>
+            {currentUser?._id == individualUser?._id && (
+              <i class="fas fa-camera user-avatar-camera"></i>
+            )}
           </div>
         </div>
         <div className="background-user-info">
@@ -109,10 +130,12 @@ function Background({ individualUser, individualUserPost }) {
           </div>
         </div>
 
-        <div className="update-user-bg-image">
-          <i class="fas fa-camera user-bg-camera"></i>
-          <p>Edit cover photo</p>
-        </div>
+        {currentUser?._id == individualUser?._id && (
+          <div className="update-user-bg-image">
+            <i class="fas fa-camera user-bg-camera"></i>
+            <p>Edit cover photo</p>
+          </div>
+        )}
       </div>
     </div>
   );

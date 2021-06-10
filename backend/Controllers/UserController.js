@@ -123,6 +123,7 @@ export const clearAllNotification = async (req, res) => {
 export const updateUserImage = async (req, res) => {
   let { user } = req;
   let presentUser = await Users.findById(user.id);
+  console.log(req.body);
   presentUser = extend(presentUser, req.body);
   await presentUser.save();
   const allUsers = await Users.find({})

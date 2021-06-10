@@ -13,6 +13,7 @@ function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
   let location = useLocation();
   const currentUser = useSelector((state) => state.currentUser.User);
+  const { presentUser } = useSelector((state) => state.Users);
   const [comment, setComment] = useState("");
   const [updateComment, setUpdateComment] = useState(false);
 
@@ -144,7 +145,7 @@ function LikeAndComment({ ele }) {
         )}
       </div>
       <div className="add-comment">
-        <Avatar alt="Remy Sharp" src={currentUser.profileImage} />
+        <Avatar alt="Remy Sharp" src={presentUser?.profileImage} />
         <form onSubmit={(e) => commentHandler(e)}>
           <input
             type="text"

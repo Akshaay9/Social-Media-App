@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Background.css";
 import Avatar from "@material-ui/core/Avatar";
-import { postData } from "../../Data.js/PostData";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
-import { followUnfollowUser } from "../../features/Users/UserSlice";
+import {
+  followUnfollowUser,
+  updateUserImage,
+} from "../../features/Users/UserSlice";
+import { uploadImage } from "../../Utils/UploadImage";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -47,8 +50,56 @@ function Background({ individualUser, individualUserPost }) {
   const classes2 = useStyles2();
   const currentUser = useSelector((state) => state.currentUser.User);
   const dispatch = useDispatch();
+  const [image, setImage] = useState();
+  const profileImage = React.useRef(null);
+  const backgroundImage = React.useRef(null);
 
-  const isFollowingTheUSer = (user) => {
+  const handleClick = (image) => {
+    if (image == "profile") {
+      profileImage.current.click();
+    } else {
+      backgroundImage.current.click();
+    }
+  };
+  const handleChange = (event) => {
+    console.log(event.target.name);
+    if (event.target.files && event.target.files[0]) {
+      setImage(() => ({
+        image: event.target.files[0],
+        name: event.target.name,
+      }));
+    }
+  };
+
+  useEffect(() => {
+    if (image != undefined) {
+      (async () => {
+        let imageURL = await uploadImage(image.image);
+        let imageName = image.name;
+        let dataToBeSent = {};
+
+        if (image.name == "profileImage") {
+          dataToBeSent = {
+            token: currentUser.token,
+            data: {
+              profileImage: imageURL,
+            },
+          };
+        } else {
+          dataToBeSent = {
+            token: currentUser.token,
+            data: {
+              backgroundImage: imageURL,
+            },
+          };
+        }
+        console.log(dataToBeSent);
+        dispatch(updateUserImage(dataToBeSent));
+      })();
+    }
+  }, [image]);
+
+  const isFollowingTheUSer = () => {
     const isFollowing = individualUser?.followers?.some(
       (ele) => ele?.user == currentUser._id
     );
@@ -89,7 +140,12 @@ function Background({ individualUser, individualUserPost }) {
               className={classes.large}
             />
             {currentUser?._id == individualUser?._id && (
-              <i class="fas fa-camera user-avatar-camera"></i>
+              <i
+                class="fas fa-camera user-avatar-camera"
+                onClick={() => {
+                  handleClick("profile");
+                }}
+              ></i>
             )}
           </div>
           <div className="desktop-hide">
@@ -102,7 +158,12 @@ function Background({ individualUser, individualUserPost }) {
               className={classes2.large}
             />
             {currentUser?._id == individualUser?._id && (
-              <i class="fas fa-camera user-avatar-camera"></i>
+              <i
+                class="fas fa-camera user-avatar-camera"
+                onClick={() => {
+                  handleClick("profile");
+                }}
+              ></i>
             )}
           </div>
         </div>
@@ -131,12 +192,33 @@ function Background({ individualUser, individualUserPost }) {
         </div>
 
         {currentUser?._id == individualUser?._id && (
-          <div className="update-user-bg-image">
+          <div
+            className="update-user-bg-image"
+            onClick={() => {
+              handleClick();
+            }}
+          >
             <i class="fas fa-camera user-bg-camera"></i>
             <p>Edit cover photo</p>
           </div>
         )}
       </div>
+      <input
+        type="file"
+        name="profileImage"
+        accept="image/png, image/jpeg"
+        ref={profileImage}
+        onChange={handleChange}
+        style={{ display: "none" }}
+      />{" "}
+      <input
+        type="file"
+        name="backgroundImage"
+        accept="image/png, image/jpeg"
+        ref={backgroundImage}
+        onChange={handleChange}
+        style={{ display: "none" }}
+      />
     </div>
   );
 }

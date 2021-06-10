@@ -89,6 +89,34 @@ export const markNotificationRead = createAsyncThunk(
   }
 );
 
+// update profile
+export const updateUserImage = createAsyncThunk(
+  "users/updateUserImage",
+  async (dataToBeSent, { rejectWithValue }) => {
+    console.log(dataToBeSent);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        "auth-token": dataToBeSent.token,
+      },
+    };
+
+    try {
+      const data = await axios.post(
+        `http://localhost:5000/api/user/update`,
+        dataToBeSent.data,
+        config
+      );
+      console.log(data.data);
+      return data.data;
+    } catch (error) {
+      console.log(error);
+      console.log(error?.response);
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
+
 // user slice
 
 export const userSlice = createSlice({
@@ -128,10 +156,16 @@ export const userSlice = createSlice({
       state.status = "success";
       state.individualUserPost = payload;
     },
+    [updateUserImage.pending]: (state, action) => {
+      state.status = "pending";
+    },
+    [updateUserImage.fulfilled]: (state, { payload }) => {
+      state.status = "success";
+      state.Allusers = payload;
+    },
   },
 });
 
-export const {addPresentUser}=userSlice.actions
+export const { addPresentUser } = userSlice.actions;
 
 export default userSlice.reducer;
-

@@ -258,9 +258,9 @@ i:hover + ul {
 
 @media screen and (max-width: 970px) {
   .inidividual-post-container {
-    height: 200vh;
+    height: 140vh;
     position: absolute;
-    top: 98%;
+    top: 75%;
   }
 
   .individual-text-post {

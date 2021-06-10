@@ -5,6 +5,7 @@ import HomeScreen from "./Screens/HomeScreen/Index";
 import IndividualUser from "./Screens/UserScreen/Index";
 import AllUsers from "./Screens/AllUsers/Index";
 import "./App.css";
+import BottomNav from "./Screens/BottomNav/BottomNav"
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
 import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
@@ -30,7 +31,6 @@ function App() {
   useEffect(() => {
     if(_id!=undefined){
       dispatch(addPresentUser(_id));
-      console.log("damn")
     }
   }, [Users.Allusers]);
 
@@ -46,6 +46,9 @@ function App() {
         <Route path="/user/:id" element={<IndividualUser />} />
         <Route path="/user/all" element={<AllUsers />} />
       </Routes>
+      <div className="desktop-hide">
+        <BottomNav />
+      </div>
     </BrowserRouter>
   );
 }

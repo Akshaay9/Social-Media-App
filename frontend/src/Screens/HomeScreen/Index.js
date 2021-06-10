@@ -4,7 +4,8 @@ import PostBar from "../PostForm/Post";
 import UsersPost from "../../Components/Posts/Index";
 import { useLocation, useParams } from "react-router";
 import IndividualPost from "../../Components/IndividualPost/IndividualPost";
-import RecommendedUsers from "../RecommendedUsers/Index"
+import RecommendedUsers from "../RecommendedUsers/Index";
+
 
 function Index() {
   const { id } = useParams();
@@ -17,14 +18,15 @@ function Index() {
       <PostBar />
       <UsersPost />
       {/* right bar */}
-      <RecommendedUsers/>
-   
+      <RecommendedUsers />
+
       {(location.pathname.includes("image") && (
         <IndividualPost postType={postType} />
       )) ||
         (location.pathname.includes("text") && (
           <IndividualPost postType={postType} />
         ))}
+      
     </div>
   );
 }

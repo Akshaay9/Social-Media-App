@@ -48,7 +48,7 @@ function Index() {
       {currentUser?._id === individualUser?._id && (
         <PostBar individualUserStyle={individualUserStyle} />
       )}
-      <div>
+      <div style={{marginBottom:"8rem"}}>
         {individualUserPost.length > 0 &&
           individualUserPost.map((ele) => <Post ele={ele} />)}
       </div>

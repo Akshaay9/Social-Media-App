@@ -11,7 +11,7 @@ const connnectToDB = async () => {
     });
       console.log("<=====DB conneted=====>");
   } catch (error) {
-    console.log(error.message); 
+    console.log(error.message);
     process.exit(1)
   }
 };

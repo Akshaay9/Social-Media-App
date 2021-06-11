@@ -11,12 +11,12 @@ app.use(express.json());
 app.use(cors());
 dotenv.config();
 
-dbConnection();
-
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
   console.log(`server started on port ${PORT}`.yellow.underline.bold)
 );
+
+dbConnection();
 
 // routes
 app.use(`/api/user`, UserLoginSignup);

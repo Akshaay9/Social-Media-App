@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv'
-import colors from "colors"
 dotenv.config();
 
 const connnectToDB = async () => {
@@ -10,9 +9,9 @@ const connnectToDB = async () => {
       useNewUrlParser: true,
       useCreateIndex: true,
     });
-      console.log("<=====DB conneted=====>".blue.underline.bold);
+      console.log("<=====DB conneted=====>");
   } catch (error) {
-    console.log(error.message.red.underline.bold); 
+    console.log(error.message); 
     process.exit(1)
   }
 };

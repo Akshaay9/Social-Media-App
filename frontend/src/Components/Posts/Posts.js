@@ -2,7 +2,7 @@ import React from "react";
 import Post from "./Post";
 import { useSelector } from "react-redux";
 import "./Post.css";
-import { useLocation, useParams } from "react-router";
+import { useLocation } from "react-router";
 function Posts() {
   const location = useLocation();
   const Posts = useSelector((state) => state.Posts.posts);

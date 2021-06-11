@@ -9,11 +9,14 @@ import BottomNav from "./Screens/BottomNav/BottomNav";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
 import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
+import LandingPage from "./Screens/UserAccount/LandingPage";
+import { useLocation } from "react-router";
 
 function App() {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
   const Users = useSelector((state) => state.Users);
+  
   const {
     User: { _id },
   } = useSelector((state) => state.currentUser);
@@ -40,6 +43,7 @@ function App() {
         <Route path="/image/:id" element={<HomeScreen />} />
         <Route path="/user/:id" element={<IndividualUser />} />
         <Route path="/user/all" element={<AllUsers />} />
+        <Route path="/landing" element={<LandingPage />} />
       </Routes>
       <div className="desktop-hide">
         <BottomNav />

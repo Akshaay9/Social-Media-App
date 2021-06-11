@@ -1,8 +1,16 @@
 import React from "react";
 import "./LandingPage.css";
+import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
+import Login from "./Login";
+import SignUp from "./SignUp";
 function LandingPage() {
+  const location = useLocation();
   return (
     <>
+      {location.pathname.includes("login") && <Login />}
+      {location.pathname.includes("signup") && <SignUp />}
+
       <div className="landing-bg ">
         <div className="landing-bg-logo ">
           <h2>
@@ -31,8 +39,14 @@ function LandingPage() {
             </ul>
           </div>
 
-          <button className="landing-bg-signup">Sign Up</button>
-          <button className="landing-bg-login">Login</button>
+          <Link to="/landing/signup">
+            {" "}
+            <button className="landing-bg-signup">Sign Up</button>
+          </Link>
+          <Link to="/landing/login">
+            {" "}
+            <button className="landing-bg-login">Login</button>
+          </Link>
         </div>
       </div>
     </>

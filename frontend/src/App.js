@@ -44,6 +44,8 @@ function App() {
         <Route path="/user/:id" element={<IndividualUser />} />
         <Route path="/user/all" element={<AllUsers />} />
         <Route path="/landing" element={<LandingPage />} />
+        <Route path="/landing/login" element={<LandingPage />} />
+        <Route path="/landing/signup" element={<LandingPage />} />
       </Routes>
       <div className="desktop-hide">
         <BottomNav />

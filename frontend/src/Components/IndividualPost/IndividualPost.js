@@ -42,8 +42,8 @@ function IndividualPost() {
     const dataToBeSent = {
       token: currentUser.token,
       URL: updateComment
-        ? `http://localhost:5000/api/user/comment/update/${id}/${commentID}`
-        : `http://localhost:5000/api/user/comment/${id}`,
+        ? `https://fitsharksm.herokuapp.com/api/user/comment/update/${id}/${commentID}`
+        : `https://fitsharksm.herokuapp.com/api/user/comment/${id}`,
       comment: comment,
     };
     dispatch(addUpdateComment(dataToBeSent));

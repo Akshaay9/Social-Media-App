@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const getAllUsers = createAsyncThunk("users/all", async () => {
-  const data = await axios.get(`http://localhost:5000/api/user`);
+  const data = await axios.get(`https://fitsharksm.herokuapp.com/api/user`);
   return data.data;
 });
 
@@ -26,7 +26,7 @@ export const followUnfollowUser = createAsyncThunk(
     };
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/user/followUnfollow/${dataToBeSent.id}`,
+        `https://fitsharksm.herokuapp.com/api/user/followUnfollow/${dataToBeSent.id}`,
         null,
         config
       );
@@ -51,7 +51,7 @@ export const individualUsersPosts = createAsyncThunk(
     };
     try {
       const data = await axios.get(
-        `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
+        `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
         config
       );
 
@@ -76,7 +76,7 @@ export const markNotificationRead = createAsyncThunk(
     };
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/user/clearnotification`,
+        `https://fitsharksm.herokuapp.com/api/user/clearnotification`,
         null,
         config
       );
@@ -104,7 +104,7 @@ export const updateUserImage = createAsyncThunk(
     toast.info("updating image !");
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/user/update`,
+        `https://fitsharksm.herokuapp.com/api/user/update`,
         dataToBeSent.data,
         config
       );

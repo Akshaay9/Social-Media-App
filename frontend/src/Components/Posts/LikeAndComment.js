@@ -29,8 +29,8 @@ function LikeAndComment({ ele }) {
     const dataToBeSent = {
       token: currentUser.token,
       URL: updateComment
-        ? `http://localhost:5000/api/user/comment/update/${ele._id}/${ele.comments[0]?.commentID._id}`
-        : `http://localhost:5000/api/user/comment/${ele._id}`,
+        ? `https://fitsharksm.herokuapp.com/api/user/comment/update/${ele._id}/${ele.comments[0]?.commentID._id}`
+        : `https://fitsharksm.herokuapp.com/api/user/comment/${ele._id}`,
       comment: comment,
     };
     dispatch(addUpdateComment(dataToBeSent));

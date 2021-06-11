@@ -10,7 +10,7 @@ const initialState = {
 
 // get all posts
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
-  const data = await axios.get(`http://localhost:5000/api/user/post`);
+  const data = await axios.get(`https://fitsharksm.herokuapp.com/api/user/post`);
   
   return data.data;
 });
@@ -28,7 +28,7 @@ export const uploadPoast = createAsyncThunk(
     toast.info("uploading new poast !");
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/user/post`,
+        `https://fitsharksm.herokuapp.com/api/user/post`,
         dataToBeSent.data,
         config
       );
@@ -53,7 +53,7 @@ export const upDatePoast = createAsyncThunk(
     toast.info("updating  poast !");
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
+        `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
         dataToBeSent.data,
         config
       );
@@ -80,7 +80,7 @@ export const deletePost = createAsyncThunk(
 
     try {
       const data = await axios.delete(
-        `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
+        `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
         config
       );
       toast.error("poast has been deleted !", {});
@@ -106,7 +106,7 @@ export const likeUnlike = createAsyncThunk(
     };
     try {
       const data = await axios.post(
-        `http://localhost:5000/api/user/like/${dataToBeSent.id}`,
+        `https://fitsharksm.herokuapp.com/api/user/like/${dataToBeSent.id}`,
         null,
         config
       );
@@ -159,7 +159,7 @@ export const deleteComment = createAsyncThunk(
 
     try {
       const data = await axios.delete(
-        `http://localhost:5000/api/user/comment/${dataToBeSent.PostID}/${dataToBeSent.commentID}`,
+        `https://fitsharksm.herokuapp.com/api/user/comment/${dataToBeSent.PostID}/${dataToBeSent.commentID}`,
         config
       );
       toast.error("comment has been deleted !", {});

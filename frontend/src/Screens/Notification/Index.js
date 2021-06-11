@@ -9,6 +9,9 @@ function Index({ presentUser, notifcationLength }) {
   const currentUser = useSelector((state) => state.currentUser.User);
 
   // markNotificationRead
+
+  
+
   return (
     <div>
       <div className="notification-container">

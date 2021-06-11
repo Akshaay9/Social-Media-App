@@ -13,7 +13,9 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
   const dispatch = useDispatch();
 
   const [postDescription, setPostDescription] = useState("");
+  const[imageUploadingStatus,setImageUploadingStatus]=useState("post")
   const currentUser = useSelector((state) => state.currentUser.User);
+  const { presentUser } = useSelector((state) => state.Users);
   const { posts, status } = useSelector((state) => state.Posts);
 
  
@@ -58,12 +60,14 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
       dataToBeUploaded.description = postDescription;
     }
     if (image?.image?.name) {
+      setImageUploadingStatus("uploading image....")
       imageURL = await uploadImage(image.image);
       dataToBeUploaded = {
         ...dataToBeUploaded,
         image: imageURL,
         PostType: "image",
       };
+      setImageUploadingStatus("post")
     } else if (image?.image) {
       dataToBeUploaded = {
         ...dataToBeUploaded,
@@ -122,9 +126,9 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
             <div className="postform-mid">
               <Avatar
                 alt="Remy Sharp"
-                src="https://pbs.twimg.com/profile_images/1119096097945739275/k5hjHB-J_400x400.jpg"
+                src={presentUser?.profileImage}
               />
-              <h3>Akshay</h3>
+              <h3>{presentUser?.name}</h3>
               {feeling && (
                 <div className="postform-feeling">
                   <span>
@@ -195,10 +199,10 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
               </div>
             </div>
             <button
-              disabled={image == undefined && postDescription== ""}  
+              disabled={image == undefined && postDescription== "" || imageUploadingStatus=="uploading"}  
               onClick={() => submiHandler()}
             >
-              Post
+              {imageUploadingStatus}
             </button>
           </div>
         </div>

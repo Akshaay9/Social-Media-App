@@ -17,6 +17,13 @@ function SignUp() {
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
+  const {
+    User: { token },
+  } = useSelector((state) => state.currentUser);
+
+  if (token) {
+    navigate(state?.from ? state.from : "/");
+  }
 
   useEffect(() => {
     if (name.length == 0) {
@@ -63,7 +70,7 @@ function SignUp() {
       password,
     };
 
-  dispatch(signUp(dataTobeSent))
+    dispatch(signUp(dataTobeSent));
   };
 
   const signupModalContainer = (e) => {

@@ -40,7 +40,7 @@ function RecommendedUsers() {
       {Allusers?.length > 0 &&
         Allusers.map((ele) => (
           <div className="">
-            {ele._id != currentUser._id &&
+            {ele._id != currentUser.id &&
             !presentUser?.following?.some((user) => user.user == ele._id) ? (
               <div className="recommended-users-list">
                 <Link to={`/user/${ele._id}`}>

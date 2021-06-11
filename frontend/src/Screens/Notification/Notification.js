@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },    
 }));  
 function Notification({ ele }) {
+  console.log(ele)
   const classes = useStyles();
   const currentUser = useSelector((state) => state.currentUser.User);
   return (
@@ -24,19 +25,19 @@ function Notification({ ele }) {
         className="individual-notification"
         style={ele?.viewed == false ? { backgroundColor: "#24252638" } : {}}
       >
-        <Link to={`/user/${ele.user._id}`}>
+        <Link to={`/user/${ele.user?._id}`}>
           <Avatar
             alt="Remy Sharp"
             src={ele?.user?.profileImage}
             className={classes.large}
           />
         </Link>
-        <Link to={`/user/${ele.user._id}`}>
+        <Link to={`/user/${ele.user?._id}`}>
           <h3>{ele?.user?.name}</h3>
         </Link>
 
         {ele?.text?.split(" ").includes("post") ? (
-          <p>{ele.text}</p>
+          <p>{ele?.text}</p>
         ) : (
           <p>{ele?.text}</p>
         )}

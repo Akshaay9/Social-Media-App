@@ -38,7 +38,7 @@ function SearchItem({ searchedUsers }) {
       {searchedUsers?.length > 0 &&
         searchedUsers.map((ele) => (
           <div className="search-userlist-container">
-            {ele._id != currentUser?._id && (
+            {ele._id != currentUser?.id && (
               <div className="user-lists  search-userlist">
                 <div className="left">
                   <Avatar

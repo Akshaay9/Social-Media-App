@@ -11,6 +11,7 @@ import { getAllPosts } from "./features/Posts/PostSlice";
 import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
 import LandingPage from "./Screens/UserAccount/LandingPage";
 import { useLocation } from "react-router";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -38,13 +39,13 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/modal" element={<HomeScreen />} />
-        <Route path="/modal/:id" element={<HomeScreen />} />
-        <Route path="/text/:id" element={<HomeScreen />} />
-        <Route path="/image/:id" element={<HomeScreen />} />
-        <Route path="/user/:id" element={<IndividualUser />} />
-        <Route path="/user/all" element={<AllUsers />} />
+        <PrivateRoute path="/" element={<HomeScreen />} />
+        <PrivateRoute path="/modal" element={<HomeScreen />} />
+        <PrivateRoute path="/modal/:id" element={<HomeScreen />} />
+        <PrivateRoute path="/text/:id" element={<HomeScreen />} />
+        <PrivateRoute path="/image/:id" element={<HomeScreen />} />
+        <PrivateRoute path="/user/:id" element={<IndividualUser />} />
+        <PrivateRoute path="/user/all" element={<AllUsers />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/landing/login" element={<LandingPage />} />
         <Route path="/landing/signup" element={<LandingPage />} />

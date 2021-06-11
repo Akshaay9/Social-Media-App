@@ -41,7 +41,7 @@ function Post({ individualUserStyle }) {
             className="post-bar-top-round"
             onClick={() => navigate("/modal/1?update=false")}
           >
-            <p>Whats on your mind Akshay ?</p>
+            <p>Whats on your mind {presentUser?.name} ?</p>
           </div>
         </div>
         <div className="post-bar-bottom">

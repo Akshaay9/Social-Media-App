@@ -14,6 +14,13 @@ function Login() {
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
   const dispatch = useDispatch();
+  const {
+    User: { token },
+  } = useSelector((state) => state.currentUser);
+
+  if (token) {
+    navigate(state?.from ? state.from : "/");
+  }
 
   useEffect(() => {
     var re = /\S+@\S+\.\S+/;

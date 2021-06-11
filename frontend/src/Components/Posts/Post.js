@@ -40,7 +40,7 @@ function Post({ ele }) {
           <span >.</span>
           <i class="fas fa-globe-asia"></i>
         </div>
-        {currentUser._id == ele.user._id && (
+        {currentUser.id == ele.user._id && (
           <>
             {" "}
             <i class="fas fa-ellipsis-h"> </i>

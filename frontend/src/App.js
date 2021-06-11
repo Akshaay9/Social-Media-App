@@ -12,6 +12,8 @@ import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
 import LandingPage from "./Screens/UserAccount/LandingPage";
 import { useLocation } from "react-router";
 import PrivateRoute from "./PrivateRoute";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,10 +21,11 @@ function App() {
   const Users = useSelector((state) => state.Users);
 
   const {
-    User: {id, token },
+    User: { id, token },
   } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
+  
     if (token) {
       dispatch(getAllPosts());
       dispatch(getAllUsers());
@@ -38,6 +41,15 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <ToastContainer
+        position="top-right"
+        autoClose={5}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+      />
+      <ToastContainer />
       <Routes>
         <PrivateRoute path="/" element={<HomeScreen />} />
         <PrivateRoute path="/modal" element={<HomeScreen />} />

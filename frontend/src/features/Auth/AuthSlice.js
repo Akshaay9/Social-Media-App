@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 const initialState = {
   loginStatus: "idle",
   signupStatus: "idle",
@@ -12,35 +13,39 @@ const initialState = {
 export const loginUser = createAsyncThunk(
   "user/login",
   async (dataToBeSent, { rejectWithValue }) => {
+    toast.info("logging in... !");
     try {
       const data = await axios.post(
         `http://localhost:5000/api/user/login`,
         dataToBeSent
       );
       localStorage.setItem("user", JSON.stringify(data.data));
-
+      toast.success("User has been logged in !", {});
       return data.data;
     } catch (error) {
-      console.log(error);
-      console.log(error?.response);
-      return rejectWithValue(error?.response?.data);
+      console.log(error?.response?.data?.error);
+      toast.error(`${error?.response?.data?.error}`);
+      return rejectWithValue(error?.response?.data?.error);
     }
   }
 );
 export const signUp = createAsyncThunk(
   "user/signup",
   async (dataToBeSent, { rejectWithValue }) => {
+    toast.info("Signing in... !");
     try {
       const data = await axios.post(
         `http://localhost:5000/api/user/signup`,
         dataToBeSent
       );
       localStorage.setItem("user", JSON.stringify(data.data));
-
+      toast.success("User has been signed in !", {});
       return data.data;
     } catch (error) {
       console.log(error);
       console.log(error?.response);
+    
+      toast.error(`${error?.response?.data?.error}`);
       return rejectWithValue(error?.response?.data);
     }
   }
@@ -51,7 +56,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logOut: (state, { payload }) => {
-      localStorage.removeItem("user")
+      localStorage.removeItem("user");
       state.User = {};
     },
   },

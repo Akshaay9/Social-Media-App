@@ -85,7 +85,7 @@ function LikeAndComment({ ele }) {
               </Link>
               <p>{ele.comments[0]?.commentID?.comment}</p>
             </div>
-            {ele.comments[0].user._id === currentUser._id && (
+            {ele.comments[0].user._id === currentUser.id && (
               <>
                 {" "}
                 <i class="fas fa-ellipsis-h comment-i"> </i>

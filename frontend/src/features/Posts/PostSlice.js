@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   posts: [],
@@ -10,7 +11,7 @@ const initialState = {
 // get all posts
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
   const data = await axios.get(`http://localhost:5000/api/user/post`);
-  // console.log(data);
+  
   return data.data;
 });
 
@@ -24,12 +25,14 @@ export const uploadPoast = createAsyncThunk(
         "auth-token": dataToBeSent.token,
       },
     };
+    toast.info("uploading new poast !");
     try {
       const data = await axios.post(
         `http://localhost:5000/api/user/post`,
         dataToBeSent.data,
         config
       );
+      toast.success("new poast added !", {});
       return data.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -47,13 +50,14 @@ export const upDatePoast = createAsyncThunk(
         "auth-token": dataToBeSent.token,
       },
     };
+    toast.info("updating  poast !");
     try {
       const data = await axios.post(
         `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
         dataToBeSent.data,
         config
       );
-
+      toast.success("poast has been updated !", {});
       return data.data;
     } catch (error) {
       console.log(error);
@@ -79,6 +83,7 @@ export const deletePost = createAsyncThunk(
         `http://localhost:5000/api/user/post/${dataToBeSent.id}`,
         config
       );
+      toast.error("poast has been deleted !", {});
       console.log(data.data);
       return data.data;
     } catch (error) {
@@ -157,7 +162,7 @@ export const deleteComment = createAsyncThunk(
         `http://localhost:5000/api/user/comment/${dataToBeSent.PostID}/${dataToBeSent.commentID}`,
         config
       );
-      console.log(data.data);
+      toast.error("comment has been deleted !", {});
       return data.data;
     } catch (error) {
       console.log(error);

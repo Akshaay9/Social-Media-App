@@ -3,9 +3,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export default async function privateRoute(req, res, next) {
-    const token = req.header("auth-token");
+  const token = req.header("auth-token");
   if (!token) {
-      return res.status(400).json({ error: "un-authorized section" });
+    return res.status(400).json("un-authorized section");
   }
   try {
     const decoded = jwt.verify(token, process.env.JWT);
@@ -13,6 +13,6 @@ export default async function privateRoute(req, res, next) {
     next();
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ error: "Authentication error" });
+    return res.status(500).json("Authentication error");
   }
 }

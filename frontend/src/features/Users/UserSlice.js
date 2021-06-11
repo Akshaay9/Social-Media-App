@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const initialState = {
   Allusers: [],
@@ -79,7 +80,7 @@ export const markNotificationRead = createAsyncThunk(
         null,
         config
       );
-
+      toast.success("new marked read !", {});
       return data.data;
     } catch (error) {
       console.log(error);
@@ -100,14 +101,14 @@ export const updateUserImage = createAsyncThunk(
         "auth-token": dataToBeSent.token,
       },
     };
-
+    toast.info("updating image !");
     try {
       const data = await axios.post(
         `http://localhost:5000/api/user/update`,
         dataToBeSent.data,
         config
       );
-      console.log(data.data);
+      toast.success("image has been updated !", {});
       return data.data;
     } catch (error) {
       console.log(error);

@@ -7,7 +7,7 @@ export const getIndividualComment = async (req, res, next, id) => {
     }
     const individualComment = await Comment.findById(id);
     if (!individualComment) {
-      res.status(400).json({ error: "Comment not found" });
+      res.status(400).json( "Comment not found" );
     }
     req.individualComment = individualComment;
     next();

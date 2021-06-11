@@ -1,16 +1,17 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./Background.css";
 import Avatar from "@material-ui/core/Avatar";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import { useSelector, useDispatch } from "react-redux";
 import {
   followUnfollowUser,
   updateUserImage,
 } from "../../features/Users/UserSlice";
-import { getAllPosts } from "../../features/Posts/PostSlice";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { uploadImage } from "../../Utils/UploadImage";
+import { toast } from "react-toastify";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -75,7 +76,9 @@ function Background({ individualUser, individualUserPost }) {
   useEffect(() => {
     if (image != undefined) {
       (async () => {
+        toast.info("uploading the image !");
         let imageURL = await uploadImage(image.image);
+        toast.info("image uploaded !");
         let imageName = image.name;
         let dataToBeSent = {};
 
@@ -96,7 +99,7 @@ function Background({ individualUser, individualUserPost }) {
         }
 
         dispatch(updateUserImage(dataToBeSent));
-       
+
         setImage();
       })();
     }
@@ -152,6 +155,7 @@ function Background({ individualUser, individualUserPost }) {
                   handleClick("profile");
                 }}
               ></i>
+      
             )}
           </div>
           <div className="desktop-hide">
@@ -211,7 +215,9 @@ function Background({ individualUser, individualUserPost }) {
             }}
           >
             <i class="fas fa-camera user-bg-camera"></i>
-            <p>Edit cover photo</p>
+            <p>
+             Edit cover image
+            </p>
           </div>
         )}
       </div>

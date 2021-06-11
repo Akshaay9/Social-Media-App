@@ -80,7 +80,7 @@ export const markNotificationRead = createAsyncThunk(
         null,
         config
       );
-      toast.success("new marked read !", {});
+      toast.success("notification marked as  read !", {});
       return data.data;
     } catch (error) {
       console.log(error);

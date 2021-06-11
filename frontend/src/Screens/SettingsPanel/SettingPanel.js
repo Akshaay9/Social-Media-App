@@ -4,6 +4,7 @@ import { useSelector,useDispatch } from "react-redux";
 import "./App.css";
 import { Link,useNavigate } from "react-router-dom";
 import { logOut } from "../../features/Auth/AuthSlice"
+import { toast } from "react-toastify";
 
 function SettingPanel({ panel }) {
   const { presentUser } = useSelector((state) => state.Users);
@@ -29,6 +30,7 @@ function SettingPanel({ panel }) {
           <ul>
             <li onClick={() => {
               dispatch(logOut())
+              toast.error(`user has been logged out`);
               navigate("/landing")
             }}>
               <i class="fas fa-sign-out-alt"></i>

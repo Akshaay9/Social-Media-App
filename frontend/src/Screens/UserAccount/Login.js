@@ -3,6 +3,8 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { loginUser } from "../../features/Auth/AuthSlice";
 function Login() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -11,6 +13,7 @@ function Login() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     var re = /\S+@\S+\.\S+/;
@@ -42,10 +45,14 @@ function Login() {
     }
   }, [password]);
 
-    const formHandler = async (e) => {
-      e.preventDefault();
-
+  const formHandler = async (e) => {
+    e.preventDefault();
+    const dataTobeSent = {
+      email,
+      password,
     };
+    dispatch(loginUser(dataTobeSent));
+  };
 
   const signupModalContainer = (e) => {
     if (e.target.classList.contains("login-sign-container")) {

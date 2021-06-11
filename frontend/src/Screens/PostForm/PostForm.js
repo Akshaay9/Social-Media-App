@@ -16,7 +16,7 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
   const currentUser = useSelector((state) => state.currentUser.User);
   const { posts, status } = useSelector((state) => state.Posts);
 
-  console.log(location?.state?.from);
+ 
 
   const cleanUp = () => {
     setFeeling();
@@ -25,7 +25,7 @@ function PostForm({ feeling, setFeeling, image, setImage }) {
     navigate(location?.state?.from ? location?.state?.from : "/");
   };
 
-  console.log(image, postDescription);
+
 
   // close modal
   const closeModal = (e) => {

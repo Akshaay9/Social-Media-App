@@ -3,6 +3,9 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { signUp } from "../../features/Auth/AuthSlice";
 function SignUp() {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -13,6 +16,8 @@ function SignUp() {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loader, setLoader] = useState(false);
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (name.length == 0) {
       setInputError("This field is required");
@@ -52,6 +57,13 @@ function SignUp() {
   }, [password]);
   const formHandler = async (e) => {
     e.preventDefault();
+    const dataTobeSent = {
+      name,
+      email,
+      password,
+    };
+
+  dispatch(signUp(dataTobeSent))
   };
 
   const signupModalContainer = (e) => {

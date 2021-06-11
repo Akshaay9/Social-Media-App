@@ -142,7 +142,7 @@ function Background({ individualUser, individualUserPost }) {
               }
               className={classes.large}
             />
-            {currentUser?._id == individualUser?._id && (
+            {currentUser?.id == individualUser?._id && (
               <i
                 class="fas fa-camera user-avatar-camera"
                 style={
@@ -163,7 +163,7 @@ function Background({ individualUser, individualUserPost }) {
               }
               className={classes2.large}
             />
-            {currentUser?._id == individualUser?._id && (
+            {currentUser?.id == individualUser?._id && (
               <i
                 style={
                   image ? { cursor: "not-allowed", pointerEvents: "none" } : {}
@@ -178,7 +178,7 @@ function Background({ individualUser, individualUserPost }) {
         </div>
         <div className="background-user-info">
           <h1>{individualUser?.name}</h1>
-          {currentUser?._id != individualUser?._id && (
+          {currentUser?.id != individualUser?._id && (
             <Button
               variant="contained"
               color="primary"
@@ -200,7 +200,7 @@ function Background({ individualUser, individualUserPost }) {
           </div>
         </div>
 
-        {currentUser?._id == individualUser?._id && (
+        {currentUser?.id == individualUser?._id && (
           <div
             style={
               image ? { cursor: "not-allowed", pointerEvents: "none" } : {}

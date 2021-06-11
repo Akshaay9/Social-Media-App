@@ -124,6 +124,7 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addPresentUser: (state, { payload }) => {
+      // console.log(payload);
       state.presentUser = state.Allusers?.find((ele) => ele._id == payload);
     },
   },

@@ -1,10 +1,14 @@
 import { Avatar } from "@material-ui/core";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import "./App.css";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
+import { logOut } from "../../features/Auth/AuthSlice"
+
 function SettingPanel({ panel }) {
   const { presentUser } = useSelector((state) => state.Users);
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
   return (
     <>
       {panel.show && (
@@ -23,7 +27,10 @@ function SettingPanel({ panel }) {
             </div>
           </Link>
           <ul>
-            <li>
+            <li onClick={() => {
+              dispatch(logOut())
+              navigate("/landing")
+            }}>
               <i class="fas fa-sign-out-alt"></i>
               Log-Out
             </li>

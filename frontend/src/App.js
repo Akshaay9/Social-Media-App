@@ -16,21 +16,23 @@ function App() {
   const dispatch = useDispatch();
   const Posts = useSelector((state) => state.Posts);
   const Users = useSelector((state) => state.Users);
-  
+
   const {
-    User: { _id },
+    User: {id, token },
   } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-    dispatch(getAllPosts());
-    dispatch(getAllUsers());
-  }, []);
+    if (token) {
+      dispatch(getAllPosts());
+      dispatch(getAllUsers());
+    }
+  }, [token]);
 
   useEffect(() => {
-    if (_id != undefined) {
-      dispatch(addPresentUser(_id));
+    if (id) {
+      dispatch(addPresentUser(id));
     }
-  }, [Users.Allusers]);
+  }, [Users.status]);
 
   return (
     <BrowserRouter>

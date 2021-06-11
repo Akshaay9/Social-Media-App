@@ -18,7 +18,7 @@ function LikeAndComment({ ele }) {
   const [updateComment, setUpdateComment] = useState(false);
 
   const isPostAlredyLiked = () => {
-    const isLike = ele.likes?.some((ele) => ele.likeID._id === currentUser._id);
+    const isLike = ele.likes?.some((ele) => ele.likeID?._id === currentUser.id);
     if (isLike) {
       return { color: "#2d88ff" };
     }

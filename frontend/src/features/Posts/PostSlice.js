@@ -10,8 +10,10 @@ const initialState = {
 
 // get all posts
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
-  const data = await axios.get(`https://fitsharksm.herokuapp.com/api/user/post`);
-  
+  const data = await axios.get(
+    `https://fitsharksm.herokuapp.com/api/user/post`
+  );
+
   return data.data;
 });
 
@@ -111,7 +113,7 @@ export const likeUnlike = createAsyncThunk(
         config
       );
       console.log(data.data);
-      return data.data;
+      // return data.data;
     } catch (error) {
       console.log(error);
       console.log(error?.response);
@@ -184,6 +186,34 @@ export const postSlice = createSlice({
     clearIndividualPost: (state, { payload }) => {
       state.individualPost = [];
     },
+    likeUnlikePost: (state, { payload }) => {
+      const individualPost = state.posts.find(
+        (ele) => ele._id == payload.postID
+      );
+
+      const isPostAlredyLiked = individualPost.likes.some(
+        (ele) => ele.likeID._id === payload.userID
+      );
+      state.posts = isPostAlredyLiked
+        ? state.posts.map((ele) =>
+            ele._id == payload.postID
+              ? {
+                  ...ele,
+                  likes: ele.likes.filter(
+                    (like) => like.likeID._id != payload.userID
+                  ),
+                }
+              : ele
+          )
+        : state.posts.map((ele) =>
+            ele._id == payload.postID
+              ? {
+                  ...ele,
+                  likes: [...ele.likes, { likeID: { _id: payload.userID } }],
+                }
+              : ele
+          );
+    },
   },
   extraReducers: {
     [getAllPosts.pending]: (state, action) => {
@@ -221,9 +251,9 @@ export const postSlice = createSlice({
     },
     [likeUnlike.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
-      );
+      // state.posts = state.posts.map((ele) =>
+      //   ele._id === payload._id ? payload : ele
+      // );
     },
     [likeUnlike.rejected]: (state, { payload }) => {
       state.status = "success";
@@ -249,6 +279,7 @@ export const postSlice = createSlice({
   },
 });
 
-export const { getIndividualPost, clearIndividualPost } = postSlice.actions;
+export const { getIndividualPost, clearIndividualPost, likeUnlikePost } =
+  postSlice.actions;
 
 export default postSlice.reducer;

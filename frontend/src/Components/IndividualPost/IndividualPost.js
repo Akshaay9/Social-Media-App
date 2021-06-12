@@ -11,6 +11,7 @@ import {
   addUpdateComment,
   deletePost,
   likeUnlike,
+  likeUnlikePost,
 } from "../../features/Posts/PostSlice";
 function IndividualPost() {
   const { id } = useParams();
@@ -179,6 +180,12 @@ function IndividualPost() {
                   <i
                     class="far fa-thumbs-up"
                     onClick={() => {
+                      dispatch(
+                        likeUnlikePost({
+                          postID: individualPost[0]._id,
+                          userID: currentUser.id,
+                        })
+                      );
                       const dataToBeSent = {
                         id: individualPost[0]._id,
                         token: currentUser.token,

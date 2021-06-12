@@ -5,9 +5,13 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
+  addNewComment,
   addUpdateComment,
+  addUpdateComments,
   deleteComment,
   likeUnlike,
+  likeUnlikePost,
+  updateComments,
 } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
@@ -33,6 +37,26 @@ function LikeAndComment({ ele }) {
         : `https://fitsharksm.herokuapp.com/api/user/comment/${ele._id}`,
       comment: comment,
     };
+
+    updateComment
+      ? dispatch(
+          updateComments({
+            postID: ele._id,
+            comment: comment,
+            commentID: ele.comments[0]?.commentID._id,
+          })
+        )
+      : dispatch(
+          addNewComment({
+            comment: comment,
+            postID: ele._id,
+            user: {
+              _id: presentUser._id,
+              name: presentUser.name,
+              profileImage: presentUser.profileImage,
+            },
+          })
+        );
     dispatch(addUpdateComment(dataToBeSent));
     setUpdateComment(false);
     setComment("");
@@ -54,6 +78,13 @@ function LikeAndComment({ ele }) {
               id: ele._id,
               token: currentUser.token,
             };
+
+            dispatch(
+              likeUnlikePost({
+                postID: ele._id,
+                userID: currentUser.id,
+              })
+            );
             dispatch(likeUnlike(dataToBeSent));
           }}
         >

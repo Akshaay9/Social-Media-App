@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 const initialState = {
   posts: [],
@@ -139,7 +140,7 @@ export const addUpdateComment = createAsyncThunk(
         config
       );
       console.log(data.data);
-      return data.data;
+      // return data.data;
     } catch (error) {
       console.log(error.response);
       console.log(error?.response);
@@ -187,33 +188,58 @@ export const postSlice = createSlice({
       state.individualPost = [];
     },
     likeUnlikePost: (state, { payload }) => {
-      const individualPost = state.posts.find(
-        (ele) => ele._id == payload.postID
+      state.posts = state.posts.map((ele) =>
+        ele._id == payload.postID
+          ? {
+              ...ele,
+              likes: ele.likes.some((like) => like.likeID._id == payload.userID)
+                ? ele.likes.filter((like) => like.likeID._id !== payload.userID)
+                : [...ele.likes, { likeID: { _id: payload.userID } }],
+            }
+          : ele
       );
-
-      const isPostAlredyLiked = individualPost.likes.some(
-        (ele) => ele.likeID._id === payload.userID
-      );
-      state.posts = isPostAlredyLiked
-        ? state.posts.map((ele) =>
-            ele._id == payload.postID
-              ? {
-                  ...ele,
-                  likes: ele.likes.filter(
-                    (like) => like.likeID._id != payload.userID
-                  ),
-                }
-              : ele
-          )
-        : state.posts.map((ele) =>
-            ele._id == payload.postID
-              ? {
-                  ...ele,
-                  likes: [...ele.likes, { likeID: { _id: payload.userID } }],
-                }
-              : ele
-          );
     },
+    addNewComment: (state, { payload }) => {
+      state.posts = state.posts.map((ele) =>
+        ele._id == payload.postID
+          ? {
+              ...ele,
+              comments: [
+                {
+                  commentID: {
+                    _id: uuidv4(),
+                    comment: payload.comment,
+                  },
+                  user: payload.user,
+                },
+                ...ele.comments,
+              ],
+            }
+          : ele
+      );
+    },
+    updateComments: (state, { payload }) => {
+      state.posts = state.posts.map((ele) =>
+        ele._id == payload.postID
+          ? {
+              ...ele,
+              comments: ele.comments.map((cmt) =>
+                cmt.commentID._id === payload.commentID
+                  ? {
+                      ...cmt,
+                      commentID: {
+                        ...cmt.commentID,
+                        comment: payload.comment,
+                      },
+                    }
+                  : cmt
+              ),
+            }
+          : ele
+      );
+    },
+
+    deleteComment: (state, { payload }) => {},
   },
   extraReducers: {
     [getAllPosts.pending]: (state, action) => {
@@ -260,9 +286,9 @@ export const postSlice = createSlice({
     },
     [addUpdateComment.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
-      );
+      // state.posts = state.posts.map((ele) =>
+      //   ele._id === payload._id ? payload : ele
+      // );
     },
     [addUpdateComment.rejected]: (state, { payload }) => {
       state.status = "success";
@@ -279,7 +305,12 @@ export const postSlice = createSlice({
   },
 });
 
-export const { getIndividualPost, clearIndividualPost, likeUnlikePost } =
-  postSlice.actions;
+export const {
+  getIndividualPost,
+  clearIndividualPost,
+  likeUnlikePost,
+  addNewComment,
+  updateComments
+} = postSlice.actions;
 
 export default postSlice.reducer;

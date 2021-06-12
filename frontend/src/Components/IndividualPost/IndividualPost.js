@@ -12,6 +12,8 @@ import {
   deletePost,
   likeUnlike,
   likeUnlikePost,
+  updateComments,
+  addNewComment,
 } from "../../features/Posts/PostSlice";
 function IndividualPost() {
   const { id } = useParams();
@@ -24,6 +26,7 @@ function IndividualPost() {
   const [comment, setComment] = useState("");
   const [updateComment, setUpdateComment] = useState(false);
   const [commentID, setCommentID] = useState();
+  const { presentUser } = useSelector((state) => state.Users);
 
   useEffect(() => {
     dispatch(getIndividualPost(id));
@@ -47,6 +50,25 @@ function IndividualPost() {
         : `https://fitsharksm.herokuapp.com/api/user/comment/${id}`,
       comment: comment,
     };
+    updateComment
+      ? dispatch(
+          updateComments({
+            postID: id,
+            comment: comment,
+            commentID: commentID,
+          })
+        )
+      : dispatch(
+          addNewComment({
+            comment: comment,
+            postID: id,
+            user: {
+              _id: presentUser._id,
+              name: presentUser.name,
+              profileImage: presentUser.profileImage,
+            },
+          })
+        );
     dispatch(addUpdateComment(dataToBeSent));
     setUpdateComment(false);
     setCommentID();

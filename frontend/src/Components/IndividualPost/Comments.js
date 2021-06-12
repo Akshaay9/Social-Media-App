@@ -21,7 +21,7 @@ function Comments({ ele, updateCommentHandler, id }) {
               </Link>
               <p>{ele?.commentID.comment}</p>
             </div>
-            {ele?.user._id === currentUser._id && (
+            {ele?.user._id === currentUser.id && (
               <>
                 {" "}
                 <i class="fas fa-ellipsis-h "> </i>

@@ -65,7 +65,7 @@ function IndividualPost() {
 
   const isPostAlredyLiked = () => {
     const isLike = individualPost[0]?.likes?.some(
-      (ele) => ele.likeID._id === currentUser._id
+      (ele) => ele.likeID._id === currentUser.id
     );
     if (isLike) {
       return { color: "#2d88ff" };

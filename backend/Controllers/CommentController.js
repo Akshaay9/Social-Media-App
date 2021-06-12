@@ -12,7 +12,7 @@ export const addComment = async (req, res) => {
     comment,
   });
   const savedNewComment = await newComment.save();
-  individualPost.comments.push({
+  individualPost.comments.unshift({
     user: req.user.id,
     commentID: savedNewComment._id,
   });

@@ -8,7 +8,6 @@ import {
   addUpdateComment,
   deleteComment,
   likeUnlike,
-  likeUnlikePost,
 } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
@@ -55,13 +54,6 @@ function LikeAndComment({ ele }) {
               id: ele._id,
               token: currentUser.token,
             };
-
-            dispatch(
-              likeUnlikePost({
-                postID: ele._id,
-                userID: currentUser.id,
-              })
-            );
             dispatch(likeUnlike(dataToBeSent));
           }}
         >

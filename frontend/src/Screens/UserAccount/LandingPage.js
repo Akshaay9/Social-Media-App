@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./LandingPage.css";
 import { useLocation } from "react-router";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
+import axios from "axios";
 function LandingPage() {
   const location = useLocation();
+
+ 
   return (
     <>
       {location.pathname.includes("login") && <Login />}

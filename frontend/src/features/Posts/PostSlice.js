@@ -140,7 +140,7 @@ export const addUpdateComment = createAsyncThunk(
         config
       );
       console.log(data.data);
-      // return data.data;
+      return data.data;
     } catch (error) {
       console.log(error.response);
       console.log(error?.response);
@@ -277,18 +277,18 @@ export const postSlice = createSlice({
     },
     [likeUnlike.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      // state.posts = state.posts.map((ele) =>
-      //   ele._id === payload._id ? payload : ele
-      // );
+      state.posts = state.posts.map((ele) =>
+        ele._id === payload._id ? payload : ele
+      );
     },
     [likeUnlike.rejected]: (state, { payload }) => {
       state.status = "success";
     },
     [addUpdateComment.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      // state.posts = state.posts.map((ele) =>
-      //   ele._id === payload._id ? payload : ele
-      // );
+      state.posts = state.posts.map((ele) =>
+        ele._id === payload._id ? payload : ele
+      );
     },
     [addUpdateComment.rejected]: (state, { payload }) => {
       state.status = "success";

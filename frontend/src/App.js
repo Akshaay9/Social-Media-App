@@ -14,6 +14,7 @@ import { useLocation } from "react-router";
 import PrivateRoute from "./PrivateRoute";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +26,12 @@ function App() {
   } = useSelector((state) => state.currentUser);
 
   useEffect(() => {
-  
+    (async () => {
+      const data = await axios.get(`https://fitsharksm.herokuapp.com/`);
+    })();
+  }, []);
+
+  useEffect(() => {
     if (token) {
       dispatch(getAllPosts());
       dispatch(getAllUsers());

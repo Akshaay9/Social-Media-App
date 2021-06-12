@@ -19,6 +19,10 @@ console.log(`server started on port ${PORT}`.yellow.underline.bold)
 
 dbConnection();
 
+app.get("/", (req,res) => {
+  res.status(200).json("hello")
+})
+
 // routes
 app.use(`/api/user`, UserLoginSignup);
 app.use(`/api/user/post`, Post);

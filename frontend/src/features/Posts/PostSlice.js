@@ -86,7 +86,7 @@ export const deletePost = createAsyncThunk(
         `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
         config
       );
-      toast.error("poast has been deleted !", {});
+      // toast.error("poast has been deleted !", {});
       console.log(data.data);
       return data.data;
     } catch (error) {
@@ -166,7 +166,7 @@ export const deleteComment = createAsyncThunk(
         config
       );
       toast.error("comment has been deleted !", {});
-      return data.data;
+      // return data.data;
     } catch (error) {
       console.log(error);
       console.log(error?.response);
@@ -239,7 +239,21 @@ export const postSlice = createSlice({
       );
     },
 
-    deleteComment: (state, { payload }) => {},
+    deleteCommentlocally: (state, { payload }) => {
+      state.posts = state.posts.map((ele) =>
+        ele._id == payload.postID
+          ? {
+              ...ele,
+              comments: ele.comments.filter(
+                (ele) => ele.commentID._id !== payload.commentID
+              ),
+            }
+          : ele
+      );
+    },
+    deletePostlocally: (state, { payload }) => {
+      state.posts = state.posts.filter((ele) => ele._id !== payload);
+    },
   },
   extraReducers: {
     [getAllPosts.pending]: (state, action) => {
@@ -295,9 +309,9 @@ export const postSlice = createSlice({
     },
     [deleteComment.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
-      );
+      // state.posts = state.posts.map((ele) =>
+      //   ele._id === payload._id ? payload : ele
+      // );
     },
     [deleteComment.rejected]: (state, { payload }) => {
       state.status = "success";
@@ -310,7 +324,9 @@ export const {
   clearIndividualPost,
   likeUnlikePost,
   addNewComment,
-  updateComments
+  updateComments,
+  deletePostlocally,
+  deleteCommentlocally,
 } = postSlice.actions;
 
 export default postSlice.reducer;

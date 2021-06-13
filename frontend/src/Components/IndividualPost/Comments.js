@@ -1,7 +1,11 @@
 import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteComment, deletePost } from "../../features/Posts/PostSlice";
+import {
+  deleteComment,
+  deletePost,
+  deleteCommentlocally,
+} from "../../features/Posts/PostSlice";
 import { Link, NavLink, useLocation } from "react-router-dom";
 function Comments({ ele, updateCommentHandler, id }) {
   const dispatch = useDispatch();
@@ -31,6 +35,12 @@ function Comments({ ele, updateCommentHandler, id }) {
                   </li>
                   <li
                     onClick={() => {
+                      dispatch(
+                        deleteCommentlocally({
+                          postID: id,
+                          commentID: ele.commentID._id,
+                        })
+                      );
                       const dataToBeSent = {
                         PostID: id,
                         commentID: ele.commentID._id,

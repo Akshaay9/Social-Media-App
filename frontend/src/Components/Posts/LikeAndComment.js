@@ -12,6 +12,7 @@ import {
   likeUnlike,
   likeUnlikePost,
   updateComments,
+  deleteCommentlocally,
 } from "../../features/Posts/PostSlice";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
@@ -124,6 +125,12 @@ function LikeAndComment({ ele }) {
                   <li onClick={() => updateCommentHandler()}>Update </li>
                   <li
                     onClick={() => {
+                      dispatch(
+                        deleteCommentlocally({
+                          postID: ele._id,
+                          commentID: ele.comments[0]?.commentID._id,
+                        })
+                      );
                       const dataToBeSent = {
                         PostID: ele._id,
                         commentID: ele.comments[0]?.commentID._id,

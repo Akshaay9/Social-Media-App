@@ -14,7 +14,9 @@ import {
   likeUnlikePost,
   updateComments,
   addNewComment,
+  deletePostlocally,
 } from "../../features/Posts/PostSlice";
+import { toast } from "react-toastify";
 function IndividualPost() {
   const { id } = useParams();
   let location = useLocation();
@@ -136,7 +138,7 @@ function IndividualPost() {
                   )}
                 </div>
 
-                {individualPost[0]?.user._id === currentUser._id && (
+                {individualPost[0]?.user._id === currentUser.id && (
                   <>
                     {" "}
                     <i class="fas fa-ellipsis-h"> </i>
@@ -153,12 +155,15 @@ function IndividualPost() {
 
                       <li
                         onClick={() => {
+                          dispatch(deletePostlocally(id));
                           const dataToBeSent = {
                             id: id,
                             token: currentUser.token,
                           };
                           dispatch(deletePost(dataToBeSent));
-                          navigate("/");
+                          navigate(
+                            location?.state?.from ? location?.state?.from : "/"
+                          );
                         }}
                       >
                         Delete Post
@@ -226,7 +231,7 @@ function IndividualPost() {
                 </div>
               </div>
               <div className="add-comment individual-add-comment">
-                <Avatar alt="Remy Sharp" src={currentUser.profileImage} />
+                <Avatar alt="Remy Sharp" src={presentUser.profileImage} />
                 <form onSubmit={(e) => commentHandler(e)}>
                   <input
                     type="text"

@@ -18,12 +18,24 @@
   z-index: 2 !important;
 }
 .followUnfollowCard {
-  width: 30%;
+  padding: 1rem;
+  width: 20%;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: #242526;
+  border-radius: 0.5rem;
 }
-.followUnfollow-List {
+.followUnfollow-List h3 {
+  text-align: center;
+}
+.individual-followUnfollow-List {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  padding: 0.5rem 0rem;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #18191a;
 }

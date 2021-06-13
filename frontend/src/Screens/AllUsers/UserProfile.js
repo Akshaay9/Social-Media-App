@@ -29,6 +29,8 @@ function UserProfile({ ele, presentUser }) {
   `;
 
   const isFollowingTheUSer = (user) => {
+    console.log(user);
+
     const isFollowing = user?.followers?.some(
       (ele) => ele?.user?._id == presentUser?._id
     );

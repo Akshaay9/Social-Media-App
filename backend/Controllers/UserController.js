@@ -81,7 +81,11 @@ export const followUnfollow = async (req, res) => {
     );
     await currUser.save();
     await individualUser.save();
-    const allUsers = await Users.find({});
+    const allUsers = await Users.find({})
+      .select("-password")
+      .populate("notification.user", "_id name profileImage")
+      .populate("following.user", "_id name profileImage")
+      .populate("followers.user", "_id name profileImage");
     res.status(200).json(allUsers);
   } else {
     currUser.following.push({ user: individualUser._id });

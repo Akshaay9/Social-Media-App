@@ -44,12 +44,12 @@ function RecommenderUserList({ ele }) {
     }
   };
 
+  console.log(ele);
+
   return (
     <div className="">
       
-  
-     
-      {ele.user?._id != currentUser.id &&
+      {ele._id != currentUser.id &&
       !presentUser?.following?.some((user) => user?.user?._id == ele._id) ? (
         <div className="recommended-users-list">
           <Link to={`/user/${ele._id}`}>

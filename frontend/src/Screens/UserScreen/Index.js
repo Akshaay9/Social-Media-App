@@ -48,7 +48,7 @@ function Index() {
       {currentUser?._id === individualUser?._id && (
         <PostBar individualUserStyle={individualUserStyle} />
       )}
-      <div style={{ marginBottom: "8rem" }}>
+      <div style={{ marginBottom: "4.5rem" }}>
         {individualUserPost.length > 0 &&
           individualUserPost.map((ele) => <Post ele={ele} />)}
       </div>
@@ -62,10 +62,10 @@ function Index() {
         ))}
 
       {location.pathname.includes("following") && (
-        <FollowUnfollowList individualUser={individualUser} />
+        <FollowUnfollowList users={individualUser?.following} />
       )}
       {location.pathname.includes("followers") && (
-        <FollowUnfollowList individualUser={individualUser} />
+        <FollowUnfollowList users={individualUser?.followers} />
       )}
     </div>
   );

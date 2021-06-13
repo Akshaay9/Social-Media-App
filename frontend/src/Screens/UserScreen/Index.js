@@ -10,6 +10,7 @@ import { individualUsersPosts } from "../../features/Users/UserSlice";
 import Post from "../../Components/Posts/Post";
 import { getAllPosts } from "../../features/Posts/PostSlice";
 import FollowUnfollowList from "./FollowUnfollowList";
+import noPostSVG from "../../SVG/noPosts.svg"
 
 function Index() {
   const { id } = useParams();
@@ -49,8 +50,15 @@ function Index() {
         <PostBar individualUserStyle={individualUserStyle} />
       )}
       <div style={{ marginBottom: "4.5rem" }}>
-        {individualUserPost.length > 0 &&
-          individualUserPost.map((ele) => <Post ele={ele} />)}
+        {individualUserPost.length > 0?
+          individualUserPost.map((ele) => <Post ele={ele} />)
+          :
+       
+          <div className="svg noposts ">
+            <img src={noPostSVG} alt="" />
+            </div>
+        
+        }
       </div>
 
       {/* modal for individual post */}

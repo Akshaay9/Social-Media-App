@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import PulseLoader from "react-spinners/PulseLoader";
 import { css } from "@emotion/react";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(5),
   },
 }));
-function RecommenderUserList({ ele }) {
+function RecommenderUserList({ ele, loadUsers }) {
   const currentUser = useSelector((state) => state.currentUser.User);
   const { presentUser } = useSelector((state) => state.Users);
   const [loading, setLoading] = useState(false);
@@ -44,11 +45,11 @@ function RecommenderUserList({ ele }) {
     }
   };
 
-  console.log(ele);
+  console.log(loadUsers);
 
   return (
     <div className="">
-      
+ 
       {ele._id != currentUser.id &&
       !presentUser?.following?.some((user) => user?.user?._id == ele._id) ? (
         <div className="recommended-users-list">

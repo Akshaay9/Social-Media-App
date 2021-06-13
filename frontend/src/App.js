@@ -49,7 +49,7 @@ function App() {
       <NavBar />
       <ToastContainer
         position="top-right"
-        autoClose={5}
+        autoClose={500}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick

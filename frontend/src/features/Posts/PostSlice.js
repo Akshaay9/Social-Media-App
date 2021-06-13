@@ -114,7 +114,7 @@ export const likeUnlike = createAsyncThunk(
         config
       );
       console.log(data.data);
-      // return data.data;
+      return data.data;
     } catch (error) {
       console.log(error);
       console.log(error?.response);

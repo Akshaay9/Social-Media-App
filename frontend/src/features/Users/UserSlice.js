@@ -24,14 +24,25 @@ export const followUnfollowUser = createAsyncThunk(
         "auth-token": dataToBeSent.token,
       },
     };
+
+    if (dataToBeSent?.loader) {
+      dataToBeSent.loader(true);
+    }
+
     try {
       const data = await axios.post(
         `https://fitsharksm.herokuapp.com/api/user/followUnfollow/${dataToBeSent.id}`,
         null,
         config
       );
+      if (dataToBeSent?.loader) {
+        dataToBeSent.loader(false);
+      }
       return data.data;
     } catch (error) {
+      if (dataToBeSent?.loader) {
+        dataToBeSent.loader(false);
+      }
       console.log(error);
       console.log(error?.response);
       return rejectWithValue(error.response.data);
@@ -108,6 +119,7 @@ export const updateUserImage = createAsyncThunk(
         dataToBeSent.data,
         config
       );
+
       toast.success("image has been updated !", {});
       return data.data;
     } catch (error) {
@@ -127,9 +139,7 @@ export const userSlice = createSlice({
     addPresentUser: (state, { payload }) => {
       state.presentUser = state.Allusers?.find((ele) => ele._id == payload);
     },
-    followUnfollow: (state, { payload }) => {
-      
-    }
+    followUnfollow: (state, { payload }) => {},
   },
   extraReducers: {
     [getAllUsers.pending]: (state, action) => {

@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { individualUsersPosts } from "../../features/Users/UserSlice";
 import Post from "../../Components/Posts/Post";
 import { getAllPosts } from "../../features/Posts/PostSlice";
+import FollowUnfollowList from "./FollowUnfollowList";
 
 function Index() {
   const { id } = useParams();
@@ -59,6 +60,13 @@ function Index() {
         (location.pathname.includes("text") && (
           <IndividualPost postType={postType} />
         ))}
+
+      {location.pathname.includes("following") && (
+        <FollowUnfollowList individualUser={individualUser} />
+      )}
+      {location.pathname.includes("followers") && (
+        <FollowUnfollowList individualUser={individualUser} />
+      )}
     </div>
   );
 }

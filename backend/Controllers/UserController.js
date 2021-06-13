@@ -53,7 +53,10 @@ export const getAllUser = async (req, res) => {
   const allUsers = await Users.find({})
     .sort({ created_at: -1 })
     .select("-password")
-    .populate("notification.user", "_id name profileImage");
+    .populate("notification.user", "_id name profileImage")
+    .populate("following.user", "_id name profileImage")
+    .populate("followers.user", "_id name profileImage");
+
   res.status(200).json(allUsers);
 };
 

@@ -63,6 +63,8 @@ function App() {
         <PrivateRoute path="/text/:id" element={<HomeScreen />} />
         <PrivateRoute path="/image/:id" element={<HomeScreen />} />
         <PrivateRoute path="/user/:id" element={<IndividualUser />} />
+        <PrivateRoute path="/user/:id/following" element={<IndividualUser />} />
+        <PrivateRoute path="/user/:id/followers" element={<IndividualUser />} />
         <PrivateRoute path="/user/all" element={<AllUsers />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/landing/login" element={<LandingPage />} />

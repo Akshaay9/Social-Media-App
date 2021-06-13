@@ -11,6 +11,8 @@ body {
 a {
   color: white !important;
   text-decoration: none !important;
+  padding: 0rem !important;
+  margin: 0% !important;
 }
 i,
 button {
@@ -21,17 +23,16 @@ button {
   border: 1px solid red;
 }
 button:disabled,
-button[disabled]{
+button[disabled] {
   cursor: not-allowed;
 }
 
-.blue{
-  color:blue
+.blue {
+  color: blue;
 }
 
 @media screen and (max-width: 43.25rem) {
   * {
     -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   }
-
 }

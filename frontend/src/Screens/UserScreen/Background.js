@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { uploadImage } from "../../Utils/UploadImage";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -155,7 +156,6 @@ function Background({ individualUser, individualUserPost }) {
                   handleClick("profile");
                 }}
               ></i>
-      
             )}
           </div>
           <div className="desktop-hide">
@@ -199,8 +199,13 @@ function Background({ individualUser, individualUserPost }) {
           )}
           <div className="user-meta-data">
             <h4>{individualUserPost?.length} Post</h4>
-            <p>{individualUser?.following?.length} following</p>
-            <p>{individualUser?.followers?.length} followers</p>
+            <Link to={`/user/${individualUser?._id}/following`}>
+              {" "}
+              <p>{individualUser?.following?.length} following</p>
+            </Link>{" "}
+            <Link to={`/user/${individualUser?._id}/followers`}>
+              <p>{individualUser?.followers?.length} followers</p>
+            </Link>{" "}
           </div>
         </div>
 
@@ -215,9 +220,7 @@ function Background({ individualUser, individualUserPost }) {
             }}
           >
             <i class="fas fa-camera user-bg-camera"></i>
-            <p>
-             Edit cover image
-            </p>
+            <p>Edit cover image</p>
           </div>
         )}
       </div>

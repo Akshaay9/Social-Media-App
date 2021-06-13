@@ -1,5 +1,5 @@
 .notification-container {
-  position: absolute;
+  position: fixed;
   width: 25% !important;
   top: 8.5%;
   right: 13%;
@@ -9,6 +9,8 @@
   border-radius: 0.5rem !important;
   padding: 0.5rem 0.5rem;
   cursor: pointer;
+  max-height: 20rem;
+  overflow-y: scroll;
 }
 .notification-container > h4 {
   display: inline-block;

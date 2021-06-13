@@ -13,16 +13,16 @@ const useStyles = makeStyles((theme) => ({
   large: {
     width: theme.spacing(6),
     height: theme.spacing(6),
-  },    
-}));  
+  },
+}));
 function Notification({ ele }) {
-  console.log(ele)
+  console.log(ele);
   const classes = useStyles();
   const currentUser = useSelector((state) => state.currentUser.User);
   return (
     <div>
       <div
-        className="individual-notification"
+        className="individual-notification" id="style-7"
         style={ele?.viewed == false ? { backgroundColor: "#24252638" } : {}}
       >
         <Link to={`/user/${ele.user?._id}`}>

@@ -108,7 +108,7 @@ function Background({ individualUser, individualUserPost }) {
 
   const isFollowingTheUSer = () => {
     const isFollowing = individualUser?.followers?.some(
-      (ele) => ele?.user == currentUser._id
+      (ele) => ele?.user._id == currentUser.id
     );
 
     if (isFollowing == true) {

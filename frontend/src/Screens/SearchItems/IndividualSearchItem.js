@@ -30,7 +30,7 @@ function IndividualSearchItem({ ele }) {
   `;
   const isFollowingTheUSer = (user) => {
     const isFollowing = user?.followers?.some(
-      (ele) => ele?.user == presentUser._id
+      (ele) => ele?.user?._id == presentUser._id
     );
 
     if (loading == true) {
@@ -41,6 +41,8 @@ function IndividualSearchItem({ ele }) {
       return "follow";
     }
   };
+
+  console.log(ele);
   return (
     <div className="search-userlist-container ">
       {ele._id != currentUser?.id && (

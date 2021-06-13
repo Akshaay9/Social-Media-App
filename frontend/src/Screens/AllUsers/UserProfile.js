@@ -30,7 +30,7 @@ function UserProfile({ ele, presentUser }) {
 
   const isFollowingTheUSer = (user) => {
     const isFollowing = user?.followers?.some(
-      (ele) => ele?.user == presentUser?._id
+      (ele) => ele?.user?._id == presentUser?._id
     );
     if (loading == true) {
       return <PulseLoader color="white" css={override} size={10} />;

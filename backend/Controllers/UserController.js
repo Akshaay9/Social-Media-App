@@ -96,7 +96,9 @@ export const followUnfollow = async (req, res) => {
     await individualUser.save();
     const allUsers = await Users.find({})
       .select("-password")
-      .populate("notification.user", "_id name profileImage");
+      .populate("notification.user", "_id name profileImage")
+      .populate("following.user", "_id name profileImage")
+      .populate("followers.user", "_id name profileImage");
     res.status(200).json(allUsers);
   }
 };
@@ -119,7 +121,9 @@ export const clearAllNotification = async (req, res) => {
   await presentUser.save();
   const allUsers = await Users.find({})
     .select("-password")
-    .populate("notification.user", "_id name profileImage");
+    .populate("notification.user", "_id name profileImage")
+    .populate("following.user", "_id name profileImage")
+    .populate("followers.user", "_id name profileImage");
   res.status(200).json(allUsers);
 };
 
@@ -131,6 +135,8 @@ export const updateUserImage = async (req, res) => {
   await presentUser.save();
   const allUsers = await Users.find({})
     .select("-password")
-    .populate("notification.user", "_id name profileImage");
+    .populate("notification.user", "_id name profileImage")
+    .populate("following.user", "_id name profileImage")
+    .populate("followers.user", "_id name profileImage");
   res.status(200).json(allUsers);
 };

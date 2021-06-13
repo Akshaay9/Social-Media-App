@@ -17,12 +17,13 @@ function Post({ ele }) {
   return (
     <div className="postData">
       <div className="postData-top">
-        <Link to={`/user/${ele.user._id}`}>
+        <Link to={`/user/${ele?.user?._id}`}>
           {" "}
           <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />{" "}
         </Link>
         <div className="postData-top-details">
-          <Link to={`/user/${ele.user._id}`}>
+          {console.log(ele)}
+          <Link to={`/user/${ele?.user?._id}`}>
             <div className="postData-top-metData" style={{ display: "flex" }}>
               <h3>{ele.user?.name}</h3>
               {ele?.feeling && (

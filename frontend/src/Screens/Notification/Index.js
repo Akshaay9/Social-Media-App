@@ -4,17 +4,14 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { markNotificationRead } from "../../features/Users/UserSlice";
 function Index({ presentUser, notifcationLength }) {
-
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser.User);
 
   // markNotificationRead
 
-  
-
   return (
     <div>
-      <div className="notification-container">
+      <div className="notification-container " id="style-7">
         {notifcationLength != 0 && (
           <h4
             onClick={() => {

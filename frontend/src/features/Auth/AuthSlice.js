@@ -35,7 +35,7 @@ export const signUp = createAsyncThunk(
     toast.info("Signing in... !");
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/signup`,
+        `http://localhost:5000/api/user/signup`,
         dataToBeSent
       );
       localStorage.setItem("user", JSON.stringify(data.data));

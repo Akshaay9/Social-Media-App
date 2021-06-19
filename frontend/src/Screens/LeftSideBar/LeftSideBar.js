@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import SettingPanel from "../SettingsPanel/SettingPanel";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../../features/Auth/AuthSlice";
+import { toast } from "react-toastify";
 function LeftSideBar({ individualUserStyle }) {
   const [panel, setPanel] = useState({
     show: false,
@@ -9,6 +11,8 @@ function LeftSideBar({ individualUserStyle }) {
   });
 
   const { presentUser } = useSelector((state) => state.Users);
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
   return (
     <>
       <div
@@ -56,10 +60,19 @@ function LeftSideBar({ individualUserStyle }) {
             <i class="fas fa-cog"></i>
             Setings
           </li>
-          <li>
-            <i class="fas fa-sign-out-alt"></i>
-            Log-Out
-          </li>
+
+          <Link to="/user/all">
+            <li
+              onClick={() => {
+                dispatch(logOut());
+                toast.error(`user has been logged out`);
+                navigate("/landing");
+              }}
+            >
+              <i class="fas fa-sign-out-alt"></i>
+              Log-Out
+            </li>
+          </Link>
         </ul>
       </div>
 

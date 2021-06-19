@@ -22,7 +22,7 @@ function Notification({ ele }) {
   return (
     <div>
       <div
-        className="individual-notification" id="style-7"
+        className="individual-notification " id="style-7"
         style={ele?.viewed == false ? { backgroundColor: "#24252638" } : {}}
       >
         <Link to={`/user/${ele.user?._id}`}>

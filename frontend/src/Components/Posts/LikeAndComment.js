@@ -96,28 +96,25 @@ function LikeAndComment({ ele }) {
           <i class="fas fa-comments"></i>
           <span>{ele.comments?.length}</span>
         </div>
-        <div className="likeAndComment-share">
-          <i class="fas fa-share-square"></i>
-        </div>
       </div>
 
       <div className="comments-list">
         {ele?.comments?.length > 0 && (
           <div className="comments">
-            <Link to={`/user/${ele.comments[0]?.user._id}`}>
+            <Link to={`/user/${ele.comments[0]?.user?._id}`}>
               <Avatar
                 alt="Remy Sharp"
-                src={ele.comments[0]?.user.profileImage}
+                src={ele.comments[0]?.user?.profileImage}
               />
             </Link>
             <div className="comment">
-              <Link to={`/user/${ele.comments[0]?.user._id}`}>
+              <Link to={`/user/${ele.comments[0]?.user?._id}`}>
                 {" "}
-                <h4>{ele.comments[0]?.user.name}</h4>
+                <h4>{ele.comments[0]?.user?.name}</h4>
               </Link>
               <p>{ele.comments[0]?.commentID?.comment}</p>
             </div>
-            {ele.comments[0].user._id === currentUser.id && (
+            {ele.comments[0]?.user?._id === currentUser.id && (
               <>
                 {" "}
                 <i class="fas fa-ellipsis-h comment-i"> </i>

@@ -56,9 +56,11 @@ function Nav() {
             />
           </div>
           <div class="nav_name mobile-hide">
-            <h2>
-              Gym. <span>Sharkk</span>{" "}
-            </h2>
+            <Link to="/">
+              <h2>
+                Gym. <span>Sharkk</span>{" "}
+              </h2>
+            </Link>
           </div>
         </div>
 

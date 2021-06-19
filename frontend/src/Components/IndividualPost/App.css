@@ -22,7 +22,7 @@
 }
 .individual-text-post {
   /* border: 1px solid red; */
-  width: 50%;
+  width: 55%;
   display: flex;
   /* padding: 1rem; */
   background-color: #242526;
@@ -118,31 +118,63 @@
   border-left: 1px solid #2d88ff;
   display: block;
 }
+.comments-list ul li:active,
+.individual-post-comment .comments-list ul li:active,
+.postData-top ul li:active,
+.individual-post-right ul li:active {
+  border-left: 1px solid #2d88ff;
+  display: block;
+}
 /*  */
 .individual-post-right i:hover + ul {
+  display: block;
+}
+.individual-post-right i:active + ul {
   display: block;
 }
 .individual-post-comment .comments-list i:hover + ul {
   display: block;
 }
+.individual-post-comment .comments-list i:active + ul {
+  display: block;
+}
 .postData-top i:hover + ul {
+  display: block;
+}
+.postData-top i:active + ul {
   display: block;
 }
 .comments-list,
 i:hover + ul {
   display: block;
 }
+.comments-list,
+i:active + ul {
+  display: block;
+}
 /*  */
 .individual-post-right ul:hover {
+  display: block;
+}
+.individual-post-right ul:active {
   display: block;
 }
 .individual-post-comment .comments-list ul:hover {
   display: block;
 }
+.individual-post-comment .comments-list ul:active {
+  display: block;
+}
 .postData-top ul:hover {
   display: block;
 }
+.postData-top ul:active {
+  display: block;
+}
 .comments-list ul:hover {
+  display: block;
+}
+.comments-list ul:active {
   display: block;
 }
 /*  */

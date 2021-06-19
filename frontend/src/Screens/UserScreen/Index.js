@@ -46,7 +46,7 @@ function Index() {
         individualUserPost={individualUserPost}
       />
       <LeftSideBar individualUserStyle={individualUserStyle} />
-      {currentUser?._id === individualUser?._id && (
+      {currentUser?.id === individualUser?._id && (
         <PostBar individualUserStyle={individualUserStyle} />
       )}
       <div style={{ marginBottom: "4.5rem" }}>

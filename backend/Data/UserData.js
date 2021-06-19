@@ -3,9 +3,7 @@ export const UsersList = [
   {
     name: "Akshay",
     email: "akshay@gmail.com",
-    profileImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG177oWFbN12HyxznR6dOQcHiKd0asrrLiXA&usqp=CAU",
-    backgroundImage: "https://wallpapercave.com/wp/wp1967189.jpg",
+    profileImage: "https://avatars.githubusercontent.com/u/72427030?v=4",
     password: bcrypt.hashSync("Akshay98#", 10),
   },
   {

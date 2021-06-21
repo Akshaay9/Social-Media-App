@@ -1,14 +1,26 @@
 import React, { useEffect } from "react";
 import "./LandingPage.css";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import axios from "axios";
+import { loginUser } from "../../features/Auth/AuthSlice";
 function LandingPage() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { state } = useLocation();
 
- 
+  const {
+    User: { token },
+  } = useSelector((state) => state.currentUser);
+
+  useEffect(() => {
+    if (token) {
+      navigate(state?.from ? state.from : "/");
+    }
+  }, []);
+
   return (
     <>
       {location.pathname.includes("login") && <Login />}

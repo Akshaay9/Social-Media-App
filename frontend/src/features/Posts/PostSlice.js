@@ -291,9 +291,9 @@ export const postSlice = createSlice({
     },
     [likeUnlike.fulfilled]: (state, { payload }) => {
       state.status = "success";
-      state.posts = state.posts.map((ele) =>
-        ele._id === payload._id ? payload : ele
-      );
+      // state.posts = state.posts.map((ele) =>
+      //   ele._id === payload._id ? payload : ele
+      // );
     },
     [likeUnlike.rejected]: (state, { payload }) => {
       state.status = "success";

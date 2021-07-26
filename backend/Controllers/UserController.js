@@ -20,7 +20,7 @@ export const userRegistraion = async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   newUser.password = await bcrypt.hash(password, salt);
   const newNotification = {
-    user: "60cd938a766957007cb89536",
+    user: "60fe23d7825d97186c4f3807",
     text: "Welcome's you to Fit.Shark",
   };
   newUser.notification.push(newNotification);

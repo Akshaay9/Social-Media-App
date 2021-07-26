@@ -6,6 +6,7 @@ import { Avatar, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PulseLoader from "react-spinners/PulseLoader";
 import { css } from "@emotion/react";
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -47,17 +48,19 @@ function IndividualSearchItem({ ele }) {
     <div className="search-userlist-container ">
       {ele._id != currentUser?.id && (
         <div className="user-lists  search-userlist">
-          <div className="left">
-            <Avatar
-              alt="Remy Sharp"
-              src={
-                ele?.profileImage ||
-                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM8-ixw2ZnQsPJj5GUxaRhyam0tbduUsbWJw&usqp=CAU"
-              }
-              className={classes.large}
-            />
-            <h4>{ele?.name}</h4>
-          </div>
+          <Link to={`/user/${ele._id}`}>
+            <div className="left">
+              <Avatar
+                alt="Remy Sharp"
+                src={
+                  ele?.profileImage ||
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRM8-ixw2ZnQsPJj5GUxaRhyam0tbduUsbWJw&usqp=CAU"
+                }
+                className={classes.large}
+              />
+              <h4>{ele?.name}</h4>
+            </div>
+          </Link>
 
           <div className="right">
             <Button

@@ -66,6 +66,15 @@ function Login() {
       navigate("/landing");
     }
   };
+
+  const guestUser = () => {
+    const dataTobeSent = {
+      email: "test@gmail.com",
+      password: "Test98#",
+    };
+    dispatch(loginUser(dataTobeSent));
+  };
+
   return (
     <div>
       <div
@@ -142,6 +151,7 @@ function Login() {
                 {loader ? <i class="fas fa-spinner fa-spin"></i> : "log In"}
               </button>
             </form>
+            <button onClick={()=>guestUser()}>Login as Guest</button>
           </div>
         </div>
       </div>

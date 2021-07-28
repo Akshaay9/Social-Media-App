@@ -84,6 +84,7 @@ function SignUp() {
     const dataTobeSent = {
       email: "test@gmail.com",
       password: "Test98#",
+      loader: setLoader,
     };
     dispatch(loginUser(dataTobeSent));
   };
@@ -193,11 +194,16 @@ function SignUp() {
               >
                 I agree with Terms and conditions
               </label>
-              <button disabled={loader}>
-                {loader ? <i class="fas fa-spinner fa-spin"></i> : "sign up"}
-              </button>
+              <button disabled={loader}>sign up</button>
             </form>
-            <button onClick={()=>guestUser()}>Login as Guest</button>
+            <button disabled={loader} onClick={() => guestUser()}>
+              {" "}
+              {loader ? (
+                <i class="fas fa-spinner fa-spin"></i>
+              ) : (
+                "log In as Guest user"
+              )}
+            </button>
           </div>
         </div>
       </div>

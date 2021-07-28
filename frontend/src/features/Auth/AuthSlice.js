@@ -14,6 +14,10 @@ export const loginUser = createAsyncThunk(
   "user/login",
   async (dataToBeSent, { rejectWithValue }) => {
     toast.info("logging in... !");
+    if (dataToBeSent?.loader) {
+      dataToBeSent.loader(true);
+    }
+
     try {
       const data = await axios.post(
         `https://fitsharksm.herokuapp.com/api/user/login`,
@@ -21,8 +25,14 @@ export const loginUser = createAsyncThunk(
       );
       localStorage.setItem("user", JSON.stringify(data.data));
       toast.success("User has been logged in !", {});
+      if (dataToBeSent?.loader) {
+        dataToBeSent.loader(false);
+      }
       return data.data;
     } catch (error) {
+      if (dataToBeSent?.loader) {
+        dataToBeSent.loader(false);
+      }
       console.log(error?.response?.data?.error);
       toast.error(`${error?.response?.data?.error}`);
       return rejectWithValue(error?.response?.data?.error);

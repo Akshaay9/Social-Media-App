@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&display=swap");
+.postData-text-card {
+  margin-top: 1rem;
+}
+.postData-text-card p {
+  border: 1px solid #18191a;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  word-spacing: .16rem;
+  font-family: 'Noto Sans JP', sans-serif;
+}

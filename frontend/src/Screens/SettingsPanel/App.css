@@ -1,0 +1,48 @@
+.setting-panel {
+  position: fixed;
+  background-color: #242526;
+  cursor: pointer;
+  z-index: 2 !important;
+}
+.top-right {
+  right: 2%;
+  top: 9.2%;
+}
+.bottom-left {
+  left: 21.5%;
+  top: 61.2%;
+}
+.seeting-panel-top {
+  display: flex;
+  padding: 1rem 3rem;
+  border-bottom: 1px solid #18191a;
+  border-left: 2px solid #242526;
+}
+.seeting-panel-top:hover {
+  border-left: 2px solid #2d88ff;
+}
+.seeting-panel-top-user-details {
+  padding-left: 1rem;
+}
+.seeting-panel-top-user-details p {
+  padding-top: 0.2rem;
+  font-size: 0.8rem;
+}
+.setting-panel ul li {
+  padding: 0.5rem 3rem;
+  font-size: 1.1rem;
+  border-left: 2px solid #242526;
+}
+.setting-panel ul li:hover {
+  border-left: 2px solid #2d88ff;
+  color: #2d88ff;
+}
+.setting-panel ul li i {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 43.25rem) {
+  .top-right {
+  border:1px solid #3a3b3c
+  }
+}

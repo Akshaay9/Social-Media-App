@@ -1,0 +1,15 @@
+.bottom-nav{
+    position: fixed;
+    bottom: 0%;
+    background-color: #3a3b3c;
+    width: 100%;
+   
+}
+.nav-container{
+    height: 2.5rem;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+    font-size: 1.2rem;
+}

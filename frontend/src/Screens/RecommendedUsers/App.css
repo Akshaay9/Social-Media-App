@@ -1,0 +1,36 @@
+.recommended-user-container {
+  position: fixed;
+  right: 4%;
+  top: 15%;
+  width: 23%;
+}
+.recommended-user-container > h4 {
+  background-color: #242526;
+  padding: 1rem 1.3rem;
+  border-radius: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+.recommended-users {
+  background-color: #242526;
+  background-color: #242526;
+  padding: 0.3rem 0.8rem;
+  border-radius: 0.3rem;
+}
+.recommended-users-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.3rem;
+  padding: 0.6rem 0rem;
+  border-bottom: 1px solid #18191a;
+}
+
+@media screen and (max-width: 73.25rem) {
+  * {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  }
+
+  .recommended-user-container {
+    display: none !important;
+  }
+}

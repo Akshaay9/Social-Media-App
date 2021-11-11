@@ -1,0 +1,27 @@
+export const feelingActiviy = [
+    {
+      id:1,
+      text:"Happy",
+      emoji:"😁"
+    },
+    {
+      id:2,
+      text:"Sad",
+      emoji:"😔"
+    },
+    {
+      id:1,
+      text:"Excited",
+      emoji:"😱"
+    },
+    {
+      id:1,
+      text:"Chill",
+      emoji:"😎"
+    },
+    {
+      id:1,
+      text:"Loved",
+      emoji:"😍"
+    },
+  ]

@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap");
+.postData-image-card {
+  padding: 1rem;
+}
+.postData-image-card p {
+    font-family: 'Noto Sans JP', sans-serif;
+}
+.postData-image-card-image {
+  padding: 1rem 0rem 0rem 1rem;
+}
+.postData-image-card img {
+  width: 80%;
+  object-fit: contain;
+  display: block;
+  margin: auto;
+  border-radius: 0.7rem;
+}

@@ -1,0 +1,187 @@
+.login-sign-container {
+  width: 100%;
+  height: 120vh;
+  position: absolute;
+  position: fixed;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 2 !important;
+}
+.logn-container {
+  width: 38%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 1rem;
+  color: black !important;
+  cursor: pointer;
+}
+.signupcontainer{
+      width: 30%;
+}
+
+/* login signup */
+/* login card right */
+.login-card-right h1 {
+  width: 100%;
+  font-size: 1.5rem;
+  text-align: center;
+  padding-top: 0.3rem;
+  padding-left: 1.5rem;
+  /* width: 80%; */
+  font-family: var(--font-sans-serif);
+  line-height: 2.3rem;
+  margin: 0 0 0.1rem;
+  padding-right: 0;
+  color: black;
+}
+.login-card-right p {
+  text-align: center;
+  color: #777b80;
+  font-size: 14px;
+  padding-top: 0rem;
+  padding-left: 1.5rem;
+  line-height: 1.5rem;
+}
+.mini-info-login {
+  text-align: center;
+  color: #777b80;
+  font-size: 14px;
+  display: block;
+  line-height: 1.5rem;
+}
+.login-card-right form {
+  padding: 1rem 1rem 0rem 1rem;
+}
+
+.login-card-right {
+  padding-top: 0.9rem;
+  padding-bottom: 0.5rem;
+}
+.login-card-right form .form-top input {
+  padding: 0.4rem 0.3rem;
+  margin-left: 1rem;
+  margin-top: 0.5rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  border: 1px solid var(--line-color);
+  margin-left: 2.5rem;
+}
+.sign-up-form-top input{
+   margin-left: 2.5rem;
+      border: 1px solid red;
+}
+.login-input{
+    width: 100%;
+    margin-left: -1.5rem;
+}
+
+.sign-up-form-top input {
+  width: 90%;
+}
+.login-card-right form .form-mid input {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  width: 93%;
+  border-radius: 5px;
+  padding: 0.5rem 0.3rem;
+  outline: none;
+  border: none;
+  border: 1px solid var(--line-color);
+}
+.login-card-right form input[type="checkbox"] {
+  margin-left: 25%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 0.5rem;
+}
+.login-card-right button {
+  display: block;
+  margin-left: 1.2rem;
+  margin-top: 0.5rem;
+  width: 90%;
+  color: white;
+  background-color: #2d88ff;
+  border: none;
+  outline: none;
+  padding: .8rem 0rem;
+  border-radius: 7px;
+  cursor: pointer;
+  border: 1px solid #2d88ff;
+  font-weight: bold;
+}
+.login-card-right button:hover {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+}
+/* login validation */
+form input:optional {
+  border-color: gray;
+}
+
+input:required:valid {
+  border: 1px solid green !important;
+}
+
+input:required:focus:valid {
+  background: url("https://www.flaticon.com/svg/vstatic/svg/845/845646.svg?token=exp=1618463396~hmac=aa4060e40e24a633ace3236a6f966a0e")
+    no-repeat 95% 50%;
+  border-color: green !important;
+  background-size: 25px;
+}
+
+input:focus:invalid {
+  background: url("https://www.flaticon.com/svg/vstatic/svg/1828/1828843.svg?token=exp=1618463445~hmac=13132351f29c82dd61cd177844221aac")
+    no-repeat 95% 50%;
+  border: 1px solid red !important;
+  border: 1px solid red !important;
+  background-size: 25px;
+}
+/* custom error handler */
+/* error handlers */
+.error-div-input {
+  /* border: 1px solid var(--line-color); */
+  width: 90%;
+  /* margin:auto; */
+  display: flex;
+  justify-content: space-around;
+  padding-top: 0.3rem;
+}
+.error-handler-input {
+  font-size: 13px;
+}
+.error {
+  color: red !important;
+}
+.sucess {
+  color: green !important;
+}
+.fa-exclamation-circle,
+.fa-check-circle {
+  margin-left: 0.5rem;
+}
+.password-error {
+  width: 70%;
+  margin: auto;
+  /* border:1px solid var(--line-color); */
+  text-align: center;
+}
+@media screen and (max-width: 800px) {
+    .logn-container {
+        width: 95%;
+        top: 40%;
+      }
+      .signupcontainer{
+        top: 40%;
+  }
+}

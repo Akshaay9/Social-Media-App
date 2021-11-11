@@ -1,0 +1,39 @@
+.search-container{
+    position: fixed;
+    width:30% !important;
+    top: 8%;
+    right:18.5%;
+    border: 1px solid #18191a;
+    z-index: 3 !important;
+    
+}
+.not-found{
+    padding: 1rem 1rem;
+}
+.search-userlist-container,.search-userlist{
+    width:100% !important;
+    margin:auto !important;
+    background-color: #3a3b3c !important;
+    border-radius: .5rem !important;
+    
+}
+.search-userlist{
+    width:100% !important;
+    margin:auto !important;
+}
+
+.search-container h4{
+    padding-left: 1rem;
+}
+
+@media screen and (max-width: 43.25rem) {
+    .search-container{
+        position: absolute;
+        width:95% !important;
+        top: 9.5%;
+        right:2.2%;
+        border: 1px solid #18191a;
+        z-index: 3 !important;
+        
+    }
+}

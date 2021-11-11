@@ -1,0 +1,37 @@
+.heading {
+  width: 50%;
+  margin: auto;
+  /* border: 1px solid red; */
+  margin-top: 6rem;
+  background-color: #242526;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.user-lists {
+  width: 50%;
+  margin: auto;
+  /* border: 1px solid red; */
+  margin-top: 6rem;
+  background-color: #242526;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-lists .left {
+  display: flex;
+  align-items: center;
+}
+.user-lists .left h2 {
+  align-items: center;
+  margin-left: 2rem;
+}
+@media screen and (max-width: 43.25rem) {
+  .heading ,.user-lists {
+    width: 95%;
+  }
+}

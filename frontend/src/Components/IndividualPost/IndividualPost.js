@@ -17,6 +17,7 @@ import {
   deletePostlocally,
 } from "../../features/Posts/PostSlice";
 import { toast } from "react-toastify";
+import { BE_URL } from "../../const";
 function IndividualPost() {
   const { id } = useParams();
   let location = useLocation();
@@ -48,8 +49,8 @@ function IndividualPost() {
     const dataToBeSent = {
       token: currentUser.token,
       URL: updateComment
-        ? `https://fitsharksm.herokuapp.com/api/user/comment/update/${id}/${commentID}`
-        : `https://fitsharksm.herokuapp.com/api/user/comment/${id}`,
+        ? `${BE_URL}/api/user/comment/update/${id}/${commentID}`
+        : `${BE_URL}/api/user/comment/${id}`,
       comment: comment,
     };
     updateComment

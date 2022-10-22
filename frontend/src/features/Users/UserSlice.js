@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {BE_URL} from "../../const"
 
 const initialState = {
   Allusers: [],
@@ -10,7 +11,7 @@ const initialState = {
 };
 
 export const getAllUsers = createAsyncThunk("users/all", async () => {
-  const data = await axios.get(`https://fitsharksm.herokuapp.com/api/user`);
+  const data = await axios.get(`${BE_URL}/api/user`);
   return data.data;
 });
 
@@ -31,7 +32,7 @@ export const followUnfollowUser = createAsyncThunk(
 
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/followUnfollow/${dataToBeSent.id}`,
+        `${BE_URL}/api/user/followUnfollow/${dataToBeSent.id}`,
         null,
         config
       );
@@ -62,7 +63,7 @@ export const individualUsersPosts = createAsyncThunk(
     };
     try {
       const data = await axios.get(
-        `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
+        `${BE_URL}/api/user/post/${dataToBeSent.id}`,
         config
       );
 
@@ -87,7 +88,7 @@ export const markNotificationRead = createAsyncThunk(
     };
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/clearnotification`,
+        `${BE_URL}/api/user/clearnotification`,
         null,
         config
       );
@@ -115,7 +116,7 @@ export const updateUserImage = createAsyncThunk(
     toast.info("updating image !");
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/update`,
+        `${BE_URL}/api/user/update`,
         dataToBeSent.data,
         config
       );

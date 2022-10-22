@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {BE_URL} from "../../const"
 const initialState = {
   loginStatus: "idle",
   signupStatus: "idle",
@@ -19,10 +20,7 @@ export const loginUser = createAsyncThunk(
     }
 
     try {
-      const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/login`,
-        dataToBeSent
-      );
+      const data = await axios.post(`${BE_URL}/api/user/login`, dataToBeSent);
       localStorage.setItem("user", JSON.stringify(data.data));
       toast.success("User has been logged in !", {});
       if (dataToBeSent?.loader) {
@@ -44,10 +42,7 @@ export const signUp = createAsyncThunk(
   async (dataToBeSent, { rejectWithValue }) => {
     toast.info("Signing in... !");
     try {
-      const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/signup`,
-        dataToBeSent
-      );
+      const data = await axios.post(`${BE_URL}/api/user/signup`, dataToBeSent);
       localStorage.setItem("user", JSON.stringify(data.data));
       toast.success("User has been signed in !", {});
       return data.data;

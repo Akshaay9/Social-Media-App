@@ -14,6 +14,7 @@ import {
   updateComments,
   deleteCommentlocally,
 } from "../../features/Posts/PostSlice";
+import { BE_URL } from "../../const";
 function LikeAndComment({ ele }) {
   const dispatch = useDispatch();
   let location = useLocation();
@@ -34,8 +35,8 @@ function LikeAndComment({ ele }) {
     const dataToBeSent = {
       token: currentUser.token,
       URL: updateComment
-        ? `https://fitsharksm.herokuapp.com/api/user/comment/update/${ele._id}/${ele.comments[0]?.commentID._id}`
-        : `https://fitsharksm.herokuapp.com/api/user/comment/${ele._id}`,
+        ? `${BE_URL}/api/user/comment/update/${ele._id}/${ele.comments[0]?.commentID._id}`
+        : `${BE_URL}/api/user/comment/${ele._id}`,
       comment: comment,
     };
 

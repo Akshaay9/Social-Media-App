@@ -15,6 +15,7 @@ import PrivateRoute from "./PrivateRoute";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import {BE_URL} from "./const"
 
 function App() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get(`https://fitsharksm.herokuapp.com/`);
+      await axios.get(`${BE_URL}/`);
     })();
   }, []);
 

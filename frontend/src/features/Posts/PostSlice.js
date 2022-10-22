@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
+import { BE_URL } from "../../const";
 
 const initialState = {
   posts: [],
@@ -11,9 +12,7 @@ const initialState = {
 
 // get all posts
 export const getAllPosts = createAsyncThunk("posts/all", async () => {
-  const data = await axios.get(
-    `https://fitsharksm.herokuapp.com/api/user/post`
-  );
+  const data = await axios.get(`${BE_URL}/api/user/post`);
 
   return data.data;
 });
@@ -31,7 +30,7 @@ export const uploadPoast = createAsyncThunk(
     toast.info("uploading new poast !");
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/post`,
+        `${BE_URL}/api/user/post`,
         dataToBeSent.data,
         config
       );
@@ -56,7 +55,7 @@ export const upDatePoast = createAsyncThunk(
     toast.info("updating  poast !");
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
+        `${BE_URL}/api/user/post/${dataToBeSent.id}`,
         dataToBeSent.data,
         config
       );
@@ -83,7 +82,7 @@ export const deletePost = createAsyncThunk(
 
     try {
       const data = await axios.delete(
-        `https://fitsharksm.herokuapp.com/api/user/post/${dataToBeSent.id}`,
+        `${BE_URL}/api/user/post/${dataToBeSent.id}`,
         config
       );
       // toast.error("poast has been deleted !", {});
@@ -109,7 +108,7 @@ export const likeUnlike = createAsyncThunk(
     };
     try {
       const data = await axios.post(
-        `https://fitsharksm.herokuapp.com/api/user/like/${dataToBeSent.id}`,
+        `${BE_URL}/api/user/like/${dataToBeSent.id}`,
         null,
         config
       );
@@ -162,7 +161,7 @@ export const deleteComment = createAsyncThunk(
 
     try {
       const data = await axios.delete(
-        `https://fitsharksm.herokuapp.com/api/user/comment/${dataToBeSent.PostID}/${dataToBeSent.commentID}`,
+        `${BE_URL}/api/user/comment/${dataToBeSent.PostID}/${dataToBeSent.commentID}`,
         config
       );
       toast.error("comment has been deleted !", {});

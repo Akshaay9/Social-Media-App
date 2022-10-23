@@ -16,7 +16,7 @@ function Index() {
   const { id } = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
-  let postType = location.pathname.split("/")[2];
+  let postType = location.pathname.split?.("/")?.[2];
   const individualUserStyle = "individualUserStyle";
   const allUsers = useSelector((state) => state.Users.Allusers);
   const individualUserPost = useSelector(

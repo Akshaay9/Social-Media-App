@@ -10,7 +10,7 @@ import RecommendedUsers from "../RecommendedUsers/Index";
 function Index() {
   const { id } = useParams();
   const location = useLocation();
-  let postType = location.pathname.split("/")[2];
+  let postType = location?.pathname?.split?.("/")?.[2];
 
   return (
     <div>

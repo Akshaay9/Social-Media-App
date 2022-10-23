@@ -36,7 +36,7 @@ function Notification({ ele }) {
           <h3>{ele?.user?.name}</h3>
         </Link>
 
-        {ele?.text?.split(" ").includes("post") ? (
+        {ele?.text?.split?.(" ").includes("post") ? (
           <p>{ele?.text}</p>
         ) : (
           <p>{ele?.text}</p>

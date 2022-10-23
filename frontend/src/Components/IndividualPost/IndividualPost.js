@@ -133,8 +133,8 @@ function IndividualPost() {
 
                   {individualPost[0].feeling && (
                     <p style={{ marginLeft: ".5rem" }}>
-                      is {individualPost[0].feeling.split(" ")[0]} feeling
-                      &nbsp;{individualPost[0].feeling.split(" ")[1]}{" "}
+                      is {individualPost?.[0]?.feeling?.split(" ")?.[0]} feeling
+                      &nbsp;{individualPost?.[0]?.feeling?.split?.(" ")[1]}{" "}
                     </p>
                   )}
                 </div>

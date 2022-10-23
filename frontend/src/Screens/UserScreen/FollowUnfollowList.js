@@ -10,7 +10,7 @@ function FollowUnfollowList({ users }) {
   const closeModal = (e) => {
     console.log(e.target.classList);
     if (e.target.classList.contains("followUnfollow-container")) {
-      navigate(`/user/${location.pathname.split("/")[2]}`);
+      navigate(`/user/${location?.pathname?.split?.("/")?.[2]}`);
     }
   };
 
@@ -20,7 +20,7 @@ function FollowUnfollowList({ users }) {
         <div className="followUnfollowCard ">
           {users?.length > 0 ? (
             <div className="followUnfollow-List">
-              <h3>{location.pathname.split("/")[3]}</h3>
+              <h3>{location?.pathname?.split?.("/")?.[3]}</h3>
               {users.map((ele) => (
                 <div className="individual-followUnfollow-List ">
                   <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />
@@ -30,7 +30,7 @@ function FollowUnfollowList({ users }) {
             </div>
           ) : (
             <div>
-              <h3> No {location.pathname.split("/")[3]} found</h3>
+              <h3> No {location?.pathname?.split("/")?.[3]} found</h3>
             </div>
           )}
         </div>

@@ -28,8 +28,8 @@ function Post({ ele }) {
               <h3>{ele.user?.name}</h3>
               {ele?.feeling && (
                 <p style={{ marginLeft: ".5rem" }}>
-                  is {ele.feeling.split(" ")[0]} <span>feeling</span>
-                  {ele.feeling.split(" ")[1]}{" "}
+                  is {ele?.feeling?.split?.(" ")?.[0]} <span>feeling</span>
+                  {ele?.feeling?.split?.(" ")?.[1]}{" "}
                 </p>
               )}
             </div>

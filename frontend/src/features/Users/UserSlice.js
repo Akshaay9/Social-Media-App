@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
-import {BE_URL} from "../../const"
+import { BE_URL } from "../../const";
 
 const initialState = {
   Allusers: [],
@@ -33,7 +33,7 @@ export const followUnfollowUser = createAsyncThunk(
     try {
       const data = await axios.post(
         `${BE_URL}/api/user/followUnfollow/${dataToBeSent.id}`,
-        null,
+        {},
         config
       );
       if (dataToBeSent?.loader) {
@@ -89,7 +89,7 @@ export const markNotificationRead = createAsyncThunk(
     try {
       const data = await axios.post(
         `${BE_URL}/api/user/clearnotification`,
-        null,
+        {},
         config
       );
       toast.success("notification marked as  read !", {});
@@ -117,7 +117,7 @@ export const updateUserImage = createAsyncThunk(
     try {
       const data = await axios.post(
         `${BE_URL}/api/user/update`,
-        dataToBeSent.data,
+        dataToBeSent?.data || {},
         config
       );
 

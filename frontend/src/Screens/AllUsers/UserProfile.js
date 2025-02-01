@@ -47,7 +47,7 @@ function UserProfile({ ele, presentUser }) {
     <div>
       {ele._id != presentUser?._id && (
         <div className="user-lists">
-          <Link to={`/user/${ele._id}`}>
+          <Link to={{ pathname: `/user/${ele._id}` }}>
             <div className="left">
               <Avatar
                 alt="Remy Sharp"

@@ -6,7 +6,7 @@ function LeftUser() {
   const { presentUser } = useSelector((state) => state.Users);
   return (
     <div>
-      <Link to={`/user/${presentUser?._id}`}>
+      <Link to={{ pathname: `/user/${presentUser?._id}` }}>
         <div className="left-bar-user">
           <Avatar
             variant="rounded"

@@ -48,7 +48,7 @@ function IndividualSearchItem({ ele }) {
     <div className="search-userlist-container ">
       {ele._id != currentUser?.id && (
         <div className="user-lists  search-userlist">
-          <Link to={`/user/${ele._id}`}>
+          <Link to={{ pathname: `/user/${ele._id}` }}>
             <div className="left">
               <Avatar
                 alt="Remy Sharp"

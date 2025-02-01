@@ -22,17 +22,18 @@ function Notification({ ele }) {
   return (
     <div>
       <div
-        className="individual-notification " id="style-7"
+        className="individual-notification "
+        id="style-7"
         style={ele?.viewed == false ? { backgroundColor: "#24252638" } : {}}
       >
-        <Link to={`/user/${ele.user?._id}`}>
+        <Link to={{ pathname: `/user/${ele.user?._id}` }}>
           <Avatar
             alt="Remy Sharp"
             src={ele?.user?.profileImage}
             className={classes.large}
           />
         </Link>
-        <Link to={`/user/${ele.user?._id}`}>
+        <Link to={{ pathname: `/user/${ele.user?._id}` }}>
           <h3>{ele?.user?.name}</h3>
         </Link>
 

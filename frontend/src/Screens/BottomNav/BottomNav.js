@@ -11,15 +11,15 @@ function BottomNav() {
       {!location.pathname.includes("landing") && (
         <div className="bottom-nav ">
           <div className="nav-container">
-            <Link to="/">
+            <Link to={{ pathname: "/" }}>
               <i class="fas fa-home"></i>
             </Link>
 
-            <Link to={`/user/${currentUser._id}`}>
+            <Link to={{ pathname: `/user/${currentUser._id}` }}>
               <i class="fas fa-user-circle"></i>
             </Link>
 
-            <Link to="/user/all">
+            <Link to={{ pathname: "/user/all" }}>
               <i class="fas fa-users"></i>
             </Link>
             <i class="fas fa-sign-out-alt"></i>

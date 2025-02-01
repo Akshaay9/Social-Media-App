@@ -31,7 +31,7 @@ export const uploadPoast = createAsyncThunk(
     try {
       const data = await axios.post(
         `${BE_URL}/api/user/post`,
-        dataToBeSent.data,
+        dataToBeSent?.data || {},
         config
       );
       toast.success("new poast added !", {});
@@ -56,7 +56,7 @@ export const upDatePoast = createAsyncThunk(
     try {
       const data = await axios.post(
         `${BE_URL}/api/user/post/${dataToBeSent.id}`,
-        dataToBeSent.data,
+        dataToBeSent?.data || {},
         config
       );
       toast.success("poast has been updated !", {});
@@ -109,7 +109,7 @@ export const likeUnlike = createAsyncThunk(
     try {
       const data = await axios.post(
         `${BE_URL}/api/user/like/${dataToBeSent.id}`,
-        null,
+        {},
         config
       );
       console.log(data.data);

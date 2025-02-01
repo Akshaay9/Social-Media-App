@@ -102,14 +102,14 @@ function LikeAndComment({ ele }) {
       <div className="comments-list">
         {ele?.comments?.length > 0 && (
           <div className="comments">
-            <Link to={`/user/${ele.comments[0]?.user?._id}`}>
+            <Link to={{ pathname: `/user/${ele.comments[0]?.user?._id}` }}>
               <Avatar
                 alt="Remy Sharp"
                 src={ele.comments[0]?.user?.profileImage}
               />
             </Link>
             <div className="comment">
-              <Link to={`/user/${ele.comments[0]?.user?._id}`}>
+              <Link to={{ pathname: `/user/${ele.comments[0]?.user?._id}` }}>
                 {" "}
                 <h4>{ele.comments[0]?.user?.name}</h4>
               </Link>
@@ -145,7 +145,7 @@ function LikeAndComment({ ele }) {
           </div>
         )}
         {ele?.comments?.length > 0 ? (
-          <NavLink
+          <Link
             to={{
               pathname: `/${ele.PostType}/${ele._id}`,
             }}
@@ -160,13 +160,12 @@ function LikeAndComment({ ele }) {
             >
               View all comments
             </p>
-          </NavLink>
+          </Link>
         ) : (
-          <NavLink
+          <Link
             to={{
               pathname: `/${ele.PostType}/${ele._id}`,
             }}
-            state={{ from: location.pathname }}
           >
             <p
               style={{
@@ -177,7 +176,7 @@ function LikeAndComment({ ele }) {
             >
               View Post
             </p>
-          </NavLink>
+          </Link>
         )}
       </div>
       <div className="add-comment">

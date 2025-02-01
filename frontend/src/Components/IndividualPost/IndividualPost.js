@@ -121,13 +121,17 @@ function IndividualPost() {
             <div className="individual-post-right">
               <div className="individual-post-right-top">
                 <div className="avatar">
-                  <Link to={`/user/${individualPost[0]?.user._id}`}>
+                  <Link
+                    to={{ pathname: `/user/${individualPost[0]?.user._id}` }}
+                  >
                     <Avatar
                       alt="Remy Sharp"
                       src={individualPost[0].user.profileImage}
                     />
                   </Link>
-                  <Link to={`/user/${individualPost[0]?.user._id}`}>
+                  <Link
+                    to={{ pathname: `/user/${individualPost[0]?.user._id}` }}
+                  >
                     <h3>{individualPost[0].user.name}</h3>
                   </Link>
 
@@ -144,15 +148,16 @@ function IndividualPost() {
                     {" "}
                     <i class="fas fa-ellipsis-h"> </i>
                     <ul>
-                      <NavLink
+                      <Link
                         to={{
-                          pathname: `/modal/${individualPost[0]._id}?update=true`,
+                          pathname: `/modal/${individualPost[0]._id}`,
+                          search: "?update=true",
                         }}
                         state={{ from: location.pathname }}
                       >
                         {" "}
                         <li> Update Post </li>
-                      </NavLink>
+                      </Link>
 
                       <li
                         onClick={() => {
@@ -173,10 +178,12 @@ function IndividualPost() {
                   </>
                 )}
               </div>
-              {location.pathname.includes("image") && (
+              {location?.pathname?.includes("image") && (
                 <div className="individual-post-right-top">
                   <div className="avatar">
-                    <Link to={`/user/${individualPost[0]?.user._id}`}>
+                    <Link
+                      to={{ pathname: `/user/${individualPost[0]?.user._id}` }}
+                    >
                       <Avatar
                         alt="Remy Sharp"
                         src={individualPost[0].user?.profileImage}

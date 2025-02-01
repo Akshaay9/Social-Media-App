@@ -199,11 +199,11 @@ function Background({ individualUser, individualUserPost }) {
           )}
           <div className="user-meta-data">
             <h4>{individualUserPost?.length} Post</h4>
-            <Link to={`/user/${individualUser?._id}/following`}>
+            <Link to={{ pathname: `/user/${individualUser?._id}/following` }}>
               {" "}
               <p>{individualUser?.following?.length} following</p>
             </Link>{" "}
-            <Link to={`/user/${individualUser?._id}/followers`}>
+            <Link to={{ pathname: `/user/${individualUser?._id}/followers` }}>
               <p>{individualUser?.followers?.length} followers</p>
             </Link>{" "}
           </div>

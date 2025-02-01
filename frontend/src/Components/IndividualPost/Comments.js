@@ -15,11 +15,11 @@ function Comments({ ele, updateCommentHandler, id }) {
       <div className="individual-post-comment" id="style-7">
         <div className="comments-list">
           <div className="comments">
-            <Link to={`/user/${ele?.user._id}`}>
+            <Link to={{ pathname: `/user/${ele?.user._id}` }}>
               <Avatar alt="Remy Sharp" src={ele?.user?.profileImage} />
             </Link>
             <div className="comment">
-              <Link to={`/user/${ele?.user._id}`}>
+              <Link to={{ pathname: `/user/${ele?.user._id}` }}>
                 {" "}
                 <h4>{ele?.user.name}</h4>{" "}
               </Link>

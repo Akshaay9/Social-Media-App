@@ -87,7 +87,7 @@ function Login() {
             <h1>Log In to your account</h1>
             <p>
               Dont have an account?{" "}
-              <Link to="/landing/login">
+              <Link to={{ pathname: "/landing/login" }}>
                 <span style={{ color: "black", textDecoration: "underline" }}>
                   Login here
                 </span>{" "}

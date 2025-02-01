@@ -11,7 +11,7 @@ function LeftSideBar({ individualUserStyle }) {
   });
 
   const { presentUser } = useSelector((state) => state.Users);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <>
@@ -24,21 +24,21 @@ function LeftSideBar({ individualUserStyle }) {
         }
       >
         <ul>
-          <Link to="/">
+          <Link to={{ pathname: "/" }}>
             {" "}
             <li>
               <i class="fas fa-home"></i>
               News Feed
             </li>
           </Link>
-          <Link to={`/user/${presentUser?._id}`}>
+          <Link to={{ pathname: `/user/${presentUser?._id}` }}>
             <li>
               <i class="fas fa-user-circle"></i>
               Profile
             </li>
           </Link>
 
-          <Link to="/user/all">
+          <Link to={{ pathname: "/user/all" }}>
             <li>
               <i class="fas fa-users"></i>
               People
@@ -61,7 +61,7 @@ function LeftSideBar({ individualUserStyle }) {
             Setings
           </li>
 
-          <Link to="/user/all">
+          <Link to={{ pathname: "/user/all" }}>
             <li
               onClick={() => {
                 dispatch(logOut());

@@ -49,11 +49,10 @@ function RecommenderUserList({ ele, loadUsers }) {
 
   return (
     <div className="">
- 
       {ele._id != currentUser.id &&
       !presentUser?.following?.some((user) => user?.user?._id == ele._id) ? (
         <div className="recommended-users-list">
-          <Link to={`/user/${ele._id}`}>
+          <Link to={{ pathname: `/user/${ele._id}` }}>
             <div className="" style={{ display: "flex", alignItems: "center" }}>
               <Avatar
                 alt="Remy Sharp"

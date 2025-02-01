@@ -100,7 +100,7 @@ function SignUp() {
             <h1>Create your account</h1>
             <p>
               Alredy have an account?{" "}
-              <Link to="/landing/login">
+              <Link to={{ pathname: "/landing/login" }}>
                 <span style={{ color: "black", textDecoration: "underline" }}>
                   Login here
                 </span>{" "}

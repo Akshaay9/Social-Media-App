@@ -56,7 +56,7 @@ function Nav() {
             />
           </div>
           <div class="nav_name mobile-hide">
-            <Link to="/">
+            <Link to={{ pathname: "/" }}>
               <h2>
                 Gym. <span>Sharkk</span>{" "}
               </h2>
@@ -98,10 +98,10 @@ function Nav() {
           </div>
 
           <div className="nav_right_avatar ">
-            <Link to={`/user/${presentUser?._id}`}>
+            <Link to={{ pathname: `/user/${presentUser?._id}` }}>
               <Avatar alt="Remy Sharp" src={presentUser?.profileImage} />
             </Link>
-            <Link to={`/user/${presentUser?._id}`}>
+            <Link to={{ pathname: `/user/${presentUser?._id}` }}>
               <p className="mobile-hide">{presentUser?.name}</p>
             </Link>
             <div

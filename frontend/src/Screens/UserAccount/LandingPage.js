@@ -54,11 +54,11 @@ function LandingPage() {
             </ul>
           </div>
 
-          <Link to="/landing/signup">
+          <Link to={{ pathname: "/landing/signup" }}>
             {" "}
             <button className="landing-bg-signup">Sign Up</button>
           </Link>
-          <Link to="/landing/login">
+          <Link to={{ pathname: "/landing/login" }}>
             {" "}
             <button className="landing-bg-login">Login</button>
           </Link>

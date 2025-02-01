@@ -10,12 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllPosts } from "./features/Posts/PostSlice";
 import { addPresentUser, getAllUsers } from "./features/Users/UserSlice";
 import LandingPage from "./Screens/UserAccount/LandingPage";
-import { useLocation } from "react-router";
+import { ToastContainer } from "react-toastify";
 import PrivateRoute from "./PrivateRoute";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import {BE_URL} from "./const"
+import { BE_URL } from "./const";
 
 function App() {
   const dispatch = useDispatch();
@@ -56,17 +56,40 @@ function App() {
         closeOnClick
         rtl={false}
       />
-      <ToastContainer />
       <Routes>
-        <PrivateRoute path="/" element={<HomeScreen />} />
-        <PrivateRoute path="/modal" element={<HomeScreen />} />
-        <PrivateRoute path="/modal/:id" element={<HomeScreen />} />
-        <PrivateRoute path="/text/:id" element={<HomeScreen />} />
-        <PrivateRoute path="/image/:id" element={<HomeScreen />} />
-        <PrivateRoute path="/user/:id" element={<IndividualUser />} />
-        <PrivateRoute path="/user/:id/following" element={<IndividualUser />} />
-        <PrivateRoute path="/user/:id/followers" element={<IndividualUser />} />
-        <PrivateRoute path="/user/all" element={<AllUsers />} />
+        <Route path="/" element={<PrivateRoute element={<HomeScreen />} />} />
+        <Route
+          path="/modal"
+          element={<PrivateRoute element={<HomeScreen />} />}
+        />
+        <Route
+          path="/modal/:id"
+          element={<PrivateRoute element={<HomeScreen />} />}
+        />
+        <Route
+          path="/text/:id"
+          element={<PrivateRoute element={<HomeScreen />} />}
+        />
+        <Route
+          path="/image/:id"
+          element={<PrivateRoute element={<HomeScreen />} />}
+        />
+        <Route
+          path="/user/:id"
+          element={<PrivateRoute element={<IndividualUser />} />}
+        />
+        <Route
+          path="/user/:id/following"
+          element={<PrivateRoute element={<IndividualUser />} />}
+        />
+        <Route
+          path="/user/:id/followers"
+          element={<PrivateRoute element={<IndividualUser />} />}
+        />
+        <Route
+          path="/user/all"
+          element={<PrivateRoute element={<AllUsers />} />}
+        />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/landing/login" element={<LandingPage />} />
         <Route path="/landing/signup" element={<LandingPage />} />
@@ -77,4 +100,5 @@ function App() {
     </BrowserRouter>
   );
 }
+
 export default App;
